@@ -1,15 +1,20 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
-#include "MainFrame.hpp"
+#include "wxgit/MainFrame.hpp"
+#include "wxgit/Application.hpp"
 
 namespace wxgit {
 /***********************************************************************//**
 	@brief コンストラクタ
 ***************************************************************************/
 MainFrame::MainFrame()
-  : super(nullptr, wxID_ANY, "wxGit", wxDefaultPosition, wxSize(960, 640))
+  : super(nullptr, wxID_ANY, Application::Version.GetName(), 
+          wxDefaultPosition, wxSize(960, 640)), 
+    toolBar_(CreateToolBar()), 
+    statusBar_(CreateStatusBar())
 {
+  statusBar_->PushStatusText(Application::Version.ToString());
 }
 /***********************************************************************//**
 	@brief デストラクタ

@@ -12,6 +12,10 @@ class MainFrame
 {
   using super = wxFrame;
 
+ private:
+  wxToolBar* toolBar_;
+  wxStatusBar* statusBar_;
+
  public:
   MainFrame();
   ~MainFrame() override;

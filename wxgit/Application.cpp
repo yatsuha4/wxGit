@@ -1,10 +1,11 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
-#include "Application.hpp"
-#include "MainFrame.hpp"
+#include "wxgit/Application.hpp"
+#include "wxgit/MainFrame.hpp"
 
 namespace wxgit {
+const wxVersionInfo Application::Version("wxGit", 0, 0, 1, "", "towerb.com");
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/

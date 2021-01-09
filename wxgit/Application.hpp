@@ -12,6 +12,9 @@ class Application
 {
   using super = wxApp;
 
+ public:
+  static const wxVersionInfo Version;
+
  private:
   MainFrame* mainFrame_;
 
