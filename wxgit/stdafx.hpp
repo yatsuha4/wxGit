@@ -10,6 +10,7 @@
 #define __WXOSX__
 #define __WXOSX_COCOA__
 #include "wx/wx.h"
+#include "wx/aui/auibook.h"
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
@@ -34,6 +35,7 @@
 namespace wxgit {
 WXGIT_DECLARE_CLASS(Application);
 WXGIT_DECLARE_CLASS(MainFrame);
+WXGIT_DECLARE_CLASS(RepoBrowser);
 }
 /***********************************************************************//**
 	$Id$

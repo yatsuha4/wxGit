@@ -23,6 +23,7 @@
 		268C8F9125A92D930098A53A /* libwxjpeg-3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F8A25A92D930098A53A /* libwxjpeg-3.1.a */; };
 		268C8F9225A92D930098A53A /* libwxtiff-3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F8B25A92D930098A53A /* libwxtiff-3.1.a */; };
 		268C8F9525A92EC20098A53A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 268C8F9425A92EC20098A53A /* main.cpp */; };
+		268C8F9B25AA70BC0098A53A /* RepoBrowser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 268C8F9A25AA70BC0098A53A /* RepoBrowser.cpp */; };
 		26A1A16125A80FF000307756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26A1A16025A80FF000307756 /* Assets.xcassets */; };
 		26A1A16425A80FF000307756 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26A1A16225A80FF000307756 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,8 @@
 		268C8F8A25A92D930098A53A /* libwxjpeg-3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libwxjpeg-3.1.a"; path = "../../../external/opt/mac/wxWidgets/lib/libwxjpeg-3.1.a"; sourceTree = "<group>"; };
 		268C8F8B25A92D930098A53A /* libwxtiff-3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libwxtiff-3.1.a"; path = "../../../external/opt/mac/wxWidgets/lib/libwxtiff-3.1.a"; sourceTree = "<group>"; };
 		268C8F9425A92EC20098A53A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		268C8F9925AA70BC0098A53A /* RepoBrowser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RepoBrowser.hpp; sourceTree = "<group>"; };
+		268C8F9A25AA70BC0098A53A /* RepoBrowser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RepoBrowser.cpp; sourceTree = "<group>"; };
 		26A1A15A25A80FEE00307756 /* wxgit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wxgit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26A1A16025A80FF000307756 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26A1A16325A80FF000307756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -86,6 +89,8 @@
 				268C8F9425A92EC20098A53A /* main.cpp */,
 				268C8F1D25A91AC70098A53A /* MainFrame.cpp */,
 				268C8F1E25A91AC70098A53A /* MainFrame.hpp */,
+				268C8F9A25AA70BC0098A53A /* RepoBrowser.cpp */,
+				268C8F9925AA70BC0098A53A /* RepoBrowser.hpp */,
 				268C8F2225A91B4C0098A53A /* stdafx.hpp */,
 			);
 			name = wxgit;
@@ -211,6 +216,7 @@
 			files = (
 				268C8F2125A91AC70098A53A /* Application.cpp in Sources */,
 				268C8F2025A91AC70098A53A /* MainFrame.cpp in Sources */,
+				268C8F9B25AA70BC0098A53A /* RepoBrowser.cpp in Sources */,
 				268C8F9525A92EC20098A53A /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,26 +7,12 @@ namespace wxgit {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-class MainFrame
-  : public wxFrame
-{
-  using super = wxFrame;
+enum Menu {
+  MENU_TOP = wxID_HIGHEST, 
 
- private:
-  wxToolBar* toolBar_;
-  wxStatusBar* statusBar_;
-  wxAuiNotebook* notebook_;
-  RepoBrowser* repoBrowser_;
+  MENU_FILE_QUIT, 
 
- public:
-  MainFrame();
-  ~MainFrame() override;
-
- private:
-  void setupMenuBar();
-  void onSelectMenu(wxCommandEvent& event);
-
-  void onClose(wxCloseEvent& event);
+  MENU_REPOSITORY_ADD, 
 };
 /***********************************************************************//**
 	$Id$

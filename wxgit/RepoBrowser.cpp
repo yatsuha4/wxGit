@@ -1,33 +1,21 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
-#pragma once
+#include "wxgit/RepoBrowser.hpp"
 
 namespace wxgit {
 /***********************************************************************//**
-	@brief 
+	@brief コンストラクタ
 ***************************************************************************/
-class MainFrame
-  : public wxFrame
+RepoBrowser::RepoBrowser(wxWindow* parent)
+  : super(parent, wxID_ANY)
 {
-  using super = wxFrame;
-
- private:
-  wxToolBar* toolBar_;
-  wxStatusBar* statusBar_;
-  wxAuiNotebook* notebook_;
-  RepoBrowser* repoBrowser_;
-
- public:
-  MainFrame();
-  ~MainFrame() override;
-
- private:
-  void setupMenuBar();
-  void onSelectMenu(wxCommandEvent& event);
-
-  void onClose(wxCloseEvent& event);
-};
+}
+/***********************************************************************//**
+	@brief デストラクタ
+***************************************************************************/
+RepoBrowser::~RepoBrowser() {
+}
 /***********************************************************************//**
 	$Id$
 ***************************************************************************/

@@ -5,28 +5,16 @@
 
 namespace wxgit {
 /***********************************************************************//**
-	@brief 
+	@brief リポジトリブラウザ
 ***************************************************************************/
-class MainFrame
-  : public wxFrame
+class RepoBrowser
+  : public wxWindow
 {
-  using super = wxFrame;
-
- private:
-  wxToolBar* toolBar_;
-  wxStatusBar* statusBar_;
-  wxAuiNotebook* notebook_;
-  RepoBrowser* repoBrowser_;
+  using super = wxWindow;
 
  public:
-  MainFrame();
-  ~MainFrame() override;
-
- private:
-  void setupMenuBar();
-  void onSelectMenu(wxCommandEvent& event);
-
-  void onClose(wxCloseEvent& event);
+  RepoBrowser(wxWindow* parent);
+  ~RepoBrowser() override;
 };
 /***********************************************************************//**
 	$Id$
