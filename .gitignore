@@ -1,3 +1,9 @@
 # Xcode
 DerivedData/
 xcuserdata/
+
+# Mac
+/external/build/mac/work/
+
+#
+/external/opt/
