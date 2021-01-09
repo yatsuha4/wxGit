@@ -1,0 +1,5 @@
+CURDIR	:= $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+TOPDIR	:= $(abspath $(CURDIR)/../../..)
+WORKDIR	:= $(CURDIR)/work/$(TARGET)
+SRCDIR	:= $(TOPDIR)/external/$(TARGET)
+OPTDIR	:= $(TOPDIR)/external/opt/mac/$(TARGET)
