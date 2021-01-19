@@ -3,34 +3,27 @@
 ***************************************************************************/
 #pragma once
 
+#include "wxgit/outliner/Item.hpp"
+
 namespace wxgit {
+namespace outliner {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-class MainFrame
-  : public wxFrame
+class Repository
+  : public Item
 {
-  using super = wxFrame;
+  using super = Item;
 
  private:
-  wxStatusBar* statusBar_;
-  wxAuiManager auiManager_;
-  outliner::Outliner* outliner_;
+  wxFileName path_;
 
  public:
-  MainFrame();
-  ~MainFrame() override;
-
- private:
-  void setupMenuBar();
-  void setupToolBar();
-
-  void onSelectMenu(wxCommandEvent& event);
-  void onClose(wxCloseEvent& event);
-
-  void addRepository();
+  Repository(const wxFileName& path);
+  ~Repository() override;
 };
 /***********************************************************************//**
 	$Id$
 ***************************************************************************/
+}
 }

@@ -13,6 +13,7 @@
 		263A0AD825B67E3600A24421 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 263A0AD125B67E3600A24421 /* main.cpp */; };
 		263A0AD925B67E3600A24421 /* Outliner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 263A0AD325B67E3600A24421 /* Outliner.cpp */; };
 		263A0ADF25B68FEC00A24421 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 263A0ADE25B68FEC00A24421 /* Item.cpp */; };
+		263A0AE425B6954700A24421 /* Repository.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 263A0AE225B6954700A24421 /* Repository.cpp */; };
 		268C8F7325A92C600098A53A /* libwx_osx_cocoau-3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F7125A92BDA0098A53A /* libwx_osx_cocoau-3.1.a */; };
 		268C8F7725A92CF80098A53A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F7625A92CF80098A53A /* CoreGraphics.framework */; };
 		268C8F7A25A92D280098A53A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F7925A92D280098A53A /* Cocoa.framework */; };
@@ -44,6 +45,8 @@
 		263A0AD425B67E3600A24421 /* Outliner.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Outliner.hpp; sourceTree = "<group>"; };
 		263A0ADD25B68FEC00A24421 /* Item.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Item.hpp; sourceTree = "<group>"; };
 		263A0ADE25B68FEC00A24421 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
+		263A0AE225B6954700A24421 /* Repository.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Repository.cpp; sourceTree = "<group>"; };
+		263A0AE325B6954700A24421 /* Repository.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Repository.hpp; sourceTree = "<group>"; };
 		268C8F7125A92BDA0098A53A /* libwx_osx_cocoau-3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libwx_osx_cocoau-3.1.a"; path = "../../../external/opt/mac/wxWidgets/lib/libwx_osx_cocoau-3.1.a"; sourceTree = "<group>"; };
 		268C8F7625A92CF80098A53A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		268C8F7925A92D280098A53A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -113,6 +116,8 @@
 				263A0ADD25B68FEC00A24421 /* Item.hpp */,
 				263A0AD325B67E3600A24421 /* Outliner.cpp */,
 				263A0AD425B67E3600A24421 /* Outliner.hpp */,
+				263A0AE225B6954700A24421 /* Repository.cpp */,
+				263A0AE325B6954700A24421 /* Repository.hpp */,
 			);
 			path = outliner;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				263A0AD625B67E3600A24421 /* RepoBrowser.cpp in Sources */,
 				263A0AD525B67E3600A24421 /* MainFrame.cpp in Sources */,
 				263A0AD825B67E3600A24421 /* main.cpp in Sources */,
+				263A0AE425B6954700A24421 /* Repository.cpp in Sources */,
 				263A0AD925B67E3600A24421 /* Outliner.cpp in Sources */,
 				263A0AD725B67E3600A24421 /* Application.cpp in Sources */,
 			);

@@ -6,6 +6,7 @@
 #include "wxgit/Menu.hpp"
 #include "wxgit/RepoBrowser.hpp"
 #include "wxgit/outliner/Outliner.hpp"
+#include "wxgit/outliner/Repository.hpp"
 
 namespace wxgit {
 /***********************************************************************//**
@@ -71,6 +72,9 @@ void MainFrame::onSelectMenu(wxCommandEvent& event) {
   case wxID_EXIT:
     Close();
     break;
+  case Menu::MENU_REPOSITORY_ADD:
+    addRepository();
+    break;
   default:
     break;
   }
@@ -81,6 +85,15 @@ void MainFrame::onSelectMenu(wxCommandEvent& event) {
 void MainFrame::onClose(wxCloseEvent& event) {
   if(event.CanVeto()) {
     Destroy();
+  }
+}
+/***********************************************************************//**
+	@brief ローカルリポジトリを追加する
+***************************************************************************/
+void MainFrame::addRepository() {
+  wxDirDialog dialog(this, "Select repository");
+  if(dialog.ShowModal() == wxID_OK) {
+    outliner_->appendItem(new outliner::Repository(dialog.GetPath()));
   }
 }
 /***********************************************************************//**

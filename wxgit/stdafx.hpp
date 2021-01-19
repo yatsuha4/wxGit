@@ -12,6 +12,7 @@
 #include "wx/wx.h"
 #include "wx/artprov.h"
 #include "wx/aui/auibook.h"
+#include "wx/filename.h"
 #include "wx/treelist.h"
 /***********************************************************************//**
 	@brief 
@@ -45,6 +46,7 @@ WXGIT_DECLARE_CLASS(RepoBrowser)
 namespace outliner {
 WXGIT_DECLARE_CLASS(Item)
 WXGIT_DECLARE_CLASS(Outliner)
+WXGIT_DECLARE_CLASS(Repository)
 }
 }
 /***********************************************************************//**

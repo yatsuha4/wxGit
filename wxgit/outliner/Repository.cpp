@@ -1,36 +1,26 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
-#pragma once
+#include "wxgit/outliner/Repository.hpp"
 
 namespace wxgit {
+namespace outliner {
 /***********************************************************************//**
-	@brief 
+	@brief コンストラクタ
+        @param[in] path ローカルパス
 ***************************************************************************/
-class MainFrame
-  : public wxFrame
+Repository::Repository(const wxFileName& path)
+  : super(path.GetFullName()), 
+    path_(path)
 {
-  using super = wxFrame;
-
- private:
-  wxStatusBar* statusBar_;
-  wxAuiManager auiManager_;
-  outliner::Outliner* outliner_;
-
- public:
-  MainFrame();
-  ~MainFrame() override;
-
- private:
-  void setupMenuBar();
-  void setupToolBar();
-
-  void onSelectMenu(wxCommandEvent& event);
-  void onClose(wxCloseEvent& event);
-
-  void addRepository();
-};
+}
+/***********************************************************************//**
+	@brief デストラクタ
+***************************************************************************/
+Repository::~Repository() {
+}
 /***********************************************************************//**
 	$Id$
 ***************************************************************************/
+}
 }
