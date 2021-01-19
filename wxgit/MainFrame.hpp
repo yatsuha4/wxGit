@@ -13,7 +13,6 @@ class MainFrame
   using super = wxFrame;
 
  private:
-  wxToolBar* toolBar_;
   wxStatusBar* statusBar_;
   wxAuiNotebook* notebook_;
   RepoBrowser* repoBrowser_;
@@ -24,6 +23,7 @@ class MainFrame
 
  private:
   void setupMenuBar();
+  void setupToolBar();
   void onSelectMenu(wxCommandEvent& event);
 
   void onClose(wxCloseEvent& event);

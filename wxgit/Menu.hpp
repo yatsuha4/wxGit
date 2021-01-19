@@ -12,7 +12,10 @@ enum Menu {
 
   MENU_FILE_QUIT, 
 
+  MENU_REPOSITORY_CLONE, 
   MENU_REPOSITORY_ADD, 
+
+  MENU_BOTTOM
 };
 /***********************************************************************//**
 	$Id$

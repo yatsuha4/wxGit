@@ -10,6 +10,7 @@
 #define __WXOSX__
 #define __WXOSX_COCOA__
 #include "wx/wx.h"
+#include "wx/artprov.h"
 #include "wx/aui/auibook.h"
 /***********************************************************************//**
 	@brief 
