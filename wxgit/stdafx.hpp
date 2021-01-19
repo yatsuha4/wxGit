@@ -12,6 +12,7 @@
 #include "wx/wx.h"
 #include "wx/artprov.h"
 #include "wx/aui/auibook.h"
+#include "wx/treelist.h"
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
@@ -30,13 +31,21 @@
   const decltype(var)& get##name() const {      \
     return var;                                 \
   }
+
+#define WXGIT_ACCESSOR(name, var)               \
+  WXGIT_SETTER(name, var)                       \
+  WXGIT_GETTER(name, var)
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
 namespace wxgit {
-WXGIT_DECLARE_CLASS(Application);
-WXGIT_DECLARE_CLASS(MainFrame);
-WXGIT_DECLARE_CLASS(RepoBrowser);
+WXGIT_DECLARE_CLASS(Application)
+WXGIT_DECLARE_CLASS(MainFrame)
+WXGIT_DECLARE_CLASS(RepoBrowser)
+namespace outliner {
+WXGIT_DECLARE_CLASS(Item)
+WXGIT_DECLARE_CLASS(Outliner)
+}
 }
 /***********************************************************************//**
 	$Id$

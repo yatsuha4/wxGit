@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		268C8F2025A91AC70098A53A /* MainFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 268C8F1D25A91AC70098A53A /* MainFrame.cpp */; };
-		268C8F2125A91AC70098A53A /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 268C8F1F25A91AC70098A53A /* Application.cpp */; };
+		263A0AD525B67E3600A24421 /* MainFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 263A0ACB25B67E3600A24421 /* MainFrame.cpp */; };
+		263A0AD625B67E3600A24421 /* RepoBrowser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 263A0ACF25B67E3600A24421 /* RepoBrowser.cpp */; };
+		263A0AD725B67E3600A24421 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 263A0AD025B67E3600A24421 /* Application.cpp */; };
+		263A0AD825B67E3600A24421 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 263A0AD125B67E3600A24421 /* main.cpp */; };
+		263A0AD925B67E3600A24421 /* Outliner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 263A0AD325B67E3600A24421 /* Outliner.cpp */; };
+		263A0ADF25B68FEC00A24421 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 263A0ADE25B68FEC00A24421 /* Item.cpp */; };
 		268C8F7325A92C600098A53A /* libwx_osx_cocoau-3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F7125A92BDA0098A53A /* libwx_osx_cocoau-3.1.a */; };
 		268C8F7725A92CF80098A53A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F7625A92CF80098A53A /* CoreGraphics.framework */; };
 		268C8F7A25A92D280098A53A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F7925A92D280098A53A /* Cocoa.framework */; };
@@ -22,18 +26,24 @@
 		268C8F9025A92D930098A53A /* libwxscintilla-3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F8925A92D930098A53A /* libwxscintilla-3.1.a */; };
 		268C8F9125A92D930098A53A /* libwxjpeg-3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F8A25A92D930098A53A /* libwxjpeg-3.1.a */; };
 		268C8F9225A92D930098A53A /* libwxtiff-3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F8B25A92D930098A53A /* libwxtiff-3.1.a */; };
-		268C8F9525A92EC20098A53A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 268C8F9425A92EC20098A53A /* main.cpp */; };
-		268C8F9B25AA70BC0098A53A /* RepoBrowser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 268C8F9A25AA70BC0098A53A /* RepoBrowser.cpp */; };
 		26A1A16125A80FF000307756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26A1A16025A80FF000307756 /* Assets.xcassets */; };
 		26A1A16425A80FF000307756 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26A1A16225A80FF000307756 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		268C8F1C25A91AC70098A53A /* Application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Application.hpp; sourceTree = "<group>"; };
-		268C8F1D25A91AC70098A53A /* MainFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainFrame.cpp; sourceTree = "<group>"; };
-		268C8F1E25A91AC70098A53A /* MainFrame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainFrame.hpp; sourceTree = "<group>"; };
-		268C8F1F25A91AC70098A53A /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
-		268C8F2225A91B4C0098A53A /* stdafx.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stdafx.hpp; sourceTree = "<group>"; };
+		263A0AC925B67E3600A24421 /* stdafx.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stdafx.hpp; sourceTree = "<group>"; };
+		263A0ACA25B67E3600A24421 /* Application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Application.hpp; sourceTree = "<group>"; };
+		263A0ACB25B67E3600A24421 /* MainFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainFrame.cpp; sourceTree = "<group>"; };
+		263A0ACC25B67E3600A24421 /* RepoBrowser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RepoBrowser.hpp; sourceTree = "<group>"; };
+		263A0ACD25B67E3600A24421 /* Menu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Menu.hpp; sourceTree = "<group>"; };
+		263A0ACE25B67E3600A24421 /* MainFrame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainFrame.hpp; sourceTree = "<group>"; };
+		263A0ACF25B67E3600A24421 /* RepoBrowser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RepoBrowser.cpp; sourceTree = "<group>"; };
+		263A0AD025B67E3600A24421 /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
+		263A0AD125B67E3600A24421 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		263A0AD325B67E3600A24421 /* Outliner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Outliner.cpp; sourceTree = "<group>"; };
+		263A0AD425B67E3600A24421 /* Outliner.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Outliner.hpp; sourceTree = "<group>"; };
+		263A0ADD25B68FEC00A24421 /* Item.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Item.hpp; sourceTree = "<group>"; };
+		263A0ADE25B68FEC00A24421 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
 		268C8F7125A92BDA0098A53A /* libwx_osx_cocoau-3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libwx_osx_cocoau-3.1.a"; path = "../../../external/opt/mac/wxWidgets/lib/libwx_osx_cocoau-3.1.a"; sourceTree = "<group>"; };
 		268C8F7625A92CF80098A53A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		268C8F7925A92D280098A53A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -47,9 +57,6 @@
 		268C8F8925A92D930098A53A /* libwxscintilla-3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libwxscintilla-3.1.a"; path = "../../../external/opt/mac/wxWidgets/lib/libwxscintilla-3.1.a"; sourceTree = "<group>"; };
 		268C8F8A25A92D930098A53A /* libwxjpeg-3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libwxjpeg-3.1.a"; path = "../../../external/opt/mac/wxWidgets/lib/libwxjpeg-3.1.a"; sourceTree = "<group>"; };
 		268C8F8B25A92D930098A53A /* libwxtiff-3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libwxtiff-3.1.a"; path = "../../../external/opt/mac/wxWidgets/lib/libwxtiff-3.1.a"; sourceTree = "<group>"; };
-		268C8F9425A92EC20098A53A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		268C8F9925AA70BC0098A53A /* RepoBrowser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RepoBrowser.hpp; sourceTree = "<group>"; };
-		268C8F9A25AA70BC0098A53A /* RepoBrowser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RepoBrowser.cpp; sourceTree = "<group>"; };
 		26A1A15A25A80FEE00307756 /* wxgit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wxgit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26A1A16025A80FF000307756 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26A1A16325A80FF000307756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -81,20 +88,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		268C8F1B25A91AC70098A53A /* wxgit */ = {
+		263A0AC825B67E3600A24421 /* wxgit */ = {
 			isa = PBXGroup;
 			children = (
-				268C8F1F25A91AC70098A53A /* Application.cpp */,
-				268C8F1C25A91AC70098A53A /* Application.hpp */,
-				268C8F9425A92EC20098A53A /* main.cpp */,
-				268C8F1D25A91AC70098A53A /* MainFrame.cpp */,
-				268C8F1E25A91AC70098A53A /* MainFrame.hpp */,
-				268C8F9A25AA70BC0098A53A /* RepoBrowser.cpp */,
-				268C8F9925AA70BC0098A53A /* RepoBrowser.hpp */,
-				268C8F2225A91B4C0098A53A /* stdafx.hpp */,
+				263A0AD025B67E3600A24421 /* Application.cpp */,
+				263A0ACA25B67E3600A24421 /* Application.hpp */,
+				263A0AD125B67E3600A24421 /* main.cpp */,
+				263A0ACB25B67E3600A24421 /* MainFrame.cpp */,
+				263A0ACE25B67E3600A24421 /* MainFrame.hpp */,
+				263A0ACD25B67E3600A24421 /* Menu.hpp */,
+				263A0AD225B67E3600A24421 /* outliner */,
+				263A0ACF25B67E3600A24421 /* RepoBrowser.cpp */,
+				263A0ACC25B67E3600A24421 /* RepoBrowser.hpp */,
+				263A0AC925B67E3600A24421 /* stdafx.hpp */,
 			);
 			name = wxgit;
 			path = ../../../wxgit;
+			sourceTree = "<group>";
+		};
+		263A0AD225B67E3600A24421 /* outliner */ = {
+			isa = PBXGroup;
+			children = (
+				263A0ADE25B68FEC00A24421 /* Item.cpp */,
+				263A0ADD25B68FEC00A24421 /* Item.hpp */,
+				263A0AD325B67E3600A24421 /* Outliner.cpp */,
+				263A0AD425B67E3600A24421 /* Outliner.hpp */,
+			);
+			path = outliner;
 			sourceTree = "<group>";
 		};
 		268C8F7025A92BDA0098A53A /* Frameworks */ = {
@@ -120,10 +140,10 @@
 		26A1A15125A80FEE00307756 = {
 			isa = PBXGroup;
 			children = (
-				26A1A15C25A80FEE00307756 /* wxgit */,
-				268C8F1B25A91AC70098A53A /* wxgit */,
-				26A1A15B25A80FEE00307756 /* Products */,
 				268C8F7025A92BDA0098A53A /* Frameworks */,
+				26A1A15B25A80FEE00307756 /* Products */,
+				263A0AC825B67E3600A24421 /* wxgit */,
+				26A1A15C25A80FEE00307756 /* xcode */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,7 +155,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		26A1A15C25A80FEE00307756 /* wxgit */ = {
+		26A1A15C25A80FEE00307756 /* xcode */ = {
 			isa = PBXGroup;
 			children = (
 				26A1A16025A80FF000307756 /* Assets.xcassets */,
@@ -143,7 +163,7 @@
 				26A1A16525A80FF000307756 /* Info.plist */,
 				26A1A16825A80FF000307756 /* wxgit.entitlements */,
 			);
-			path = wxgit;
+			path = xcode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,10 +234,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				268C8F2125A91AC70098A53A /* Application.cpp in Sources */,
-				268C8F2025A91AC70098A53A /* MainFrame.cpp in Sources */,
-				268C8F9B25AA70BC0098A53A /* RepoBrowser.cpp in Sources */,
-				268C8F9525A92EC20098A53A /* main.cpp in Sources */,
+				263A0ADF25B68FEC00A24421 /* Item.cpp in Sources */,
+				263A0AD625B67E3600A24421 /* RepoBrowser.cpp in Sources */,
+				263A0AD525B67E3600A24421 /* MainFrame.cpp in Sources */,
+				263A0AD825B67E3600A24421 /* main.cpp in Sources */,
+				263A0AD925B67E3600A24421 /* Outliner.cpp in Sources */,
+				263A0AD725B67E3600A24421 /* Application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,10 +389,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = wxgit/wxgit.entitlements;
+				CODE_SIGN_ENTITLEMENTS = xcode/wxgit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = wxgit/Info.plist;
+				INFOPLIST_FILE = xcode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -390,10 +412,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = wxgit/wxgit.entitlements;
+				CODE_SIGN_ENTITLEMENTS = xcode/wxgit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = wxgit/Info.plist;
+				INFOPLIST_FILE = xcode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

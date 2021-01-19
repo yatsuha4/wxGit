@@ -5,6 +5,7 @@
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/Menu.hpp"
 #include "wxgit/RepoBrowser.hpp"
+#include "wxgit/outliner/Outliner.hpp"
 
 namespace wxgit {
 /***********************************************************************//**
@@ -14,19 +15,22 @@ MainFrame::MainFrame()
   : super(nullptr, wxID_ANY, Application::Version.GetName(), 
           wxDefaultPosition, wxSize(960, 640)), 
     statusBar_(CreateStatusBar()), 
-    notebook_(new wxAuiNotebook(this, wxID_ANY)), 
-    repoBrowser_(new RepoBrowser(notebook_))
+    auiManager_(this), 
+    outliner_(new outliner::Outliner(this))
 {
   setupMenuBar();
   setupToolBar();
-  notebook_->AddPage(repoBrowser_, "Repository");
+  //notebook_->AddPage(repoBrowser_, "Repository");
   statusBar_->PushStatusText(Application::Version.ToString());
+  auiManager_.AddPane(outliner_, wxAuiPaneInfo().Left());
+  auiManager_.Update();
   Bind(wxEVT_CLOSE_WINDOW, &MainFrame::onClose, this);
 }
 /***********************************************************************//**
 	@brief デストラクタ
 ***************************************************************************/
 MainFrame::~MainFrame() {
+  auiManager_.UnInit();
 }
 /***********************************************************************//**
 	@brief メニューバーを設定する

@@ -4,31 +4,26 @@
 #pragma once
 
 namespace wxgit {
+namespace outliner {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-class MainFrame
-  : public wxFrame
+class Item
+  : public wxClientData
 {
-  using super = wxFrame;
-
- private:
-  wxStatusBar* statusBar_;
-  wxAuiManager auiManager_;
-  outliner::Outliner* outliner_;
+ private: 
+  wxString text_;
+  wxTreeListItem id_;
 
  public:
-  MainFrame();
-  ~MainFrame() override;
+  Item(const wxString& text);
+  virtual ~Item();
 
- private:
-  void setupMenuBar();
-  void setupToolBar();
-  void onSelectMenu(wxCommandEvent& event);
-
-  void onClose(wxCloseEvent& event);
+  WXGIT_ACCESSOR(Text, text_);
+  WXGIT_ACCESSOR(Id, id_);
 };
 /***********************************************************************//**
 	$Id$
 ***************************************************************************/
+}
 }
