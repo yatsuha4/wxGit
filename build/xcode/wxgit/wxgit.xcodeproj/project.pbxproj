@@ -29,6 +29,8 @@
 		268C8F9225A92D930098A53A /* libwxtiff-3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 268C8F8B25A92D930098A53A /* libwxtiff-3.1.a */; };
 		26A1A16125A80FF000307756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26A1A16025A80FF000307756 /* Assets.xcassets */; };
 		26A1A16425A80FF000307756 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26A1A16225A80FF000307756 /* MainMenu.xib */; };
+		26FCFD6725BB18CD006BD258 /* Repository.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD6525BB18CD006BD258 /* Repository.cpp */; };
+		26FCFD6D25BB1AFE006BD258 /* libgit2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FCFD6C25BB1AFE006BD258 /* libgit2.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,9 @@
 		26A1A16325A80FF000307756 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		26A1A16525A80FF000307756 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26A1A16825A80FF000307756 /* wxgit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = wxgit.entitlements; sourceTree = "<group>"; };
+		26FCFD6525BB18CD006BD258 /* Repository.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Repository.cpp; sourceTree = "<group>"; };
+		26FCFD6625BB18CD006BD258 /* Repository.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Repository.hpp; sourceTree = "<group>"; };
+		26FCFD6C25BB1AFE006BD258 /* libgit2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgit2.a; path = ../../../../../../../usr/local/lib/libgit2.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +81,7 @@
 				268C8F7A25A92D280098A53A /* Cocoa.framework in Frameworks */,
 				268C8F7725A92CF80098A53A /* CoreGraphics.framework in Frameworks */,
 				268C8F7D25A92D380098A53A /* IOKit.framework in Frameworks */,
+				26FCFD6D25BB1AFE006BD258 /* libgit2.a in Frameworks */,
 				268C8F8325A92D5D0098A53A /* libiconv.tbd in Frameworks */,
 				268C8F8D25A92D930098A53A /* libwx_osx_cocoau_gl-3.1.a in Frameworks */,
 				268C8F7325A92C600098A53A /* libwx_osx_cocoau-3.1.a in Frameworks */,
@@ -96,6 +102,7 @@
 			children = (
 				263A0AD025B67E3600A24421 /* Application.cpp */,
 				263A0ACA25B67E3600A24421 /* Application.hpp */,
+				26FCFD6425BB18CD006BD258 /* git */,
 				263A0AD125B67E3600A24421 /* main.cpp */,
 				263A0ACB25B67E3600A24421 /* MainFrame.cpp */,
 				263A0ACE25B67E3600A24421 /* MainFrame.hpp */,
@@ -129,6 +136,7 @@
 				268C8F7925A92D280098A53A /* Cocoa.framework */,
 				268C8F7625A92CF80098A53A /* CoreGraphics.framework */,
 				268C8F7C25A92D380098A53A /* IOKit.framework */,
+				26FCFD6C25BB1AFE006BD258 /* libgit2.a */,
 				268C8F8225A92D5D0098A53A /* libiconv.tbd */,
 				268C8F8625A92D930098A53A /* libwx_osx_cocoau_gl-3.1.a */,
 				268C8F7125A92BDA0098A53A /* libwx_osx_cocoau-3.1.a */,
@@ -169,6 +177,15 @@
 				26A1A16825A80FF000307756 /* wxgit.entitlements */,
 			);
 			path = xcode;
+			sourceTree = "<group>";
+		};
+		26FCFD6425BB18CD006BD258 /* git */ = {
+			isa = PBXGroup;
+			children = (
+				26FCFD6525BB18CD006BD258 /* Repository.cpp */,
+				26FCFD6625BB18CD006BD258 /* Repository.hpp */,
+			);
+			path = git;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +263,7 @@
 				263A0AE425B6954700A24421 /* Repository.cpp in Sources */,
 				263A0AD925B67E3600A24421 /* Outliner.cpp in Sources */,
 				263A0AD725B67E3600A24421 /* Application.cpp in Sources */,
+				26FCFD6725BB18CD006BD258 /* Repository.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,8 +421,13 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../../external/opt/mac/wxWidgets/lib",
+					/usr/local/lib,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.towerb.wxgit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../../../external/opt/mac/wxWidgets/include/wx-3.1",
 					"$(PROJECT_DIR)/../../../external/opt/mac/wxWidgets/lib/wx/include/osx_cocoa-unicode-static-3.1",
@@ -426,8 +449,13 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../../external/opt/mac/wxWidgets/lib",
+					/usr/local/lib,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.towerb.wxgit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../../../external/opt/mac/wxWidgets/include/wx-3.1",
 					"$(PROJECT_DIR)/../../../external/opt/mac/wxWidgets/lib/wx/include/osx_cocoa-unicode-static-3.1",
