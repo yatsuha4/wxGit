@@ -4,34 +4,21 @@
 #pragma once
 
 namespace wxgit {
+namespace history {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-class MainFrame
-  : public wxFrame
+class History
+  : public wxListCtrl
 {
-  using super = wxFrame;
-
- private:
-  wxStatusBar* statusBar_;
-  wxAuiManager auiManager_;
-  outliner::Outliner* outliner_;
-  history::History* history_;
+  using super = wxListCtrl;
 
  public:
-  MainFrame();
-  ~MainFrame() override;
-
- private:
-  void setupMenuBar();
-  void setupToolBar();
-
-  void onSelectMenu(wxCommandEvent& event);
-  void onClose(wxCloseEvent& event);
-
-  void addRepository();
+  History(wxWindow* parent);
+  ~History() override;
 };
 /***********************************************************************//**
 	$Id$
 ***************************************************************************/
+}
 }

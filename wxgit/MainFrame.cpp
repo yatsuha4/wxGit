@@ -6,10 +6,18 @@
 #include "wxgit/Menu.hpp"
 #include "wxgit/RepoBrowser.hpp"
 #include "wxgit/git/Repository.hpp"
+#include "wxgit/history/History.hpp"
 #include "wxgit/outliner/Outliner.hpp"
 #include "wxgit/outliner/Repository.hpp"
 
 namespace wxgit {
+/***********************************************************************//**
+	@brief 
+***************************************************************************/
+enum {
+  LAYER_HISTORY, 
+  LAYER_OUTLINER
+};
 /***********************************************************************//**
 	@brief コンストラクタ
 ***************************************************************************/
@@ -18,13 +26,29 @@ MainFrame::MainFrame()
           wxDefaultPosition, wxSize(960, 640)), 
     statusBar_(CreateStatusBar()), 
     auiManager_(this), 
-    outliner_(new outliner::Outliner(this))
+    outliner_(new outliner::Outliner(this)), 
+    history_(new history::History(this))
 {
   setupMenuBar();
   setupToolBar();
   //notebook_->AddPage(repoBrowser_, "Repository");
   statusBar_->PushStatusText(Application::Version.ToString());
-  auiManager_.AddPane(outliner_, wxAuiPaneInfo().Left());
+  auiManager_.AddPane(outliner_, 
+                      wxAuiPaneInfo().
+                      Name("Outliner").
+                      Caption("Outliner").
+                      CloseButton(false).
+                      Left().
+                      BestSize(200, 800).
+                      Layer(LAYER_OUTLINER));
+  auiManager_.AddPane(history_, 
+                      wxAuiPaneInfo().
+                      Name("History").
+                      Caption("History").
+                      CloseButton(false).
+                      CenterPane().
+                      BestSize(800, 800).
+                      Layer(LAYER_HISTORY));
   auiManager_.Update();
   Bind(wxEVT_CLOSE_WINDOW, &MainFrame::onClose, this);
 }

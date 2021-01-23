@@ -14,6 +14,7 @@
 #include "wx/artprov.h"
 #include "wx/aui/auibook.h"
 #include "wx/filename.h"
+#include "wx/listctrl.h"
 #include "wx/treelist.h"
 /***********************************************************************//**
 	@brief 
@@ -49,8 +50,11 @@ WXGIT_DECLARE_CLASS(Application)
 WXGIT_DECLARE_CLASS(MainFrame)
 WXGIT_DECLARE_CLASS(RepoBrowser)
 namespace git {
-WXGIT_DECLARE_CLASS(Branch);
+WXGIT_DECLARE_CLASS(Branch)
 WXGIT_DECLARE_CLASS(Repository)
+}
+namespace history {
+WXGIT_DECLARE_CLASS(History)
 }
 namespace outliner {
 WXGIT_DECLARE_CLASS(Branch)

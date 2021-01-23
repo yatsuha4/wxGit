@@ -1,37 +1,25 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
-#pragma once
+#include "wxgit/history/History.hpp"
 
 namespace wxgit {
+namespace history {
 /***********************************************************************//**
-	@brief 
+	@brief コンストラクタ
 ***************************************************************************/
-class MainFrame
-  : public wxFrame
+History::History(wxWindow* parent)
+  : super(parent, wxID_ANY)
 {
-  using super = wxFrame;
-
- private:
-  wxStatusBar* statusBar_;
-  wxAuiManager auiManager_;
-  outliner::Outliner* outliner_;
-  history::History* history_;
-
- public:
-  MainFrame();
-  ~MainFrame() override;
-
- private:
-  void setupMenuBar();
-  void setupToolBar();
-
-  void onSelectMenu(wxCommandEvent& event);
-  void onClose(wxCloseEvent& event);
-
-  void addRepository();
-};
+  //AppendColumn("Description");
+}
+/***********************************************************************//**
+	@brief デストラクタ
+***************************************************************************/
+History::~History() {
+}
 /***********************************************************************//**
 	$Id$
 ***************************************************************************/
+}
 }

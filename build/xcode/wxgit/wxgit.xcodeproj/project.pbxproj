@@ -33,6 +33,7 @@
 		26FCFD7225BB2D6A006BD258 /* Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD7125BB2D6A006BD258 /* Branch.cpp */; };
 		26FCFD7725BC1A16006BD258 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD7525BC1A16006BD258 /* Node.cpp */; };
 		26FCFD7C25BC26FA006BD258 /* Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD7B25BC26FA006BD258 /* Branch.cpp */; };
+		26FCFD8225BC9A3E006BD258 /* History.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD8025BC9A3E006BD258 /* History.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,8 @@
 		26FCFD7625BC1A16006BD258 /* Node.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
 		26FCFD7A25BC26FA006BD258 /* Branch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Branch.hpp; sourceTree = "<group>"; };
 		26FCFD7B25BC26FA006BD258 /* Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Branch.cpp; sourceTree = "<group>"; };
+		26FCFD8025BC9A3E006BD258 /* History.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = History.cpp; sourceTree = "<group>"; };
+		26FCFD8125BC9A3E006BD258 /* History.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = History.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,7 @@
 				263A0AD025B67E3600A24421 /* Application.cpp */,
 				263A0ACA25B67E3600A24421 /* Application.hpp */,
 				26FCFD6425BB18CD006BD258 /* git */,
+				26FCFD7F25BC9A3E006BD258 /* history */,
 				263A0AD125B67E3600A24421 /* main.cpp */,
 				263A0ACB25B67E3600A24421 /* MainFrame.cpp */,
 				263A0ACE25B67E3600A24421 /* MainFrame.hpp */,
@@ -198,6 +202,15 @@
 			path = git;
 			sourceTree = "<group>";
 		};
+		26FCFD7F25BC9A3E006BD258 /* history */ = {
+			isa = PBXGroup;
+			children = (
+				26FCFD8025BC9A3E006BD258 /* History.cpp */,
+				26FCFD8125BC9A3E006BD258 /* History.hpp */,
+			);
+			path = history;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -268,6 +281,7 @@
 			files = (
 				26FCFD7725BC1A16006BD258 /* Node.cpp in Sources */,
 				263A0AD625B67E3600A24421 /* RepoBrowser.cpp in Sources */,
+				26FCFD8225BC9A3E006BD258 /* History.cpp in Sources */,
 				263A0AD525B67E3600A24421 /* MainFrame.cpp in Sources */,
 				263A0AD825B67E3600A24421 /* main.cpp in Sources */,
 				263A0AE425B6954700A24421 /* Repository.cpp in Sources */,
