@@ -8,20 +8,16 @@ namespace git {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-class Commit {
- private:
-  git_commit* commit_;
-  wxString message_;
-  SignaturePtr committer_;
-  wxDateTime time_;
+class Signature {
+ public:
+  wxString name;
+  wxString email;
+  wxDateTime when;
 
  public:
-  Commit(git_commit* commit);
-  ~Commit();
-
-  WXGIT_GETTER(Message, message_);
-  WXGIT_GETTER(Committer, committer_);
-  WXGIT_GETTER(Time, time_);
+  Signature() = default;
+  Signature(const git_signature* signature);
+  ~Signature() = default;
 };
 /***********************************************************************//**
 	$Id$

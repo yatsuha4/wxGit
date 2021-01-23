@@ -2,6 +2,7 @@
 	@file
 ***************************************************************************/
 #include "wxgit/git/Commit.hpp"
+#include "wxgit/git/Signature.hpp"
 
 namespace wxgit {
 namespace git {
@@ -11,7 +12,9 @@ namespace git {
 ***************************************************************************/
 Commit::Commit(git_commit* commit)
   : commit_(commit), 
-    message_(git_commit_message(commit))
+    message_(git_commit_message(commit)), 
+    committer_(std::make_shared<Signature>(git_commit_committer(commit))), 
+    time_(static_cast<time_t>(git_commit_time(commit)))
 {
 }
 /***********************************************************************//**

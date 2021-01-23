@@ -1,28 +1,19 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
-#pragma once
+#include "wxgit/git/Signature.hpp"
 
 namespace wxgit {
 namespace git {
 /***********************************************************************//**
-	@brief 
+	@brief コンストラクタ
 ***************************************************************************/
-class Commit {
- private:
-  git_commit* commit_;
-  wxString message_;
-  SignaturePtr committer_;
-  wxDateTime time_;
-
- public:
-  Commit(git_commit* commit);
-  ~Commit();
-
-  WXGIT_GETTER(Message, message_);
-  WXGIT_GETTER(Committer, committer_);
-  WXGIT_GETTER(Time, time_);
-};
+Signature::Signature(const git_signature* signature)
+  : name(signature->name), 
+    email(signature->email), 
+    when(static_cast<time_t>(signature->when.time))
+{
+}
 /***********************************************************************//**
 	$Id$
 ***************************************************************************/

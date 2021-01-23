@@ -53,6 +53,7 @@ namespace git {
 WXGIT_DECLARE_CLASS(Branch)
 WXGIT_DECLARE_CLASS(Commit)
 WXGIT_DECLARE_CLASS(Repository)
+WXGIT_DECLARE_CLASS(Signature)
 }
 namespace history {
 WXGIT_DECLARE_CLASS(History)
