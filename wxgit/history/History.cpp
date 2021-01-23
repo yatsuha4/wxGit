@@ -33,6 +33,7 @@ void History::showCommits(const std::vector<git::CommitPtr>& commits) {
     item.push_back(commit->getCommitter()->name);
     item.push_back(commit->getCommitter()->when.Format("%F %R"));
     AppendItem(item);
+    wxYield();
   }
   commits_ = commits;
 }
