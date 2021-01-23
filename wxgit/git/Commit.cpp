@@ -10,7 +10,8 @@ namespace git {
 	@param[in] commit コミット
 ***************************************************************************/
 Commit::Commit(git_commit* commit)
-  : commit_(commit)
+  : commit_(commit), 
+    message_(git_commit_message(commit))
 {
 }
 /***********************************************************************//**

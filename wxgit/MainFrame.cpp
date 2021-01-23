@@ -125,6 +125,7 @@ void MainFrame::addRepository() {
     }
     else {
       outliner::Repository::Append(*outliner_, name, repository);
+      history_->showCommits(repository->getCommits());
     }
   }
 }

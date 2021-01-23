@@ -11,10 +11,13 @@ namespace git {
 class Commit {
  private:
   git_commit* commit_;
+  wxString message_;
 
  public:
   Commit(git_commit* commit);
   ~Commit();
+
+  WXGIT_GETTER(Message, message_);
 };
 /***********************************************************************//**
 	$Id$

@@ -13,8 +13,8 @@
 #include "wx/wx.h"
 #include "wx/artprov.h"
 #include "wx/aui/auibook.h"
+#include "wx/dataview.h"
 #include "wx/filename.h"
-#include "wx/listctrl.h"
 #include "wx/treelist.h"
 /***********************************************************************//**
 	@brief 

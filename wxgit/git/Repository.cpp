@@ -2,6 +2,7 @@
 	@file
 ***************************************************************************/
 #include "wxgit/git/Branch.hpp"
+#include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Repository.hpp"
 
 namespace wxgit {
@@ -45,6 +46,26 @@ std::vector<BranchPtr> Repository::getBranches(git_branch_t type) const {
   }
   git_branch_iterator_free(iterator);
   return branches;
+}
+/***********************************************************************//**
+	@brief 
+***************************************************************************/
+std::vector<CommitPtr> Repository::getCommits() const {
+  std::vector<CommitPtr> commits;
+  git_revwalk* walk;
+  if(git_revwalk_new(&walk, repository_) == 0) {
+    if(git_revwalk_push_head(walk) == 0) {
+      git_oid oid;
+      while(git_revwalk_next(&oid, walk) == 0) {
+        git_commit* commit;
+        if(git_commit_lookup(&commit, repository_, &oid) == 0) {
+          commits.push_back(std::make_shared<Commit>(commit));
+        }
+      }
+    }
+    git_revwalk_free(walk);
+  }
+  return commits;
 }
 /***********************************************************************//**
 	$Id$

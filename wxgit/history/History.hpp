@@ -9,13 +9,18 @@ namespace history {
 	@brief 
 ***************************************************************************/
 class History
-  : public wxListCtrl
+  : public wxDataViewListCtrl
 {
-  using super = wxListCtrl;
+  using super = wxDataViewListCtrl;
+
+ private:
+  std::vector<git::CommitPtr> commits_;
 
  public:
   History(wxWindow* parent);
   ~History() override;
+
+  void showCommits(const std::vector<git::CommitPtr>& commits);
 };
 /***********************************************************************//**
 	$Id$

@@ -23,6 +23,7 @@ class Repository {
   bool isError() const;
 
   std::vector<BranchPtr> getBranches(git_branch_t type) const;
+  std::vector<CommitPtr> getCommits() const;
 };
 /***********************************************************************//**
 	$Id$
