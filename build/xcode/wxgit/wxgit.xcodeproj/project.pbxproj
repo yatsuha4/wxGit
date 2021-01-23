@@ -34,6 +34,7 @@
 		26FCFD7725BC1A16006BD258 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD7525BC1A16006BD258 /* Node.cpp */; };
 		26FCFD7C25BC26FA006BD258 /* Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD7B25BC26FA006BD258 /* Branch.cpp */; };
 		26FCFD8225BC9A3E006BD258 /* History.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD8025BC9A3E006BD258 /* History.cpp */; };
+		26FCFD8725BCA43C006BD258 /* Commit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD8625BCA43C006BD258 /* Commit.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,8 @@
 		26FCFD7B25BC26FA006BD258 /* Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Branch.cpp; sourceTree = "<group>"; };
 		26FCFD8025BC9A3E006BD258 /* History.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = History.cpp; sourceTree = "<group>"; };
 		26FCFD8125BC9A3E006BD258 /* History.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = History.hpp; sourceTree = "<group>"; };
+		26FCFD8525BCA43C006BD258 /* Commit.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Commit.hpp; sourceTree = "<group>"; };
+		26FCFD8625BCA43C006BD258 /* Commit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Commit.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +199,8 @@
 			children = (
 				26FCFD7125BB2D6A006BD258 /* Branch.cpp */,
 				26FCFD7025BB2D6A006BD258 /* Branch.hpp */,
+				26FCFD8625BCA43C006BD258 /* Commit.cpp */,
+				26FCFD8525BCA43C006BD258 /* Commit.hpp */,
 				26FCFD6525BB18CD006BD258 /* Repository.cpp */,
 				26FCFD6625BB18CD006BD258 /* Repository.hpp */,
 			);
@@ -287,6 +292,7 @@
 				263A0AE425B6954700A24421 /* Repository.cpp in Sources */,
 				26FCFD7C25BC26FA006BD258 /* Branch.cpp in Sources */,
 				263A0AD925B67E3600A24421 /* Outliner.cpp in Sources */,
+				26FCFD8725BCA43C006BD258 /* Commit.cpp in Sources */,
 				263A0AD725B67E3600A24421 /* Application.cpp in Sources */,
 				26FCFD7225BB2D6A006BD258 /* Branch.cpp in Sources */,
 				26FCFD6725BB18CD006BD258 /* Repository.cpp in Sources */,

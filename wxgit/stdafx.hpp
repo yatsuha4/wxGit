@@ -51,6 +51,7 @@ WXGIT_DECLARE_CLASS(MainFrame)
 WXGIT_DECLARE_CLASS(RepoBrowser)
 namespace git {
 WXGIT_DECLARE_CLASS(Branch)
+WXGIT_DECLARE_CLASS(Commit)
 WXGIT_DECLARE_CLASS(Repository)
 }
 namespace history {
