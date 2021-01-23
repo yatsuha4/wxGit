@@ -100,7 +100,7 @@ void MainFrame::addRepository() {
     if(repository->isError()) {
     }
     else {
-      outliner_->appendItem(new outliner::Repository(name, repository));
+      outliner_->appendNode(new outliner::Repository(name, repository));
     }
   }
 }

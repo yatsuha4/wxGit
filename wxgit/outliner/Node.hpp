@@ -8,17 +8,23 @@ namespace outliner {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-class Outliner
-  : public wxTreeListCtrl
+class Node
+  : public wxClientData
 {
-  using super = wxTreeListCtrl;
+ private: 
+  wxString text_;
+  Outliner* outliner_;
+  wxTreeListItem id_;
 
  public:
-  Outliner(wxWindow* parent);
-  virtual ~Outliner();
+  Node(const wxString& text);
+  ~Node() override;
 
-  void appendNode(Node* node, Node* parent = nullptr);
-  void removeNode(Node* node);
+  WXGIT_ACCESSOR(Text, text_);
+  WXGIT_GETTER(Id, id_);
+
+  void link(Outliner* outliner, const wxTreeListItem& id);
+  void unlink();
 };
 /***********************************************************************//**
 	$Id$

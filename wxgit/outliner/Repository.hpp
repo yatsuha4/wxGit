@@ -3,7 +3,7 @@
 ***************************************************************************/
 #pragma once
 
-#include "wxgit/outliner/Item.hpp"
+#include "wxgit/outliner/Node.hpp"
 
 namespace wxgit {
 namespace outliner {
@@ -11,9 +11,9 @@ namespace outliner {
 	@brief 
 ***************************************************************************/
 class Repository
-  : public Item
+  : public Node
 {
-  using super = Item;
+  using super = Node;
 
  private:
   git::RepositoryPtr repository_;
