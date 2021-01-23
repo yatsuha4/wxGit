@@ -16,10 +16,10 @@ class Repository
   using super = Item;
 
  private:
-  wxFileName path_;
+  git::RepositoryPtr repository_;
 
  public:
-  Repository(const wxFileName& path);
+  Repository(const wxString& name, const git::RepositoryPtr& repository);
   ~Repository() override;
 };
 /***********************************************************************//**

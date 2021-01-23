@@ -5,6 +5,7 @@
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/Menu.hpp"
 #include "wxgit/RepoBrowser.hpp"
+#include "wxgit/git/Repository.hpp"
 #include "wxgit/outliner/Outliner.hpp"
 #include "wxgit/outliner/Repository.hpp"
 
@@ -93,7 +94,14 @@ void MainFrame::onClose(wxCloseEvent& event) {
 void MainFrame::addRepository() {
   wxDirDialog dialog(this, "Select repository");
   if(dialog.ShowModal() == wxID_OK) {
-    outliner_->appendItem(new outliner::Repository(dialog.GetPath()));
+    auto name = wxFileName(dialog.GetPath()).GetName();
+    wxFileName dir(dialog.GetPath(), ".git");
+    auto repository = std::make_shared<git::Repository>(dir);
+    if(repository->isError()) {
+    }
+    else {
+      outliner_->appendItem(new outliner::Repository(name, repository));
+    }
   }
 }
 /***********************************************************************//**

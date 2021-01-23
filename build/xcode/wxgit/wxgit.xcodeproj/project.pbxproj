@@ -31,6 +31,7 @@
 		26A1A16425A80FF000307756 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26A1A16225A80FF000307756 /* MainMenu.xib */; };
 		26FCFD6725BB18CD006BD258 /* Repository.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD6525BB18CD006BD258 /* Repository.cpp */; };
 		26FCFD6D25BB1AFE006BD258 /* libgit2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FCFD6C25BB1AFE006BD258 /* libgit2.a */; };
+		26FCFD7225BB2D6A006BD258 /* Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD7125BB2D6A006BD258 /* Branch.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,8 @@
 		26FCFD6525BB18CD006BD258 /* Repository.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Repository.cpp; sourceTree = "<group>"; };
 		26FCFD6625BB18CD006BD258 /* Repository.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Repository.hpp; sourceTree = "<group>"; };
 		26FCFD6C25BB1AFE006BD258 /* libgit2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgit2.a; path = ../../../../../../../usr/local/lib/libgit2.a; sourceTree = "<group>"; };
+		26FCFD7025BB2D6A006BD258 /* Branch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Branch.hpp; sourceTree = "<group>"; };
+		26FCFD7125BB2D6A006BD258 /* Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Branch.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,8 @@
 		26FCFD6425BB18CD006BD258 /* git */ = {
 			isa = PBXGroup;
 			children = (
+				26FCFD7125BB2D6A006BD258 /* Branch.cpp */,
+				26FCFD7025BB2D6A006BD258 /* Branch.hpp */,
 				26FCFD6525BB18CD006BD258 /* Repository.cpp */,
 				26FCFD6625BB18CD006BD258 /* Repository.hpp */,
 			);
@@ -263,6 +268,7 @@
 				263A0AE425B6954700A24421 /* Repository.cpp in Sources */,
 				263A0AD925B67E3600A24421 /* Outliner.cpp in Sources */,
 				263A0AD725B67E3600A24421 /* Application.cpp in Sources */,
+				26FCFD7225BB2D6A006BD258 /* Branch.cpp in Sources */,
 				26FCFD6725BB18CD006BD258 /* Repository.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

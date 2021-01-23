@@ -4,27 +4,18 @@
 #pragma once
 
 namespace wxgit {
-namespace outliner {
+namespace git {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-class Item
-  : public wxClientData
-{
- private: 
-  wxString text_;
-  Outliner* outliner_;
-  wxTreeListItem id_;
+class Branch {
+ private:
+  git_reference* reference_;
+  git_branch_t type_;
 
  public:
-  Item(const wxString& text);
-  ~Item() override;
-
-  WXGIT_ACCESSOR(Text, text_);
-  WXGIT_GETTER(Id, id_);
-
-  void link(Outliner* outliner, const wxTreeListItem& id);
-  void unlink();
+  Branch(git_reference* reference, git_branch_t type);
+  ~Branch();
 };
 /***********************************************************************//**
 	$Id$

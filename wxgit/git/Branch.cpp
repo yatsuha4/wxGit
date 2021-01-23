@@ -1,36 +1,26 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
-#include "wxgit/Application.hpp"
-#include "wxgit/MainFrame.hpp"
+#include "wxgit/git/Branch.hpp"
 
 namespace wxgit {
-const wxVersionInfo Application::Version("wxGit", 0, 0, 1, "", "towerb.com");
+namespace git {
 /***********************************************************************//**
-	@brief 
+	@brief コンストラクタ
 ***************************************************************************/
-Application::Application()
-  : mainFrame_(nullptr)
+Branch::Branch(git_reference* reference, git_branch_t type)
+  : reference_(reference), 
+    type_(type)
 {
 }
 /***********************************************************************//**
 	@brief デストラクタ
 ***************************************************************************/
-Application::~Application() {
-}
-/***********************************************************************//**
-	@brief 
-***************************************************************************/
-bool Application::OnInit() {
-  if(!super::OnInit()) {
-    return false;
-  }
-  git_libgit2_init();
-  mainFrame_ = new MainFrame();
-  mainFrame_->Show(true);
-  return true;
+Branch::~Branch() {
+  git_reference_free(reference_);
 }
 /***********************************************************************//**
 	$Id$
 ***************************************************************************/
+}
 }

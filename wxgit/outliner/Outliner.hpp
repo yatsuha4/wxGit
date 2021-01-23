@@ -17,7 +17,8 @@ class Outliner
   Outliner(wxWindow* parent);
   virtual ~Outliner();
 
-  void appendItem(Item* item);
+  void appendItem(Item* item, Item* parent = nullptr);
+  void removeItem(Item* item);
 };
 /***********************************************************************//**
 	$Id$

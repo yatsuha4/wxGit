@@ -1,17 +1,20 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
+#include "wxgit/git/Repository.hpp"
 #include "wxgit/outliner/Repository.hpp"
 
 namespace wxgit {
 namespace outliner {
 /***********************************************************************//**
 	@brief コンストラクタ
-        @param[in] path ローカルパス
+        @param[in] name 名前
+        @param[in] repository リポジトリ
 ***************************************************************************/
-Repository::Repository(const wxFileName& path)
-  : super(path.GetFullName()), 
-    path_(path)
+Repository::Repository(const wxString& name, 
+                       const git::RepositoryPtr& repository)
+  : super(name), 
+    repository_(repository)
 {
 }
 /***********************************************************************//**
