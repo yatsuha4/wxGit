@@ -10,7 +10,8 @@ namespace git {
 ***************************************************************************/
 Branch::Branch(git_reference* reference, git_branch_t type)
   : reference_(reference), 
-    type_(type)
+    type_(type), 
+    name_(git_reference_name(reference))
 {
 }
 /***********************************************************************//**

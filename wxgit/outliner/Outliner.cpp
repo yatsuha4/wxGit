@@ -24,7 +24,7 @@ Outliner::~Outliner() {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-void Outliner::appendNode(Node* node, Node* parent) {
+Node* Outliner::appendNode(Node* node, Node* parent) {
   auto id = AppendItem((parent ? parent->getId() : GetRootItem()), 
                        node->getText());
   SetItemData(id, node);
@@ -32,6 +32,7 @@ void Outliner::appendNode(Node* node, Node* parent) {
   if(parent) {
     parent->onAppendChild(*this, node);
   }
+  return node;
 }
 /***********************************************************************//**
 	@brief 

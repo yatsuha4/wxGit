@@ -3,22 +3,24 @@
 ***************************************************************************/
 #pragma once
 
+#include "wxgit/outliner/Node.hpp"
+
 namespace wxgit {
-namespace git {
+namespace outliner {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-class Branch {
+class Branch
+  : public Node
+{
+  using super = Node;
+
  private:
-  git_reference* reference_;
-  git_branch_t type_;
-  wxString name_;
+  git::BranchPtr branch_;
 
  public:
-  Branch(git_reference* reference, git_branch_t type);
-  ~Branch();
-
-  WXGIT_GETTER(Name, name_);
+  Branch(const git::BranchPtr& branch);
+  ~Branch() override;
 };
 /***********************************************************************//**
 	$Id$

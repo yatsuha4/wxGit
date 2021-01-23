@@ -17,7 +17,7 @@ class Outliner
   Outliner(wxWindow* parent);
   virtual ~Outliner();
 
-  void appendNode(Node* node, Node* parent = nullptr);
+  Node* appendNode(Node* node, Node* parent = nullptr);
   void removeNode(Node* node);
 
   Node* getParentNode(Node* node) const;

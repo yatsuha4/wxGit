@@ -6,7 +6,7 @@
 namespace wxgit {
 namespace outliner {
 /***********************************************************************//**
-	@brief 
+	@brief ノード基底クラス
 ***************************************************************************/
 class Node
   : public wxClientData
@@ -21,6 +21,7 @@ class Node
   ~Node() override;
 
   WXGIT_ACCESSOR(Text, text_);
+  WXGIT_GETTER(Outliner, outliner_);
   WXGIT_GETTER(Id, id_);
 
   void link(Outliner* outliner, const wxTreeListItem& id);

@@ -32,6 +32,7 @@
 		26FCFD6D25BB1AFE006BD258 /* libgit2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FCFD6C25BB1AFE006BD258 /* libgit2.a */; };
 		26FCFD7225BB2D6A006BD258 /* Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD7125BB2D6A006BD258 /* Branch.cpp */; };
 		26FCFD7725BC1A16006BD258 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD7525BC1A16006BD258 /* Node.cpp */; };
+		26FCFD7C25BC26FA006BD258 /* Branch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD7B25BC26FA006BD258 /* Branch.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,8 @@
 		26FCFD7125BB2D6A006BD258 /* Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Branch.cpp; sourceTree = "<group>"; };
 		26FCFD7525BC1A16006BD258 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
 		26FCFD7625BC1A16006BD258 /* Node.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
+		26FCFD7A25BC26FA006BD258 /* Branch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Branch.hpp; sourceTree = "<group>"; };
+		26FCFD7B25BC26FA006BD258 /* Branch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Branch.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 		263A0AD225B67E3600A24421 /* outliner */ = {
 			isa = PBXGroup;
 			children = (
+				26FCFD7B25BC26FA006BD258 /* Branch.cpp */,
+				26FCFD7A25BC26FA006BD258 /* Branch.hpp */,
 				26FCFD7525BC1A16006BD258 /* Node.cpp */,
 				26FCFD7625BC1A16006BD258 /* Node.hpp */,
 				263A0AD325B67E3600A24421 /* Outliner.cpp */,
@@ -266,6 +271,7 @@
 				263A0AD525B67E3600A24421 /* MainFrame.cpp in Sources */,
 				263A0AD825B67E3600A24421 /* main.cpp in Sources */,
 				263A0AE425B6954700A24421 /* Repository.cpp in Sources */,
+				26FCFD7C25BC26FA006BD258 /* Branch.cpp in Sources */,
 				263A0AD925B67E3600A24421 /* Outliner.cpp in Sources */,
 				263A0AD725B67E3600A24421 /* Application.cpp in Sources */,
 				26FCFD7225BB2D6A006BD258 /* Branch.cpp in Sources */,

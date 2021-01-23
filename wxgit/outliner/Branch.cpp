@@ -1,25 +1,24 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
-#pragma once
+#include "wxgit/git/Branch.hpp"
+#include "wxgit/outliner/Branch.hpp"
 
 namespace wxgit {
-namespace git {
+namespace outliner {
 /***********************************************************************//**
-	@brief 
+	@brief コンストラクタ
 ***************************************************************************/
-class Branch {
- private:
-  git_reference* reference_;
-  git_branch_t type_;
-  wxString name_;
-
- public:
-  Branch(git_reference* reference, git_branch_t type);
-  ~Branch();
-
-  WXGIT_GETTER(Name, name_);
-};
+Branch::Branch(const git::BranchPtr& branch)
+  : super(branch->getName()), 
+    branch_(branch)
+{
+}
+/***********************************************************************//**
+	@brief デストラクタ
+***************************************************************************/
+Branch::~Branch() {
+}
 /***********************************************************************//**
 	$Id$
 ***************************************************************************/
