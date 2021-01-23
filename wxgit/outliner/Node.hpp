@@ -25,6 +25,9 @@ class Node
 
   void link(Outliner* outliner, const wxTreeListItem& id);
   void unlink();
+
+  virtual void onAppendChild(Outliner& outliner, Node* child) {}
+  virtual void onRemoveChild(Outliner& outliner, Node* child) {}
 };
 /***********************************************************************//**
 	$Id$

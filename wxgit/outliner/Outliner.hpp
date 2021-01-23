@@ -19,6 +19,8 @@ class Outliner
 
   void appendNode(Node* node, Node* parent = nullptr);
   void removeNode(Node* node);
+
+  Node* getParentNode(Node* node) const;
 };
 /***********************************************************************//**
 	$Id$
