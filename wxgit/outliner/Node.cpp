@@ -2,6 +2,7 @@
 	@file
 ***************************************************************************/
 #include "wxgit/outliner/Node.hpp"
+#include "wxgit/outliner/Outliner.hpp"
 #include "wxgit/outliner/Repository.hpp"
 
 namespace wxgit {
@@ -14,9 +15,13 @@ Node::Node()
 {
 }
 /***********************************************************************//**
-	@brief デストラクタ
+	@brief 
 ***************************************************************************/
-Node::~Node() {
+void Node::setName(const wxString& name) {
+  name_ = name;
+  if(outliner_) {
+    outliner_->SetItemText(id_, name);
+  }
 }
 /***********************************************************************//**
 	@brief 

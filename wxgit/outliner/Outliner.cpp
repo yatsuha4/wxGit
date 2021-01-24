@@ -78,8 +78,11 @@ wxXmlNode* Outliner::serialize() const {
 bool Outliner::deserialize(const wxXmlNode* xml) {
   if(Serializable::deserialize(xml)) {
     for(auto iter = xml->GetChildren(); iter; iter = iter->GetNext()) {
-      if(auto node = Node::Deserialize(xml)) {
+      if(auto node = Node::Deserialize(iter)) {
         appendNode(node);
+      }
+      else {
+        Warning("illegal node", iter);
       }
     }
     return true;

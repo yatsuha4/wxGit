@@ -20,7 +20,7 @@ class Repository {
 
   WXGIT_GETTER(Dir, dir_)
 
-  bool isError() const;
+  bool isOk() const;
 
   std::vector<BranchPtr> getBranches(git_branch_t type) const;
   std::vector<CommitPtr> getCommits() const;

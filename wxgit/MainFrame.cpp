@@ -72,6 +72,14 @@ wxXmlNode* MainFrame::serialize() const {
 ***************************************************************************/
 bool MainFrame::deserialize(const wxXmlNode* xml) {
   if(Serializable::deserialize(xml)) {
+    for(auto child = xml->GetChildren(); child; child = child->GetNext()) {
+      if(child->GetName() == outliner::Outliner::GetSerialName()) {
+        outliner_->deserialize(child);
+      }
+      else {
+        Warning("illegal node", child);
+      }
+    }
     return true;
   }
   return false;

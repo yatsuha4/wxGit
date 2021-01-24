@@ -39,6 +39,9 @@ bool Repository::deserialize(const wxXmlNode* xml) {
 ***************************************************************************/
 void Repository::onAppend(Outliner* outliner, const wxTreeListItem& id) {
   super::onAppend(outliner, id);
+  if(getName().IsEmpty()) {
+    setName(wxFileName(dir_).GetName());
+  }
   wxFileName dir(dir_, ".git");
   repository_ = std::make_shared<git::Repository>(dir);
   appendBranches("Local branch", GIT_BRANCH_LOCAL);

@@ -10,6 +10,7 @@ namespace wxgit {
 enum Menu {
   MENU_TOP = wxID_HIGHEST, 
 
+  MENU_FILE_LOAD, 
   MENU_FILE_QUIT, 
 
   MENU_REPOSITORY_CLONE, 

@@ -16,6 +16,8 @@ class Serializable {
   virtual bool deserialize(const wxXmlNode* xml) = 0;
 
   virtual const char* getSerialName() const = 0;
+
+  static void Warning(const wxString& message, const wxXmlNode* node);
 };
 /***********************************************************************//**
 	@brief 

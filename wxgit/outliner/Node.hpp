@@ -21,9 +21,11 @@ class Node
 
  public:
   Node();
-  ~Node() override;
+  ~Node() override = default;
 
-  WXGIT_ACCESSOR(Name, name_);
+  void setName(const wxString& name);
+  WXGIT_GETTER(Name, name_);
+
   WXGIT_GETTER(Outliner, outliner_);
   WXGIT_GETTER(Id, id_);
 

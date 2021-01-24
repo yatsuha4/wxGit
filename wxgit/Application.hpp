@@ -23,6 +23,7 @@ class Application
   ~Application() override;
 
   void savePreference();
+  void loadPreference();
 
  protected:
   bool OnInit() override;
