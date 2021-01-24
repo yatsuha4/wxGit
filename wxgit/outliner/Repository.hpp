@@ -26,6 +26,8 @@ class Repository
 
   WXGIT_GETTER(Repository, repository_);
 
+  wxMenu* getContextMenu() override;
+
   wxXmlNode* serialize() const override;
   bool deserialize(const wxXmlNode* xml) override;
   WXGIT_GET_SERIAL_NAME(Repository);

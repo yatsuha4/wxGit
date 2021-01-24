@@ -30,6 +30,9 @@ class Outliner
   wxXmlNode* serialize() const override;
   bool deserialize(const wxXmlNode* xml) override;
   WXGIT_GET_SERIAL_NAME(Outliner);
+
+ private:
+  void onContextMenu(wxTreeListEvent& event);
 };
 /***********************************************************************//**
 	$Id$

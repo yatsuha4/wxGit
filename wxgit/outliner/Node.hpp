@@ -34,6 +34,8 @@ class Node
   virtual void onAppendChild(Outliner& outliner, Node* child) {}
   virtual void onRemoveChild(Outliner& outliner, Node* child) {}
 
+  virtual wxMenu* getContextMenu();
+
   wxXmlNode* serialize() const override;
   bool deserialize(const wxXmlNode* xml) override;
   WXGIT_GET_SERIAL_NAME(Node);

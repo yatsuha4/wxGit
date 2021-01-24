@@ -1,38 +1,28 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
-#pragma once
+#include "wxgit/Menu.hpp"
 
 namespace wxgit {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-class Menu
-  : public wxMenu
-{
-  using super = wxMenu;
+wxMenuItem* Menu::append(Id id) {
+  return super::Append(static_cast<int>(id), GetText(id));
+}
+/***********************************************************************//**
+	@brief 
+***************************************************************************/
+const char* Menu::GetText(Id id) {
+  static const char* LABELS[] = {
+    "Quit", 
 
- public:
-  enum class Id {
-    TOP = wxID_HIGHEST, 
-
-    FILE_QUIT, 
-
-    REPOSITORY_CLONE, 
-    REPOSITORY_ADD, 
-    REPOSITORY_REMOVE, 
-
-    BOTTOM
+    "Clone", 
+    "Add", 
+    "Remove"
   };
-
- public:
-  Menu() = default;
-  ~Menu() override = default;
-
-  wxMenuItem* append(Id id);
-
-  static const char* GetText(Id id);
-};
+  return LABELS[static_cast<int>(id) - static_cast<int>(Id::TOP) - 1];
+}
 /***********************************************************************//**
 	$Id$
 ***************************************************************************/

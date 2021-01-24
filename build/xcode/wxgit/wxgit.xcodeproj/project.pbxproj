@@ -38,6 +38,7 @@
 		26FCFD8C25BCAF20006BD258 /* Signature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD8B25BCAF20006BD258 /* Signature.cpp */; };
 		26FCFD9025BCCA54006BD258 /* libexpat.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FCFD8F25BCCA54006BD258 /* libexpat.tbd */; };
 		26FCFD9625BD422D006BD258 /* Serializable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD9525BD422D006BD258 /* Serializable.cpp */; };
+		26FCFD9C25BD9981006BD258 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD9B25BD9981006BD258 /* Menu.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		26FCFD8F25BCCA54006BD258 /* libexpat.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libexpat.tbd; path = usr/lib/libexpat.tbd; sourceTree = SDKROOT; };
 		26FCFD9325BD3F8E006BD258 /* Serializable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Serializable.hpp; sourceTree = "<group>"; };
 		26FCFD9525BD422D006BD258 /* Serializable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Serializable.cpp; sourceTree = "<group>"; };
+		26FCFD9B25BD9981006BD258 /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				263A0AD125B67E3600A24421 /* main.cpp */,
 				263A0ACB25B67E3600A24421 /* MainFrame.cpp */,
 				263A0ACE25B67E3600A24421 /* MainFrame.hpp */,
+				26FCFD9B25BD9981006BD258 /* Menu.cpp */,
 				263A0ACD25B67E3600A24421 /* Menu.hpp */,
 				263A0AD225B67E3600A24421 /* outliner */,
 				263A0ACF25B67E3600A24421 /* RepoBrowser.cpp */,
@@ -307,6 +310,7 @@
 				26FCFD8C25BCAF20006BD258 /* Signature.cpp in Sources */,
 				26FCFD7C25BC26FA006BD258 /* Branch.cpp in Sources */,
 				263A0AD925B67E3600A24421 /* Outliner.cpp in Sources */,
+				26FCFD9C25BD9981006BD258 /* Menu.cpp in Sources */,
 				26FCFD8725BCA43C006BD258 /* Commit.cpp in Sources */,
 				26FCFD9625BD422D006BD258 /* Serializable.cpp in Sources */,
 				263A0AD725B67E3600A24421 /* Application.cpp in Sources */,

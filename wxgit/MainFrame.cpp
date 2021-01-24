@@ -90,13 +90,14 @@ bool MainFrame::deserialize(const wxXmlNode* xml) {
 void MainFrame::setupMenuBar() {
   auto menuBar = new wxMenuBar();
   {
-    auto menu = new wxMenu();
-    menu->Append(Menu::MENU_FILE_QUIT, "Quit");
+    auto menu = new Menu();
+    menu->append(Menu::Id::FILE_QUIT);
     menuBar->Append(menu, "File");
   }
   {
-    auto menu = new wxMenu();
-    menu->Append(Menu::MENU_REPOSITORY_ADD, "Add");
+    auto menu = new Menu();
+    menu->append(Menu::Id::REPOSITORY_ADD);
+    menu->append(Menu::Id::REPOSITORY_CLONE);
     menuBar->Append(menu, "Repository");
   }
   SetMenuBar(menuBar);
@@ -107,9 +108,11 @@ void MainFrame::setupMenuBar() {
 ***************************************************************************/
 void MainFrame::setupToolBar() {
   auto toolBar = CreateToolBar(wxTB_DEFAULT_STYLE | wxTB_TEXT);
-  toolBar->AddTool(Menu::MENU_REPOSITORY_CLONE, "Clone", 
+  toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_CLONE), 
+                   Menu::GetText(Menu::Id::REPOSITORY_CLONE), 
                    wxArtProvider::GetBitmap(wxART_COPY));
-  toolBar->AddTool(Menu::MENU_REPOSITORY_ADD, "Add", 
+  toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_ADD), 
+                   Menu::GetText(Menu::Id::REPOSITORY_ADD), 
                    wxArtProvider::GetBitmap(wxART_NEW));
   toolBar->Realize();
   Bind(wxEVT_TOOL, &MainFrame::onSelectMenu, this);
@@ -118,12 +121,11 @@ void MainFrame::setupToolBar() {
 	@brief 
 ***************************************************************************/
 void MainFrame::onSelectMenu(wxCommandEvent& event) {
-  switch(event.GetId()) {
-  case Menu::MENU_FILE_QUIT:
-  case wxID_EXIT:
+  switch(static_cast<Menu::Id>(event.GetId())) {
+  case Menu::Id::FILE_QUIT:
     Close();
     break;
-  case Menu::MENU_REPOSITORY_ADD:
+  case Menu::Id::REPOSITORY_ADD:
     addRepository();
     break;
   default:

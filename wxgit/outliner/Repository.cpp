@@ -1,6 +1,7 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
+#include "wxgit/Menu.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/outliner/Branch.hpp"
 #include "wxgit/outliner/Outliner.hpp"
@@ -15,6 +16,14 @@ namespace outliner {
 Repository::Repository(const wxString& dir)
   : dir_(dir)
 {
+}
+/***********************************************************************//**
+	@copydoc Node::getContextMenu
+***************************************************************************/
+wxMenu* Repository::getContextMenu() {
+  auto menu = new Menu();
+  menu->append(Menu::Id::REPOSITORY_REMOVE);
+  return menu;
 }
 /***********************************************************************//**
 	@brief 

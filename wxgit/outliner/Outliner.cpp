@@ -2,6 +2,7 @@
 	@file
 ***************************************************************************/
 #include "wxgit/MainFrame.hpp"
+#include "wxgit/Menu.hpp"
 #include "wxgit/outliner/Node.hpp"
 #include "wxgit/outliner/Outliner.hpp"
 
@@ -16,6 +17,7 @@ Outliner::Outliner(MainFrame* mainFrame)
           wxTL_DEFAULT_STYLE | wxTL_NO_HEADER)
 {
   AppendColumn("Name");
+  Bind(wxEVT_TREELIST_ITEM_CONTEXT_MENU, &Outliner::onContextMenu, this);
 }
 /***********************************************************************//**
 	@brief メインフレームを取得する
@@ -88,6 +90,16 @@ bool Outliner::deserialize(const wxXmlNode* xml) {
     return true;
   }
   return false;
+}
+/***********************************************************************//**
+	@brief 
+***************************************************************************/
+void Outliner::onContextMenu(wxTreeListEvent& event) {
+  if(auto node = static_cast<Node*>(GetItemData(event.GetItem()))) {
+    if(auto menu = node->getContextMenu()) {
+      PopupMenu(menu);
+    }
+  }
 }
 /***********************************************************************//**
 	$Id$

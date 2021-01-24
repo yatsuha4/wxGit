@@ -34,6 +34,12 @@ void Node::onAppend(Outliner* outliner, const wxTreeListItem& id) {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
+wxMenu* Node::getContextMenu() {
+  return nullptr;
+}
+/***********************************************************************//**
+	@brief 
+***************************************************************************/
 wxXmlNode* Node::serialize() const {
   auto xml = Serializable::serialize();
   xml->AddAttribute("name", name_);
