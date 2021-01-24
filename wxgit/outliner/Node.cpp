@@ -2,16 +2,15 @@
 	@file
 ***************************************************************************/
 #include "wxgit/outliner/Node.hpp"
+#include "wxgit/outliner/Repository.hpp"
 
 namespace wxgit {
 namespace outliner {
 /***********************************************************************//**
 	@brief コンストラクタ
-        @param[in] text 表示名
 ***************************************************************************/
-Node::Node(const wxString& text)
-  : text_(text), 
-    outliner_(nullptr)
+Node::Node()
+  : outliner_(nullptr)
 {
 }
 /***********************************************************************//**
@@ -22,7 +21,7 @@ Node::~Node() {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-void Node::link(Outliner* outliner, const wxTreeListItem& id) {
+void Node::onAppend(Outliner* outliner, const wxTreeListItem& id) {
   wxASSERT(!outliner_);
   outliner_ = outliner;
   id_ = id;
@@ -30,9 +29,36 @@ void Node::link(Outliner* outliner, const wxTreeListItem& id) {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-void Node::unlink() {
-  wxASSERT(outliner_);
-  outliner_ = nullptr;
+wxXmlNode* Node::serialize() const {
+  auto xml = Serializable::serialize();
+  xml->AddAttribute("name", name_);
+  return xml;
+}
+/***********************************************************************//**
+	@brief 
+***************************************************************************/
+bool Node::deserialize(const wxXmlNode* xml) {
+  if(Serializable::deserialize(xml)) {
+    setName(xml->GetAttribute("name"));
+    return true;
+  }
+  return false;
+}
+/***********************************************************************//**
+	@brief 
+***************************************************************************/
+Node* Node::Deserialize(const wxXmlNode* xml) {
+  std::unique_ptr<Node> node;
+  if(xml->GetName() == Node::GetSerialName()) {
+    node.reset(new Node());
+  }
+  else if(xml->GetName() == Repository::GetSerialName()) {
+    node.reset(new Repository());
+  }
+  else {
+    return nullptr;
+  }
+  return node->deserialize(xml) ? node.release() : nullptr;
 }
 /***********************************************************************//**
 	$Id$

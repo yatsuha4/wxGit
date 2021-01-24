@@ -1,6 +1,7 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
+#include "wxgit/MainFrame.hpp"
 #include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Signature.hpp"
 #include "wxgit/history/History.hpp"
@@ -9,18 +10,20 @@ namespace wxgit {
 namespace history {
 /***********************************************************************//**
 	@brief コンストラクタ
+	@param[in] mainFrame メインフレーム
 ***************************************************************************/
-History::History(wxWindow* parent)
-  : super(parent, wxID_ANY)
+History::History(MainFrame* mainFrame)
+  : super(mainFrame, wxID_ANY)
 {
   AppendTextColumn("Message");
   AppendTextColumn("Committer");
   AppendTextColumn("Date");
 }
 /***********************************************************************//**
-	@brief デストラクタ
+	@brief 
 ***************************************************************************/
-History::~History() {
+MainFrame* History::getMainFrame() const {
+  return static_cast<MainFrame*>(GetParent());
 }
 /***********************************************************************//**
 	@brief 

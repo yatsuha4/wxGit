@@ -3,12 +3,15 @@
 ***************************************************************************/
 #pragma once
 
+#include "wxgit/Serializable.hpp"
+
 namespace wxgit {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
 class MainFrame
-  : public wxFrame
+  : public wxFrame, 
+    public Serializable
 {
   using super = wxFrame;
 
@@ -21,6 +24,11 @@ class MainFrame
  public:
   MainFrame();
   ~MainFrame() override;
+
+  wxXmlNode* serialize() const override;
+  bool deserialize(const wxXmlNode* xml) override;
+
+  WXGIT_GET_SERIAL_NAME(MainFrame);
 
  private:
   void setupMenuBar();

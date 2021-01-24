@@ -16,6 +16,7 @@
 #include "wx/dataview.h"
 #include "wx/filename.h"
 #include "wx/treelist.h"
+#include "wx/xml/xml.h"
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
@@ -23,10 +24,10 @@
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-#define WXGIT_DECLARE_CLASS(klass)                                      \
-  class klass;                                                          \
-  using klass##Ptr = std::shared_ptr<klass>;                            \
-  using Const##klass##Ptr = std::shared_ptr<const klass>;               \
+#define WXGIT_DECLARE_CLASS(klass)                              \
+  class klass;                                                  \
+  using klass##Ptr = std::shared_ptr<klass>;                    \
+  using Const##klass##Ptr = std::shared_ptr<const klass>
 
 #define WXGIT_SETTER(name, var)                                         \
   auto set##name(const decltype(var)& value) -> decltype(*this)& {      \
@@ -46,23 +47,23 @@
 	@brief 
 ***************************************************************************/
 namespace wxgit {
-WXGIT_DECLARE_CLASS(Application)
-WXGIT_DECLARE_CLASS(MainFrame)
-WXGIT_DECLARE_CLASS(RepoBrowser)
+WXGIT_DECLARE_CLASS(Application);
+WXGIT_DECLARE_CLASS(MainFrame);
+WXGIT_DECLARE_CLASS(RepoBrowser);
 namespace git {
-WXGIT_DECLARE_CLASS(Branch)
-WXGIT_DECLARE_CLASS(Commit)
-WXGIT_DECLARE_CLASS(Repository)
-WXGIT_DECLARE_CLASS(Signature)
+WXGIT_DECLARE_CLASS(Branch);
+WXGIT_DECLARE_CLASS(Commit);
+WXGIT_DECLARE_CLASS(Repository);
+WXGIT_DECLARE_CLASS(Signature);
 }
 namespace history {
-WXGIT_DECLARE_CLASS(History)
+WXGIT_DECLARE_CLASS(History);
 }
 namespace outliner {
-WXGIT_DECLARE_CLASS(Branch)
-WXGIT_DECLARE_CLASS(Node)
-WXGIT_DECLARE_CLASS(Outliner)
-WXGIT_DECLARE_CLASS(Repository)
+WXGIT_DECLARE_CLASS(Branch);
+WXGIT_DECLARE_CLASS(Node);
+WXGIT_DECLARE_CLASS(Outliner);
+WXGIT_DECLARE_CLASS(Repository);
 }
 }
 /***********************************************************************//**

@@ -1,6 +1,7 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
+#include "wxgit/MainFrame.hpp"
 #include "wxgit/outliner/Node.hpp"
 #include "wxgit/outliner/Outliner.hpp"
 
@@ -10,25 +11,27 @@ namespace outliner {
 	@brief コンストラクタ
 	@param[in] parent 親ウィンドウ
 ***************************************************************************/
-Outliner::Outliner(wxWindow* parent)
-  : super(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, 
+Outliner::Outliner(MainFrame* mainFrame)
+  : super(mainFrame, wxID_ANY, wxDefaultPosition, wxDefaultSize, 
           wxTL_DEFAULT_STYLE | wxTL_NO_HEADER)
 {
   AppendColumn("Name");
 }
 /***********************************************************************//**
-	@brief デストラクタ
+	@brief メインフレームを取得する
+	@return メインフレーム
 ***************************************************************************/
-Outliner::~Outliner() {
+MainFrame* Outliner::getMainFrame() const {
+  return static_cast<MainFrame*>(GetParent());
 }
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
 Node* Outliner::appendNode(Node* node, Node* parent) {
   auto id = AppendItem((parent ? parent->getId() : GetRootItem()), 
-                       node->getText());
+                       node->getName());
   SetItemData(id, node);
-  node->link(this, id);
+  node->onAppend(this, id);
   if(parent) {
     parent->onAppendChild(*this, node);
   }
@@ -56,6 +59,27 @@ void Outliner::removeNode(Node* node) {
 Node* Outliner::getParentNode(Node* node) const {
   auto id = GetItemParent(node->getId());
   return id.IsOk() ? static_cast<Node*>(GetItemData(id)) : nullptr;
+}
+/***********************************************************************//**
+	@copydoc Serializable::serialize
+***************************************************************************/
+wxXmlNode* Outliner::serialize() const {
+  auto xml = Serializable::serialize();
+  return xml;
+}
+/***********************************************************************//**
+	@brief 
+***************************************************************************/
+bool Outliner::deserialize(const wxXmlNode* xml) {
+  if(Serializable::deserialize(xml)) {
+    for(auto iter = xml->GetChildren(); iter; iter = iter->GetNext()) {
+      if(auto node = Node::Deserialize(xml)) {
+        appendNode(node);
+      }
+    }
+    return true;
+  }
+  return false;
 }
 /***********************************************************************//**
 	$Id$

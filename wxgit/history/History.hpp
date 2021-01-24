@@ -17,8 +17,10 @@ class History
   std::vector<git::CommitPtr> commits_;
 
  public:
-  History(wxWindow* parent);
-  ~History() override;
+  History(MainFrame* mainFrame);
+  ~History() override = default;
+
+  MainFrame* getMainFrame() const;
 
   void showCommits(const std::vector<git::CommitPtr>& commits);
 };

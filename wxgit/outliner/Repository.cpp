@@ -10,47 +10,53 @@ namespace wxgit {
 namespace outliner {
 /***********************************************************************//**
 	@brief コンストラクタ
-        @param[in] name 名前
-        @param[in] repository リポジトリ
+        @param[in] dir ディレクトリ
 ***************************************************************************/
-Repository::Repository(const wxString& name, 
-                       const git::RepositoryPtr& repository)
-  : super(name), 
-    repository_(repository)
+Repository::Repository(const wxString& dir)
+  : dir_(dir)
 {
 }
 /***********************************************************************//**
-	@brief デストラクタ
+	@brief 
 ***************************************************************************/
-Repository::~Repository() {
+wxXmlNode* Repository::serialize() const {
+  auto xml = super::serialize();
+  xml->AddAttribute("dir", dir_);
+  return xml;
 }
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-Repository* Repository::Append(Outliner& outliner, 
-                               const wxString& name, 
-                               const git::RepositoryPtr& repository) {
-  auto node = new Repository(name, repository);
-  outliner.appendNode(node);
-  node->appendBranches(outliner, "Local branch", GIT_BRANCH_LOCAL);
-  node->appendBranches(outliner, "Remote branch", GIT_BRANCH_REMOTE);
-  return node;
+bool Repository::deserialize(const wxXmlNode* xml) {
+  if(super::deserialize(xml)) {
+    dir_ = xml->GetAttribute("dir");
+    return true;
+  }
+  return false;
 }
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-Node* Repository::appendBranches(Outliner& outliner, 
-                                 const wxString& name, 
-                                 git_branch_t type) {
+void Repository::onAppend(Outliner* outliner, const wxTreeListItem& id) {
+  super::onAppend(outliner, id);
+  wxFileName dir(dir_, ".git");
+  repository_ = std::make_shared<git::Repository>(dir);
+  appendBranches("Local branch", GIT_BRANCH_LOCAL);
+  appendBranches("Remote branch", GIT_BRANCH_REMOTE);
+}
+/***********************************************************************//**
+	@brief 
+***************************************************************************/
+void Repository::appendBranches(const wxString& name, git_branch_t type) {
   auto branches = repository_->getBranches(type);
-  if(branches.empty()) {
-    return nullptr;
+  if(!branches.empty()) {
+    auto folder = new Node();
+    folder->setName(name);
+    getOutliner()->appendNode(folder, this);
+    for(auto& branch: branches) {
+      getOutliner()->appendNode(new Branch(branch), folder);
+    }
   }
-  auto folder = outliner.appendNode(new Node(name), this);
-  for(auto& branch: branches) {
-    outliner.appendNode(new Branch(branch), folder);
-  }
-  return folder;
 }
 /***********************************************************************//**
 	$Id$

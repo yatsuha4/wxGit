@@ -16,22 +16,25 @@ class Repository
   using super = Node;
 
  private:
+  wxString dir_;
   git::RepositoryPtr repository_;
 
  public:
-  Repository(const wxString& name, const git::RepositoryPtr& repository);
-  ~Repository() override;
+  Repository() = default;
+  Repository(const wxString& dir);
+  ~Repository() override = default;
 
   WXGIT_GETTER(Repository, repository_);
 
-  static Repository* Append(Outliner& outliner, 
-                            const wxString& name, 
-                            const git::RepositoryPtr& repository);
+  wxXmlNode* serialize() const override;
+  bool deserialize(const wxXmlNode* xml) override;
+  WXGIT_GET_SERIAL_NAME(Repository);
+
+ protected:
+  void onAppend(Outliner* outliner, const wxTreeListItem& id) override;
 
  private:
-  Node* appendBranches(Outliner& outliner, 
-                       const wxString& name, 
-                       git_branch_t type);
+  void appendBranches(const wxString& name, git_branch_t type);
 };
 /***********************************************************************//**
 	$Id$

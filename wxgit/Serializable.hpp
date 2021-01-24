@@ -1,26 +1,33 @@
 ﻿/***********************************************************************//**
 	@file
 ***************************************************************************/
-#include "wxgit/git/Branch.hpp"
-#include "wxgit/outliner/Branch.hpp"
+#pragma once
 
 namespace wxgit {
-namespace outliner {
 /***********************************************************************//**
-	@brief コンストラクタ
+	@brief 
 ***************************************************************************/
-Branch::Branch(const git::BranchPtr& branch)
-  : branch_(branch)
-{
-  setName(branch->getName());
-}
+class Serializable {
+ public:
+  Serializable() = default;
+  virtual ~Serializable() = default;
+
+  virtual wxXmlNode* serialize() const = 0;
+  virtual bool deserialize(const wxXmlNode* xml) = 0;
+
+  virtual const char* getSerialName() const = 0;
+};
 /***********************************************************************//**
-	@brief デストラクタ
+	@brief 
 ***************************************************************************/
-Branch::~Branch() {
-}
+#define WXGIT_GET_SERIAL_NAME(klass)            \
+  const char* getSerialName() const override {  \
+    return GetSerialName();                     \
+  }                                             \
+  static const char* GetSerialName() {          \
+    return #klass;                              \
+  }
 /***********************************************************************//**
 	$Id$
 ***************************************************************************/
-}
 }

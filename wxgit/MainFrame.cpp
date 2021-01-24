@@ -59,6 +59,23 @@ MainFrame::~MainFrame() {
   auiManager_.UnInit();
 }
 /***********************************************************************//**
+	@brief 
+***************************************************************************/
+wxXmlNode* MainFrame::serialize() const {
+  auto xml = Serializable::serialize();
+  xml->AddChild(outliner_->serialize());
+  return xml;
+}
+/***********************************************************************//**
+	@brief 
+***************************************************************************/
+bool MainFrame::deserialize(const wxXmlNode* xml) {
+  if(Serializable::deserialize(xml)) {
+    return true;
+  }
+  return false;
+}
+/***********************************************************************//**
 	@brief メニューバーを設定する
 ***************************************************************************/
 void MainFrame::setupMenuBar() {
@@ -118,15 +135,9 @@ void MainFrame::onClose(wxCloseEvent& event) {
 void MainFrame::addRepository() {
   wxDirDialog dialog(this, "Select repository");
   if(dialog.ShowModal() == wxID_OK) {
-    auto name = wxFileName(dialog.GetPath()).GetName();
-    wxFileName dir(dialog.GetPath(), ".git");
-    auto repository = std::make_shared<git::Repository>(dir);
-    if(repository->isError()) {
-    }
-    else {
-      outliner::Repository::Append(*outliner_, name, repository);
-      history_->showCommits(repository->getCommits());
-    }
+    auto repository = new outliner::Repository(dialog.GetPath());
+    outliner_->appendNode(repository);
+    history_->showCommits(repository->getRepository()->getCommits());
   }
 }
 /***********************************************************************//**

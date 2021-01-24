@@ -3,32 +3,40 @@
 ***************************************************************************/
 #pragma once
 
+#include "wxgit/Serializable.hpp"
+
 namespace wxgit {
 namespace outliner {
 /***********************************************************************//**
 	@brief ノード基底クラス
 ***************************************************************************/
 class Node
-  : public wxClientData
+  : public wxClientData, 
+    public Serializable
 {
  private: 
-  wxString text_;
+  wxString name_;
   Outliner* outliner_;
   wxTreeListItem id_;
 
  public:
-  Node(const wxString& text);
+  Node();
   ~Node() override;
 
-  WXGIT_ACCESSOR(Text, text_);
+  WXGIT_ACCESSOR(Name, name_);
   WXGIT_GETTER(Outliner, outliner_);
   WXGIT_GETTER(Id, id_);
 
-  void link(Outliner* outliner, const wxTreeListItem& id);
-  void unlink();
+  virtual void onAppend(Outliner* outliner, const wxTreeListItem& id);
 
   virtual void onAppendChild(Outliner& outliner, Node* child) {}
   virtual void onRemoveChild(Outliner& outliner, Node* child) {}
+
+  wxXmlNode* serialize() const override;
+  bool deserialize(const wxXmlNode* xml) override;
+  WXGIT_GET_SERIAL_NAME(Node);
+
+  static Node* Deserialize(const wxXmlNode* xml);
 };
 /***********************************************************************//**
 	$Id$

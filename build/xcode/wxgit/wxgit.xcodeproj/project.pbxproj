@@ -36,6 +36,8 @@
 		26FCFD8225BC9A3E006BD258 /* History.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD8025BC9A3E006BD258 /* History.cpp */; };
 		26FCFD8725BCA43C006BD258 /* Commit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD8625BCA43C006BD258 /* Commit.cpp */; };
 		26FCFD8C25BCAF20006BD258 /* Signature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD8B25BCAF20006BD258 /* Signature.cpp */; };
+		26FCFD9025BCCA54006BD258 /* libexpat.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FCFD8F25BCCA54006BD258 /* libexpat.tbd */; };
+		26FCFD9625BD422D006BD258 /* Serializable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD9525BD422D006BD258 /* Serializable.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,9 @@
 		26FCFD8625BCA43C006BD258 /* Commit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Commit.cpp; sourceTree = "<group>"; };
 		26FCFD8A25BCAF20006BD258 /* Signature.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Signature.hpp; sourceTree = "<group>"; };
 		26FCFD8B25BCAF20006BD258 /* Signature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Signature.cpp; sourceTree = "<group>"; };
+		26FCFD8F25BCCA54006BD258 /* libexpat.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libexpat.tbd; path = usr/lib/libexpat.tbd; sourceTree = SDKROOT; };
+		26FCFD9325BD3F8E006BD258 /* Serializable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Serializable.hpp; sourceTree = "<group>"; };
+		26FCFD9525BD422D006BD258 /* Serializable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Serializable.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,12 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				268C8F8025A92D490098A53A /* Carbon.framework in Frameworks */,
-				268C8F7A25A92D280098A53A /* Cocoa.framework in Frameworks */,
-				268C8F7725A92CF80098A53A /* CoreGraphics.framework in Frameworks */,
-				268C8F7D25A92D380098A53A /* IOKit.framework in Frameworks */,
 				26FCFD6D25BB1AFE006BD258 /* libgit2.a in Frameworks */,
-				268C8F8325A92D5D0098A53A /* libiconv.tbd in Frameworks */,
 				268C8F8D25A92D930098A53A /* libwx_osx_cocoau_gl-3.1.a in Frameworks */,
 				268C8F7325A92C600098A53A /* libwx_osx_cocoau-3.1.a in Frameworks */,
 				268C8F9125A92D930098A53A /* libwxjpeg-3.1.a in Frameworks */,
@@ -106,6 +106,12 @@
 				268C8F9025A92D930098A53A /* libwxscintilla-3.1.a in Frameworks */,
 				268C8F9225A92D930098A53A /* libwxtiff-3.1.a in Frameworks */,
 				268C8F8E25A92D930098A53A /* libwxzlib-3.1.a in Frameworks */,
+				268C8F8025A92D490098A53A /* Carbon.framework in Frameworks */,
+				268C8F7A25A92D280098A53A /* Cocoa.framework in Frameworks */,
+				268C8F7725A92CF80098A53A /* CoreGraphics.framework in Frameworks */,
+				268C8F7D25A92D380098A53A /* IOKit.framework in Frameworks */,
+				26FCFD9025BCCA54006BD258 /* libexpat.tbd in Frameworks */,
+				268C8F8325A92D5D0098A53A /* libiconv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +132,8 @@
 				263A0AD225B67E3600A24421 /* outliner */,
 				263A0ACF25B67E3600A24421 /* RepoBrowser.cpp */,
 				263A0ACC25B67E3600A24421 /* RepoBrowser.hpp */,
+				26FCFD9525BD422D006BD258 /* Serializable.cpp */,
+				26FCFD9325BD3F8E006BD258 /* Serializable.hpp */,
 				263A0AC925B67E3600A24421 /* stdafx.hpp */,
 			);
 			name = wxgit;
@@ -150,12 +158,7 @@
 		268C8F7025A92BDA0098A53A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				268C8F7F25A92D490098A53A /* Carbon.framework */,
-				268C8F7925A92D280098A53A /* Cocoa.framework */,
-				268C8F7625A92CF80098A53A /* CoreGraphics.framework */,
-				268C8F7C25A92D380098A53A /* IOKit.framework */,
 				26FCFD6C25BB1AFE006BD258 /* libgit2.a */,
-				268C8F8225A92D5D0098A53A /* libiconv.tbd */,
 				268C8F8625A92D930098A53A /* libwx_osx_cocoau_gl-3.1.a */,
 				268C8F7125A92BDA0098A53A /* libwx_osx_cocoau-3.1.a */,
 				268C8F8A25A92D930098A53A /* libwxjpeg-3.1.a */,
@@ -164,6 +167,12 @@
 				268C8F8925A92D930098A53A /* libwxscintilla-3.1.a */,
 				268C8F8B25A92D930098A53A /* libwxtiff-3.1.a */,
 				268C8F8725A92D930098A53A /* libwxzlib-3.1.a */,
+				268C8F7F25A92D490098A53A /* Carbon.framework */,
+				268C8F7925A92D280098A53A /* Cocoa.framework */,
+				268C8F7625A92CF80098A53A /* CoreGraphics.framework */,
+				268C8F7C25A92D380098A53A /* IOKit.framework */,
+				26FCFD8F25BCCA54006BD258 /* libexpat.tbd */,
+				268C8F8225A92D5D0098A53A /* libiconv.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -299,6 +308,7 @@
 				26FCFD7C25BC26FA006BD258 /* Branch.cpp in Sources */,
 				263A0AD925B67E3600A24421 /* Outliner.cpp in Sources */,
 				26FCFD8725BCA43C006BD258 /* Commit.cpp in Sources */,
+				26FCFD9625BD422D006BD258 /* Serializable.cpp in Sources */,
 				263A0AD725B67E3600A24421 /* Application.cpp in Sources */,
 				26FCFD7225BB2D6A006BD258 /* Branch.cpp in Sources */,
 				26FCFD6725BB18CD006BD258 /* Repository.cpp in Sources */,
