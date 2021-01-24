@@ -2,6 +2,7 @@
 	@file
 ***************************************************************************/
 #include "wxgit/Application.hpp"
+#include "wxgit/FileList.hpp"
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/Menu.hpp"
 #include "wxgit/RepoBrowser.hpp"
@@ -28,7 +29,8 @@ MainFrame::MainFrame(Application* application)
     statusBar_(CreateStatusBar()), 
     auiManager_(this), 
     outliner_(new outliner::Outliner(this)), 
-    history_(new history::History(this))
+    history_(new history::History(this)), 
+    fileList_(new FileList(this))
 {
   setupMenuBar();
   setupToolBar();
@@ -50,6 +52,12 @@ MainFrame::MainFrame(Application* application)
                       CenterPane().
                       BestSize(800, 800).
                       Layer(LAYER_HISTORY));
+  auiManager_.AddPane(fileList_, 
+                      wxAuiPaneInfo().
+                      Name("FileList").
+                      Caption("FileList").
+                      CloseButton(false).
+                      Bottom());
   auiManager_.Update();
   Bind(wxEVT_CLOSE_WINDOW, &MainFrame::onClose, this);
 }

@@ -39,6 +39,7 @@
 		26FCFD9025BCCA54006BD258 /* libexpat.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 26FCFD8F25BCCA54006BD258 /* libexpat.tbd */; };
 		26FCFD9625BD422D006BD258 /* Serializable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD9525BD422D006BD258 /* Serializable.cpp */; };
 		26FCFD9C25BD9981006BD258 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD9B25BD9981006BD258 /* Menu.cpp */; };
+		26FCFDA125BDBD21006BD258 /* FileList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26FCFD9F25BDBD21006BD258 /* FileList.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,8 @@
 		26FCFD9325BD3F8E006BD258 /* Serializable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Serializable.hpp; sourceTree = "<group>"; };
 		26FCFD9525BD422D006BD258 /* Serializable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Serializable.cpp; sourceTree = "<group>"; };
 		26FCFD9B25BD9981006BD258 /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
+		26FCFD9F25BDBD21006BD258 /* FileList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileList.cpp; sourceTree = "<group>"; };
+		26FCFDA025BDBD21006BD258 /* FileList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileList.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,8 @@
 			children = (
 				263A0AD025B67E3600A24421 /* Application.cpp */,
 				263A0ACA25B67E3600A24421 /* Application.hpp */,
+				26FCFD9F25BDBD21006BD258 /* FileList.cpp */,
+				26FCFDA025BDBD21006BD258 /* FileList.hpp */,
 				26FCFD6425BB18CD006BD258 /* git */,
 				26FCFD7F25BC9A3E006BD258 /* history */,
 				263A0AD125B67E3600A24421 /* main.cpp */,
@@ -310,6 +315,7 @@
 				26FCFD8C25BCAF20006BD258 /* Signature.cpp in Sources */,
 				26FCFD7C25BC26FA006BD258 /* Branch.cpp in Sources */,
 				263A0AD925B67E3600A24421 /* Outliner.cpp in Sources */,
+				26FCFDA125BDBD21006BD258 /* FileList.cpp in Sources */,
 				26FCFD9C25BD9981006BD258 /* Menu.cpp in Sources */,
 				26FCFD8725BCA43C006BD258 /* Commit.cpp in Sources */,
 				26FCFD9625BD422D006BD258 /* Serializable.cpp in Sources */,

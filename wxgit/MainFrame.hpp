@@ -21,10 +21,15 @@ class MainFrame
   wxAuiManager auiManager_;
   outliner::Outliner* outliner_;
   history::History* history_;
+  FileList* fileList_;
 
  public:
   MainFrame(Application* application);
   ~MainFrame() override;
+
+  WXGIT_GETTER(Outliner, outliner_);
+  WXGIT_GETTER(History, history_);
+  WXGIT_GETTER(FileList, fileList_);
 
   wxXmlNode* serialize() const override;
   bool deserialize(const wxXmlNode* xml) override;

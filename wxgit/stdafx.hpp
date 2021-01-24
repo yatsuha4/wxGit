@@ -49,6 +49,7 @@
 ***************************************************************************/
 namespace wxgit {
 WXGIT_DECLARE_CLASS(Application);
+WXGIT_DECLARE_CLASS(FileList);
 WXGIT_DECLARE_CLASS(MainFrame);
 WXGIT_DECLARE_CLASS(RepoBrowser);
 namespace git {
