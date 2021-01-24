@@ -52,24 +52,25 @@ std::vector<BranchPtr> Repository::getBranches(git_branch_t type) const {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-std::vector<CommitPtr> Repository::getCommits() const {
-  std::vector<CommitPtr> commits;
-  if(isOk()) {
-    git_revwalk* walk = nullptr;
-    if(git_revwalk_new(&walk, repository_) == GIT_OK) {
-      if(git_revwalk_push_head(walk) == GIT_OK) {
-        git_oid oid;
-        while(git_revwalk_next(&oid, walk) == GIT_OK) {
-          git_commit* commit;
-          if(git_commit_lookup(&commit, repository_, &oid) == GIT_OK) {
-            commits.push_back(std::make_shared<Commit>(commit));
+const std::vector<CommitPtr>& Repository::getCommits(bool update) {
+  if(update || commits_.empty()) {
+    if(isOk()) {
+      git_revwalk* walk = nullptr;
+      if(git_revwalk_new(&walk, repository_) == GIT_OK) {
+        if(git_revwalk_push_head(walk) == GIT_OK) {
+          git_oid oid;
+          while(git_revwalk_next(&oid, walk) == GIT_OK) {
+            git_commit* commit;
+            if(git_commit_lookup(&commit, repository_, &oid) == GIT_OK) {
+              commits_.push_back(std::make_shared<Commit>(commit));
+            }
           }
         }
+        git_revwalk_free(walk);
       }
-      git_revwalk_free(walk);
     }
   }
-  return commits;
+  return commits_;
 }
 /***********************************************************************//**
 	$Id$

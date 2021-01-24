@@ -50,13 +50,13 @@ MainFrame::MainFrame(Application* application)
                       Caption("History").
                       CloseButton(false).
                       CenterPane().
-                      BestSize(800, 800).
                       Layer(LAYER_HISTORY));
   auiManager_.AddPane(fileList_, 
                       wxAuiPaneInfo().
                       Name("FileList").
                       Caption("FileList").
                       CloseButton(false).
+                      BestSize(800, 800).
                       Bottom());
   auiManager_.Update();
   Bind(wxEVT_CLOSE_WINDOW, &MainFrame::onClose, this);
