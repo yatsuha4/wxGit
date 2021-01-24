@@ -3,8 +3,11 @@
 ***************************************************************************/
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/Menu.hpp"
+#include "wxgit/git/Repository.hpp"
+#include "wxgit/history/History.hpp"
 #include "wxgit/outliner/Node.hpp"
 #include "wxgit/outliner/Outliner.hpp"
+#include "wxgit/outliner/Repository.hpp"
 
 namespace wxgit {
 namespace outliner {
@@ -17,6 +20,7 @@ Outliner::Outliner(MainFrame* mainFrame)
           wxTL_DEFAULT_STYLE | wxTL_NO_HEADER)
 {
   AppendColumn("Name");
+  Bind(wxEVT_TREELIST_SELECTION_CHANGED, &Outliner::onSelectionChanged, this);
   Bind(wxEVT_TREELIST_ITEM_CONTEXT_MENU, &Outliner::onContextMenu, this);
 }
 /***********************************************************************//**
@@ -91,6 +95,16 @@ bool Outliner::deserialize(const wxXmlNode* xml) {
     return true;
   }
   return false;
+}
+/***********************************************************************//**
+	@brief 
+***************************************************************************/
+void Outliner::onSelectionChanged(wxTreeListEvent& event) {
+  auto node = static_cast<Node*>(GetItemData(event.GetItem()));
+  if(auto repository = dynamic_cast<Repository*>(node)) {
+    getMainFrame()->getHistory()->
+      showCommits(repository->getRepository()->getCommits());
+  }
 }
 /***********************************************************************//**
 	@brief 

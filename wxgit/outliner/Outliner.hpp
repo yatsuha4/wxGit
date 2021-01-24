@@ -32,6 +32,7 @@ class Outliner
   WXGIT_GET_SERIAL_NAME(Outliner);
 
  private:
+  void onSelectionChanged(wxTreeListEvent& event);
   void onContextMenu(wxTreeListEvent& event);
 };
 /***********************************************************************//**
