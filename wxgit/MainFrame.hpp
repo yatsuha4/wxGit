@@ -16,13 +16,14 @@ class MainFrame
   using super = wxFrame;
 
  private:
+  Application* application_;
   wxStatusBar* statusBar_;
   wxAuiManager auiManager_;
   outliner::Outliner* outliner_;
   history::History* history_;
 
  public:
-  MainFrame();
+  MainFrame(Application* application);
   ~MainFrame() override;
 
   wxXmlNode* serialize() const override;

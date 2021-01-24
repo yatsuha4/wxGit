@@ -22,8 +22,14 @@ class Application
   Application();
   ~Application() override;
 
+  void savePreference();
+
  protected:
   bool OnInit() override;
+  int OnExit() override;
+
+ private:
+  static wxFileName GetPreferencePath();
 };
 /***********************************************************************//**
 	$Id$

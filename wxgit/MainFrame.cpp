@@ -21,9 +21,10 @@ enum {
 /***********************************************************************//**
 	@brief コンストラクタ
 ***************************************************************************/
-MainFrame::MainFrame()
+MainFrame::MainFrame(Application* application)
   : super(nullptr, wxID_ANY, Application::Version.GetName(), 
           wxDefaultPosition, wxSize(960, 640)), 
+    application_(application), 
     statusBar_(CreateStatusBar()), 
     auiManager_(this), 
     outliner_(new outliner::Outliner(this)), 
@@ -126,6 +127,7 @@ void MainFrame::onSelectMenu(wxCommandEvent& event) {
 ***************************************************************************/
 void MainFrame::onClose(wxCloseEvent& event) {
   if(event.CanVeto()) {
+    application_->savePreference();
     Destroy();
   }
 }

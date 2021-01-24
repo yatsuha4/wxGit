@@ -65,6 +65,11 @@ Node* Outliner::getParentNode(Node* node) const {
 ***************************************************************************/
 wxXmlNode* Outliner::serialize() const {
   auto xml = Serializable::serialize();
+  for(auto iter = GetFirstChild(GetRootItem());
+      iter.IsOk();
+      iter = GetNextSibling(iter)) {
+    xml->AddChild(static_cast<Node*>(GetItemData(iter))->serialize());
+  }
   return xml;
 }
 /***********************************************************************//**
