@@ -58,18 +58,14 @@ bool Node::deserialize(const wxXmlNode* xml) {
 /***********************************************************************//**
 	@brief 
 ***************************************************************************/
-Node* Node::Deserialize(const wxXmlNode* xml) {
-  std::unique_ptr<Node> node;
-  if(xml->GetName() == Node::GetSerialName()) {
-    node.reset(new Node());
+Node* Node::Create(const wxString& serialName) {
+  if(serialName == Node::GetSerialName()) {
+    return new Node();
   }
-  else if(xml->GetName() == Repository::GetSerialName()) {
-    node.reset(new Repository());
+  else if(serialName == Repository::GetSerialName()) {
+    return new Repository();
   }
-  else {
-    return nullptr;
-  }
-  return node->deserialize(xml) ? node.release() : nullptr;
+  return nullptr;
 }
 /***********************************************************************//**
 	$Id$

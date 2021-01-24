@@ -40,7 +40,7 @@ class Node
   bool deserialize(const wxXmlNode* xml) override;
   WXGIT_GET_SERIAL_NAME(Node);
 
-  static Node* Deserialize(const wxXmlNode* xml);
+  static Node* Create(const wxString& serialName);
 };
 /***********************************************************************//**
 	$Id$
