@@ -27,9 +27,9 @@ class MainFrame
   MainFrame(Application* application);
   ~MainFrame() override;
 
-  WXGIT_GETTER(Outliner, outliner_);
-  WXGIT_GETTER(History, history_);
-  WXGIT_GETTER(FileList, fileList_);
+  WXEDITOR_GETTER(Outliner, outliner_);
+  WXEDITOR_GETTER(History, history_);
+  WXEDITOR_GETTER(FileList, fileList_);
 
   wxXmlNode* serialize() const override;
   bool deserialize(const wxXmlNode* xml) override;

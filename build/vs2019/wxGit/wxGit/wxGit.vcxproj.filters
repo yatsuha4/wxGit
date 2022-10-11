@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="wxgit">
+      <UniqueIdentifier>{d866a1e1-a4c2-4c79-9536-c51b2a486418}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wxgit\git">
+      <UniqueIdentifier>{d7858b45-eccc-4bd7-8d37-2cca79abbed7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wxgit\history">
+      <UniqueIdentifier>{77310323-8121-4774-b2eb-4821267ec25f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wxgit\outliner">
+      <UniqueIdentifier>{a1d8f5dc-c4e3-4f8a-b61f-5680a2a5a94f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\wxgit\Application.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\FileList.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\main.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\MainFrame.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\Menu.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\RepoBrowser.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\Serializable.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Branch.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Commit.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Repository.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Signature.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\history\History.cpp">
+      <Filter>wxgit\history</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\outliner\Branch.cpp">
+      <Filter>wxgit\outliner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\outliner\Node.cpp">
+      <Filter>wxgit\outliner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\outliner\Outliner.cpp">
+      <Filter>wxgit\outliner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\outliner\Repository.cpp">
+      <Filter>wxgit\outliner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\wxgit.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
+      <Filter>wxgit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\FileList.hpp">
+      <Filter>wxgit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\MainFrame.hpp">
+      <Filter>wxgit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\Menu.hpp">
+      <Filter>wxgit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\RepoBrowser.hpp">
+      <Filter>wxgit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\Serializable.hpp">
+      <Filter>wxgit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Branch.hpp">
+      <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Commit.hpp">
+      <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Repository.hpp">
+      <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Signature.hpp">
+      <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\history\History.hpp">
+      <Filter>wxgit\history</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\outliner\Branch.hpp">
+      <Filter>wxgit\outliner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\outliner\Node.hpp">
+      <Filter>wxgit\outliner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\outliner\Outliner.hpp">
+      <Filter>wxgit\outliner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\outliner\Repository.hpp">
+      <Filter>wxgit\outliner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\wxgit.hpp">
+      <Filter>wxgit</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -18,7 +18,7 @@ class Branch {
   Branch(git_reference* reference, git_branch_t type);
   ~Branch();
 
-  WXGIT_GETTER(Name, name_);
+  WXEDITOR_GETTER(Name, name_);
 };
 /***********************************************************************//**
 	$Id$

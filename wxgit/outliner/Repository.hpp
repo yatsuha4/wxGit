@@ -24,7 +24,7 @@ class Repository
   Repository(const wxString& dir);
   ~Repository() override = default;
 
-  WXGIT_GETTER(Repository, repository_);
+  WXEDITOR_GETTER(Repository, repository_);
 
   wxMenu* getContextMenu() override;
 

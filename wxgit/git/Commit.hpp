@@ -19,9 +19,9 @@ class Commit {
   Commit(git_commit* commit);
   ~Commit();
 
-  WXGIT_GETTER(Message, message_);
-  WXGIT_GETTER(Committer, committer_);
-  WXGIT_GETTER(Time, time_);
+  WXEDITOR_GETTER(Message, message_);
+  WXEDITOR_GETTER(Committer, committer_);
+  WXEDITOR_GETTER(Time, time_);
 };
 /***********************************************************************//**
 	$Id$

@@ -5,5 +5,11 @@ xcuserdata/
 # Mac
 /external/build/mac/work/
 
+# Windows
+*.vcxproj.user
+.vs/
+Debug/
+x64/
+
 #
 /external/opt/

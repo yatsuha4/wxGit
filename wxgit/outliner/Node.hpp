@@ -24,10 +24,10 @@ class Node
   ~Node() override = default;
 
   void setName(const wxString& name);
-  WXGIT_GETTER(Name, name_);
+  WXEDITOR_GETTER(Name, name_);
 
-  WXGIT_GETTER(Outliner, outliner_);
-  WXGIT_GETTER(Id, id_);
+  WXEDITOR_GETTER(Outliner, outliner_);
+  WXEDITOR_GETTER(Id, id_);
 
   virtual void onAppend(Outliner* outliner, const wxTreeListItem& id);
 

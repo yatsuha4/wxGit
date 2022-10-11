@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{54f39811-8e07-4a89-b3f7-478a83a577e7}</ProjectGuid>
+    <RootNamespace>wxGit</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\..\wxEditor\external\wxWidgets\wxwidgets.props" />
+    <Import Project="..\..\..\..\wxEditor\build\vs2019\wxEditor\wxEditor.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir)..\..\..\..\;$(ProjectDir)..\..\..\..\wxEditor;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir)..\..\..\..\;$(ProjectDir)..\..\..\..\wxEditor;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>wxgit.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>wxgit.hpp</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>wxgit.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>wxgit.hpp</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\wxgit\Application.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\FileList.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\git\Branch.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\git\Commit.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\git\Repository.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\git\Signature.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\history\History.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\main.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\MainFrame.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\Menu.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\outliner\Branch.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\outliner\Node.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\outliner\Outliner.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\outliner\Repository.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\RepoBrowser.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\Serializable.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\wxgit.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\wxgit\Application.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\FileList.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\git\Branch.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\git\Commit.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\git\Repository.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\git\Signature.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\history\History.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\MainFrame.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\Menu.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\outliner\Branch.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\outliner\Node.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\outliner\Outliner.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\outliner\Repository.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\RepoBrowser.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\Serializable.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\wxgit.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

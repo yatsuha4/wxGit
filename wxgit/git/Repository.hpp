@@ -19,7 +19,7 @@ class Repository {
   Repository(const wxFileName& dir);
   ~Repository();
 
-  WXGIT_GETTER(Dir, dir_)
+  WXEDITOR_GETTER(Dir, dir_)
 
   bool isOk() const;
 
