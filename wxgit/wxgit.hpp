@@ -8,6 +8,8 @@
 #include "wx/treelist.h"
 #include "wx/xml/xml.h"
 
+#include "git2.h"
+
 namespace wxgit
 {
   WXEDITOR_DECLARE_CLASS(Application);
