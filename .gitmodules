@@ -1,6 +1,3 @@
-[submodule "external/wxWidgets"]
-	path = external/wxWidgets
-	url = https://github.com/wxWidgets/wxWidgets.git
 [submodule "wxEditor"]
 	path = wxEditor
 	url = https://github.com/yatsuha4/wxEditor.git
