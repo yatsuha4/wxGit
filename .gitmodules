@@ -1,3 +1,6 @@
 [submodule "wxEditor"]
 	path = wxEditor
 	url = https://github.com/yatsuha4/wxEditor.git
+[submodule "external/libgit2"]
+	path = external/libgit2
+	url = https://github.com/libgit2/libgit2.git
