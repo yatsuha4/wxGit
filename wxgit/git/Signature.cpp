@@ -9,7 +9,7 @@ namespace git {
 	@brief コンストラクタ
 ***************************************************************************/
 Signature::Signature(const git_signature* signature)
-  : name(signature->name), 
+  : name(wxString::FromUTF8(signature->name)), 
     email(signature->email), 
     when(static_cast<time_t>(signature->when.time))
 {

@@ -12,7 +12,7 @@ namespace git {
 ***************************************************************************/
 Commit::Commit(git_commit* commit)
   : commit_(commit), 
-    message_(git_commit_message(commit)), 
+    message_(wxString::FromUTF8(git_commit_message(commit))), 
     committer_(std::make_shared<Signature>(git_commit_committer(commit))), 
     time_(static_cast<time_t>(git_commit_time(commit)))
 {
