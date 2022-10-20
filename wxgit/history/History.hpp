@@ -1,31 +1,21 @@
-﻿/***********************************************************************//**
-	@file
-***************************************************************************/
-#pragma once
+﻿#pragma once
 
-namespace wxgit {
-namespace history {
-/***********************************************************************//**
-	@brief 
-***************************************************************************/
-class History
-  : public wxDataViewListCtrl
+namespace wxgit::history
 {
-  using super = wxDataViewListCtrl;
+  class History
+    : public wxListCtrl
+  {
+    using super = wxListCtrl;
 
- private:
-  std::vector<git::CommitPtr> commits_;
+  private:
+    std::vector<git::CommitPtr> commits_;
 
- public:
-  History(MainFrame* mainFrame);
-  ~History() override = default;
+  public:
+    History(MainFrame* mainFrame);
+    ~History() override = default;
 
-  MainFrame* getMainFrame() const;
+    MainFrame* getMainFrame() const;
 
-  void showCommits(const std::vector<git::CommitPtr>& commits);
-};
-/***********************************************************************//**
-	$Id$
-***************************************************************************/
-}
+    void showCommits(const std::vector<git::CommitPtr>& commits);
+  };
 }

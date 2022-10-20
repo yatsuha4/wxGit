@@ -1,47 +1,43 @@
-﻿/***********************************************************************//**
-	@file
-***************************************************************************/
-#include "wxgit/MainFrame.hpp"
+﻿#include "wxgit/MainFrame.hpp"
 #include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Signature.hpp"
 #include "wxgit/history/History.hpp"
 
-namespace wxgit {
-namespace history {
-/***********************************************************************//**
-	@brief コンストラクタ
-	@param[in] mainFrame メインフレーム
-***************************************************************************/
-History::History(MainFrame* mainFrame)
-  : super(mainFrame, wxID_ANY)
+namespace wxgit::history
 {
-  AppendTextColumn("Message");
-  AppendTextColumn("Committer");
-  AppendTextColumn("Date");
-}
-/***********************************************************************//**
-	@brief 
-***************************************************************************/
-MainFrame* History::getMainFrame() const {
-  return static_cast<MainFrame*>(GetParent());
-}
-/***********************************************************************//**
-	@brief 
-***************************************************************************/
-void History::showCommits(const std::vector<git::CommitPtr>& commits) {
-  DeleteAllItems();
-  for(auto& commit : commits) {
-    wxVector<wxVariant> item;
-    item.push_back(commit->getMessage());
-    item.push_back(commit->getCommitter()->name);
-    item.push_back(commit->getCommitter()->when.Format("%F %R"));
-    AppendItem(item);
-    wxYield();
+  /**
+   * @brief コンストラクタ
+   * @param[in] mainFrame メインフレーム
+   */
+  History::History(MainFrame* mainFrame)
+    : super(mainFrame, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT)
+  {
+    AppendColumn(wxT("Message"));
+    AppendColumn(wxT("Committer"));
+    AppendColumn(wxT("Date"));
   }
-  commits_ = commits;
-}
-/***********************************************************************//**
-	$Id$
-***************************************************************************/
-}
+
+  /**
+   */
+  MainFrame* History::getMainFrame() const
+  {
+    return static_cast<MainFrame*>(GetParent());
+  }
+
+  /**
+   */
+  void History::showCommits(const std::vector<git::CommitPtr>& commits)
+  {
+    DeleteAllItems();
+    long index = 0;
+    for(auto& commit : commits)
+      {
+	InsertItem(index, commit->getMessage());
+	SetItem(index, 1, commit->getCommitter()->name);
+	SetItem(index, 2, commit->getCommitter()->when.Format("%F %R"));
+	wxYield();
+	++index;
+      }
+    commits_ = commits;
+  }
 }

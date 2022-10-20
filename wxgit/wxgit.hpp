@@ -4,6 +4,7 @@
 #include "wx/aui/auibook.h"
 #include "wx/dataview.h"
 #include "wx/filename.h"
+#include "wx/listctrl.h"
 #include "wx/stdpaths.h"
 #include "wx/treelist.h"
 #include "wx/xml/xml.h"
