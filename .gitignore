@@ -1,13 +1,12 @@
-# Xcode
-DerivedData/
-xcuserdata/
-
 # Mac
 /external/build/mac/work/
+DerivedData/
+xcuserdata/
 
 # Windows
 *.vcxproj.user
 .vs/
+/external/build/vs2019/libgit2/
 Debug/
 x64/
 
