@@ -1,38 +1,30 @@
-﻿/***********************************************************************//**
-	@file
-***************************************************************************/
-#pragma once
+﻿#pragma once
 
-namespace wxgit {
-/***********************************************************************//**
-	@brief 
-***************************************************************************/
-class Application
-  : public wxApp
+namespace wxgit
 {
-  using super = wxApp;
+    class Application
+	: public wxApp
+    {
+	using super = wxApp;
 
- public:
-  static const wxVersionInfo Version;
+    public:
+	static const wxVersionInfo Version;
 
- private:
-  MainFrame* mainFrame_;
+    private:
+	MainFrame* mainFrame_;
 
- public:
-  Application();
-  ~Application() override;
+    public:
+	Application();
+	~Application() override;
 
-  void savePreference();
-  void loadPreference();
+	void savePreference();
+	void loadPreference();
 
- protected:
-  bool OnInit() override;
-  int OnExit() override;
+    protected:
+	bool OnInit() override;
+	int OnExit() override;
 
- private:
-  static wxFileName GetPreferencePath();
-};
-/***********************************************************************//**
-	$Id$
-***************************************************************************/
+    private:
+	static wxFileName GetPreferencePath();
+    };
 }
