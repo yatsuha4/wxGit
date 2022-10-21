@@ -21,6 +21,7 @@ namespace wxgit
   {
     WXEDITOR_DECLARE_CLASS(Branch);
     WXEDITOR_DECLARE_CLASS(Commit);
+    WXEDITOR_DECLARE_CLASS(Config);
     WXEDITOR_DECLARE_CLASS(Repository);
     WXEDITOR_DECLARE_CLASS(Signature);
   }

@@ -2,20 +2,20 @@
 
 namespace wxgit::history
 {
-  class History
-    : public wxListCtrl
-  {
-    using super = wxListCtrl;
+    class History
+	: public wxListCtrl
+    {
+	using super = wxListCtrl;
 
-  private:
-    std::vector<git::CommitPtr> commits_;
+    private:
+	std::vector<git::CommitPtr> commits_;
 
-  public:
-    History(MainFrame* mainFrame);
-    ~History() override = default;
+    public:
+	History(MainFrame* mainFrame);
+	~History() override = default;
 
-    MainFrame* getMainFrame() const;
+	MainFrame* getMainFrame() const;
 
-    void showCommits(const std::vector<git::CommitPtr>& commits);
-  };
+	void showCommits(const std::vector<git::CommitPtr>& commits);
+    };
 }

@@ -1,26 +1,24 @@
-﻿/***********************************************************************//**
-	@file
-***************************************************************************/
-#pragma once
+﻿#pragma once
 
-namespace wxgit {
-namespace git {
-/***********************************************************************//**
-	@brief 
-***************************************************************************/
-class Signature {
- public:
-  wxString name;
-  wxString email;
-  wxDateTime when;
+namespace wxgit::git
+{
+    /**
+     * @brief シグネチャ
+     */
+    class Signature
+    {
+    private:
+	wxString name_;
+	wxString email_;
+	wxDateTime when_;
 
- public:
-  Signature() = default;
-  Signature(const git_signature* signature);
-  ~Signature() = default;
-};
-/***********************************************************************//**
-	$Id$
-***************************************************************************/
-}
+    public:
+	Signature() = default;
+	Signature(const git_signature* signature);
+	~Signature() = default;
+
+	WXEDITOR_ACCESSOR(Name, name_);
+	WXEDITOR_ACCESSOR(Email, email_);
+	WXEDITOR_ACCESSOR(When, when_);
+    };
 }
