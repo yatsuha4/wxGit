@@ -13,7 +13,7 @@ namespace wxgit
     private:
         Application* application_;
         wxStatusBar* statusBar_;
-        wxAuiManager auiManager_;
+        std::unique_ptr<wxAuiManager> auiManager_;
         outliner::Outliner* outliner_;
         history::History* history_;
         FileList* fileList_;

@@ -27,7 +27,7 @@ namespace wxgit
                 wxDefaultPosition, wxSize(960, 640)), 
           application_(application), 
           statusBar_(CreateStatusBar()), 
-          auiManager_(this), 
+          auiManager_(new wxAuiManager(this)), 
           outliner_(new outliner::Outliner(this)), 
           history_(new history::History(this)), 
           fileList_(new FileList(this))
@@ -36,29 +36,29 @@ namespace wxgit
         setupToolBar();
         //notebook_->AddPage(repoBrowser_, "Repository");
         statusBar_->PushStatusText(Application::Version.ToString());
-        auiManager_.AddPane(outliner_, 
-                            wxAuiPaneInfo().
-                            Name("Outliner").
-                            Caption("Outliner").
-                            CloseButton(false).
-                            Left().
-                            BestSize(200, 800).
-                            Layer(LAYER_OUTLINER));
-        auiManager_.AddPane(history_, 
-                            wxAuiPaneInfo().
-                            Name("History").
-                            Caption("History").
-                            CloseButton(false).
-                            CenterPane().
-                            Layer(LAYER_HISTORY));
-        auiManager_.AddPane(fileList_, 
-                            wxAuiPaneInfo().
-                            Name("FileList").
-                            Caption("FileList").
-                            CloseButton(false).
-                            BestSize(800, 800).
-                            Bottom());
-        auiManager_.Update();
+        auiManager_->AddPane(outliner_, 
+                             wxAuiPaneInfo().
+                             Name("Outliner").
+                             Caption("Outliner").
+                             CloseButton(false).
+                             Left().
+                             BestSize(200, 800).
+                             Layer(LAYER_OUTLINER));
+        auiManager_->AddPane(history_, 
+                             wxAuiPaneInfo().
+                             Name("History").
+                             Caption("History").
+                             CloseButton(false).
+                             CenterPane().
+                             Layer(LAYER_HISTORY));
+        auiManager_->AddPane(fileList_, 
+                             wxAuiPaneInfo().
+                             Name("FileList").
+                             Caption("FileList").
+                             CloseButton(false).
+                             BestSize(800, 800).
+                             Bottom());
+        auiManager_->Update();
         Bind(wxEVT_CLOSE_WINDOW, &MainFrame::onClose, this);
     }
 
@@ -67,7 +67,7 @@ namespace wxgit
      */
     MainFrame::~MainFrame()
     {
-        auiManager_.UnInit();
+        auiManager_->UnInit();
     }
 
     /**
@@ -76,6 +76,10 @@ namespace wxgit
     wxXmlNode* MainFrame::serialize() const
     {
         auto xml = Serializable::serialize();
+        auto size = GetSize();
+        xml->AddAttribute("width", wxString::Format("%d", size.GetWidth()));
+        xml->AddAttribute("height", wxString::Format("%d", size.GetHeight()));
+        xml->AddAttribute("perspective", auiManager_->SavePerspective());
         xml->AddChild(outliner_->serialize());
         return xml;
     }
@@ -87,6 +91,17 @@ namespace wxgit
     {
         if(Serializable::deserialize(xml))
         {
+            int width, height;
+            if(xml->GetAttribute("width").ToInt(&width) && 
+               xml->GetAttribute("height").ToInt(&height))
+            {
+                SetSize(width, height);
+            }
+            wxString perspective;
+            if(xml->GetAttribute("perspective", &perspective))
+            {
+                auiManager_->LoadPerspective(perspective);
+            }
             for(auto child = xml->GetChildren(); child; child = child->GetNext())
             {
                 if(child->GetName() == outliner::Outliner::GetSerialName())
