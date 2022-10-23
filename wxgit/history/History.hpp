@@ -8,6 +8,14 @@ namespace wxgit::history
 	using super = wxListCtrl;
 
     private:
+        enum Column
+        {
+            MESSAGE, 
+            COMMITTER, 
+            DATE
+        };
+
+    private:
 	std::vector<git::CommitPtr> commits_;
 
     public:
@@ -17,5 +25,8 @@ namespace wxgit::history
 	MainFrame* getMainFrame() const;
 
 	void showCommits(const std::vector<git::CommitPtr>& commits);
+
+    private:
+        void onItemSelected(wxListEvent& event);
     };
 }

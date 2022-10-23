@@ -2,6 +2,7 @@
 #include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Config.hpp"
 #include "wxgit/git/Repository.hpp"
+#include "wxgit/git/Status.hpp"
 
 namespace wxgit::git
 {
@@ -92,5 +93,23 @@ namespace wxgit::git
 	    }
 	}
 	return commits_;
+    }
+
+    /**
+     * @brief ステータスを取得する
+     * @return ステータス
+     */
+    StatusPtr Repository::fetchStatus() const
+    {
+        git_status_options options;
+        if(git_status_options_init(&options, GIT_STATUS_OPTIONS_VERSION) == GIT_OK)
+        {
+            git_status_list* list;
+            if(git_status_list_new(&list, repository_, &options) == GIT_OK)
+            {
+                return std::make_shared<Status>(list);
+            }
+        }
+        return nullptr;
     }
 }

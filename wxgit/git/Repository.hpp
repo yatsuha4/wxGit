@@ -25,5 +25,6 @@ namespace wxgit::git
 
 	std::vector<BranchPtr> getBranches(git_branch_t type) const;
 	const std::vector<CommitPtr>& getCommits(bool update = false);
+        StatusPtr fetchStatus() const;
     };
 }

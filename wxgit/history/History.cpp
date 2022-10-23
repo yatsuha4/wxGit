@@ -1,6 +1,8 @@
 ﻿#include "wxgit/MainFrame.hpp"
+#include "wxgit/git/Blob.hpp"
 #include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Signature.hpp"
+#include "wxgit/git/Tree.hpp"
 #include "wxgit/history/History.hpp"
 
 namespace wxgit::history
@@ -12,9 +14,11 @@ namespace wxgit::history
     History::History(MainFrame* mainFrame)
 	: super(mainFrame, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT)
     {
-	AppendColumn(wxT("Message"));
-	AppendColumn(wxT("Committer"));
-	AppendColumn(wxT("Date"));
+	InsertColumn(Column::MESSAGE, wxT("Message"));
+	InsertColumn(Column::COMMITTER, wxT("Committer"));
+	InsertColumn(Column::DATE, wxT("Date"));
+
+        Bind(wxEVT_LIST_ITEM_SELECTED, &History::onItemSelected, this);
     }
 
     /**
@@ -33,11 +37,22 @@ namespace wxgit::history
 	for(auto& commit : commits)
 	{
 	    InsertItem(index, commit->getMessage());
-	    SetItem(index, 1, commit->getCommitter()->getName());
-	    SetItem(index, 2, commit->getCommitter()->getWhen().Format("%F %R"));
+	    SetItem(index, Column::COMMITTER, commit->getCommitter()->getName());
+	    SetItem(index, Column::DATE, commit->getCommitter()->getWhen().Format("%F %R"));
 	    wxYield();
 	    ++index;
 	}
 	commits_ = commits;
+    }
+
+    /**
+     */
+    void History::onItemSelected(wxListEvent& event)
+    {
+        auto& commit = commits_.at(event.GetIndex());
+        for(auto& blob : commit->fetchBlobs())
+        {
+            wxLogDebug("%s", blob->getPath().GetFullPath(wxPATH_UNIX));
+        }
     }
 }

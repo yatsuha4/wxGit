@@ -69,6 +69,15 @@
     <ClCompile Include="..\..\..\..\wxgit\git\Config.cpp">
       <Filter>wxgit\git</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Status.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Tree.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Blob.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
@@ -120,6 +129,15 @@
       <Filter>wxgit</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\git\Config.hpp">
+      <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Status.hpp">
+      <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Tree.hpp">
+      <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Blob.hpp">
       <Filter>wxgit\git</Filter>
     </ClInclude>
   </ItemGroup>
