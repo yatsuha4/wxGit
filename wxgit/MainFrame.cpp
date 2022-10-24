@@ -1,5 +1,6 @@
 ﻿#include "wxgit/Application.hpp"
-#include "wxgit/FileList.hpp"
+#include "wxgit/DiffWindow.hpp"
+#include "wxgit/FileWindow.hpp"
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/Menu.hpp"
 #include "wxgit/RepoBrowser.hpp"
@@ -16,6 +17,7 @@ namespace wxgit
     enum
     {
         LAYER_HISTORY, 
+        LAYER_FILE, 
         LAYER_OUTLINER
     };
 
@@ -30,7 +32,8 @@ namespace wxgit
           auiManager_(new wxAuiManager(this)), 
           outliner_(new outliner::Outliner(this)), 
           history_(new history::History(this)), 
-          fileList_(new FileList(this))
+          fileWindow_(new FileWindow(this)), 
+          diffWindow_(new DiffWindow(this))
     {
         setupMenuBar();
         setupToolBar();
@@ -51,13 +54,22 @@ namespace wxgit
                              CloseButton(false).
                              CenterPane().
                              Layer(LAYER_HISTORY));
-        auiManager_->AddPane(fileList_, 
+        auiManager_->AddPane(fileWindow_, 
                              wxAuiPaneInfo().
-                             Name("FileList").
-                             Caption("FileList").
+                             Name("File").
+                             Caption("File").
                              CloseButton(false).
                              BestSize(800, 800).
-                             Bottom());
+                             Bottom().
+                             Layer(LAYER_FILE));
+        auiManager_->AddPane(diffWindow_, 
+                             wxAuiPaneInfo().
+                             Name("Diff").
+                             Caption("Diff").
+                             CloseButton(false).
+                             BestSize(800, 800).
+                             Bottom().
+                             Layer(LAYER_FILE));
         auiManager_->Update();
         Bind(wxEVT_CLOSE_WINDOW, &MainFrame::onClose, this);
     }
@@ -100,7 +112,7 @@ namespace wxgit
             wxString perspective;
             if(xml->GetAttribute("perspective", &perspective))
             {
-                auiManager_->LoadPerspective(perspective);
+                //auiManager_->LoadPerspective(perspective);
             }
             for(auto child = xml->GetChildren(); child; child = child->GetNext())
             {

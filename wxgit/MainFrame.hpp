@@ -16,7 +16,8 @@ namespace wxgit
         std::unique_ptr<wxAuiManager> auiManager_;
         outliner::Outliner* outliner_;
         history::History* history_;
-        FileList* fileList_;
+        FileWindow* fileWindow_;
+        DiffWindow* diffWindow_;
 
     public:
         MainFrame(Application* application);
@@ -24,7 +25,8 @@ namespace wxgit
 
         WXEDITOR_GETTER(Outliner, outliner_);
         WXEDITOR_GETTER(History, history_);
-        WXEDITOR_GETTER(FileList, fileList_);
+        WXEDITOR_GETTER(FileWindow, fileWindow_);
+        WXEDITOR_GETTER(DiffWindow, diffWindow_);
 
         wxXmlNode* serialize() const override;
         bool deserialize(const wxXmlNode* xml) override;

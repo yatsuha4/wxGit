@@ -1,4 +1,5 @@
-﻿#include "wxgit/MainFrame.hpp"
+﻿#include "wxgit/FileWindow.hpp"
+#include "wxgit/MainFrame.hpp"
 #include "wxgit/git/Blob.hpp"
 #include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Diff.hpp"
@@ -53,10 +54,7 @@ namespace wxgit::history
         auto& commit = commits_.at(event.GetIndex());
         if(auto diff = commit->createDiff())
         {
-            for(auto& path : diff->getPathes())
-            {
-                wxLogDebug("%s", path.GetFullPath(wxPATH_UNIX));
-            }
+            getMainFrame()->getFileWindow()->showDiff(diff);
         }
     }
 }

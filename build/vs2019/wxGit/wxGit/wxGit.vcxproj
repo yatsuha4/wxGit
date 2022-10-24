@@ -101,7 +101,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\wxgit\Application.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\DiffWindow.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\FileList.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\FileWindow.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Blob.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Branch.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Commit.cpp" />
@@ -128,7 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\DiffWindow.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\FileList.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\FileWindow.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Blob.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Branch.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Commit.hpp" />

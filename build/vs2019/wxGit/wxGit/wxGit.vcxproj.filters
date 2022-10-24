@@ -81,6 +81,12 @@
     <ClCompile Include="..\..\..\..\wxgit\git\Diff.cpp">
       <Filter>wxgit\git</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\FileWindow.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\DiffWindow.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
@@ -145,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\git\Diff.hpp">
       <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\FileWindow.hpp">
+      <Filter>wxgit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\DiffWindow.hpp">
+      <Filter>wxgit</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

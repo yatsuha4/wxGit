@@ -7,6 +7,7 @@
 #include "wx/listctrl.h"
 #include "wx/memory.h"
 #include "wx/stdpaths.h"
+#include "wx/treectrl.h"
 #include "wx/treelist.h"
 #include "wx/xml/xml.h"
 
@@ -15,9 +16,12 @@
 namespace wxgit
 {
     WXEDITOR_DECLARE_CLASS(Application);
+    WXEDITOR_DECLARE_CLASS(DiffWindow);
     WXEDITOR_DECLARE_CLASS(FileList);
+    WXEDITOR_DECLARE_CLASS(FileWindow);
     WXEDITOR_DECLARE_CLASS(MainFrame);
     WXEDITOR_DECLARE_CLASS(RepoBrowser);
+
     namespace git
     {
         WXEDITOR_DECLARE_CLASS(Blob);
