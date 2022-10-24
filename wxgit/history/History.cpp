@@ -1,6 +1,7 @@
 ﻿#include "wxgit/MainFrame.hpp"
 #include "wxgit/git/Blob.hpp"
 #include "wxgit/git/Commit.hpp"
+#include "wxgit/git/Diff.hpp"
 #include "wxgit/git/Signature.hpp"
 #include "wxgit/git/Tree.hpp"
 #include "wxgit/history/History.hpp"
@@ -50,9 +51,12 @@ namespace wxgit::history
     void History::onItemSelected(wxListEvent& event)
     {
         auto& commit = commits_.at(event.GetIndex());
-        for(auto& blob : commit->fetchBlobs())
+        if(auto diff = commit->createDiff())
         {
-            wxLogDebug("%s", blob->getPath().GetFullPath(wxPATH_UNIX));
+            for(auto& path : diff->getPathes())
+            {
+                wxLogDebug("%s", path.GetFullPath(wxPATH_UNIX));
+            }
         }
     }
 }

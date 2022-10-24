@@ -26,6 +26,7 @@ namespace wxgit::git
         WXEDITOR_GETTER(Time, time_);
 
         const std::vector<BlobPtr>& fetchBlobs();
+        DiffPtr createDiff() const;
 
     private:
         void parseTree(git_tree* tree, const wxFileName& dir);

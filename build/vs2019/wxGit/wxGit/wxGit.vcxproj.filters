@@ -78,6 +78,9 @@
     <ClCompile Include="..\..\..\..\wxgit\git\Blob.cpp">
       <Filter>wxgit\git</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Diff.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
@@ -138,6 +141,9 @@
       <Filter>wxgit\git</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\git\Blob.hpp">
+      <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Diff.hpp">
       <Filter>wxgit\git</Filter>
     </ClInclude>
   </ItemGroup>

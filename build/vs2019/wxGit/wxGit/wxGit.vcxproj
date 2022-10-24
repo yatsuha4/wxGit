@@ -106,6 +106,7 @@
     <ClCompile Include="..\..\..\..\wxgit\git\Branch.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Commit.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Config.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\git\Diff.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Repository.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Signature.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Status.cpp" />
@@ -132,6 +133,7 @@
     <ClInclude Include="..\..\..\..\wxgit\git\Branch.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Commit.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Config.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\git\Diff.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Repository.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Signature.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Status.hpp" />
