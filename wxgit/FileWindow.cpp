@@ -9,8 +9,16 @@ namespace wxgit
      * @param[in] mainFrame メインフレーム
      */
     FileWindow::FileWindow(MainFrame* mainFrame)
-        : super(mainFrame)
+        : super(mainFrame, 
+                wxID_ANY, 
+                wxDefaultPosition, 
+                wxDefaultSize, 
+                wxTL_MULTIPLE | 
+                wxTL_CHECKBOX |
+                wxTL_3STATE |
+                wxTL_NO_HEADER)
     {
+        AppendColumn("Path");
     }
 
     /**
@@ -21,7 +29,6 @@ namespace wxgit
     {
         DeleteAllItems();
         diff_ = diff;
-        auto root = AddRoot(wxT("ROOT"));
         for(auto& delta : diff->getDeltas())
         {
             switch(delta.getStatus())
@@ -29,12 +36,12 @@ namespace wxgit
             case GIT_DELTA_ADDED:
             case GIT_DELTA_DELETED:
             case GIT_DELTA_MODIFIED:
-                AppendItem(root, delta.getNewFile().getPath().GetFullPath(wxPATH_UNIX));
+                AppendItem(GetRootItem(), 
+                           delta.getNewFile().getPath().GetFullPath(wxPATH_UNIX));
                 break;
             default:
                 break;
             }
         }
-        Expand(root);
     }
 }

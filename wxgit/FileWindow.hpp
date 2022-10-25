@@ -6,9 +6,9 @@ namespace wxgit
      * @brief ファイル一覧
      */
     class FileWindow
-        : public wxTreeCtrl
+        : public wxTreeListCtrl
     {
-        using super = wxTreeCtrl;
+        using super = wxTreeListCtrl;
 
     private:
         git::DiffPtr diff_;
