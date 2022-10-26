@@ -19,7 +19,6 @@ namespace wxgit::history
 	InsertColumn(Column::MESSAGE, wxT("Message"));
 	InsertColumn(Column::COMMITTER, wxT("Committer"));
 	InsertColumn(Column::DATE, wxT("Date"));
-
         Bind(wxEVT_LIST_ITEM_SELECTED, &History::onItemSelected, this);
     }
 
@@ -35,6 +34,7 @@ namespace wxgit::history
     void History::showCommits(const std::vector<git::CommitPtr>& commits)
     {
 	DeleteAllItems();
+        Freeze();
 	long index = 0;
 	for(auto& commit : commits)
 	{
@@ -44,6 +44,10 @@ namespace wxgit::history
 	    wxYield();
 	    ++index;
 	}
+        SetColumnWidth(Column::MESSAGE, wxLIST_AUTOSIZE);
+        SetColumnWidth(Column::COMMITTER, wxLIST_AUTOSIZE);
+        SetColumnWidth(Column::DATE, wxLIST_AUTOSIZE);
+        Thaw();
 	commits_ = commits;
     }
 

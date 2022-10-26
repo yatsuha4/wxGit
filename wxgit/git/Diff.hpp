@@ -23,11 +23,21 @@ namespace wxgit::git
         class Line
         {
         private:
-            const git_diff_line* line_;
+            git_diff_line_t origin_;
+            int oldLine_;
+            int newLine_;
+            int numLines_;
+            git_off_t contentOffset_;
+            wxString content_;
 
         public:
             Line(const git_diff_line* line);
             ~Line() = default;
+
+            WXEDITOR_GETTER(Origin, origin_);
+            WXEDITOR_GETTER(OldLine, oldLine_);
+            WXEDITOR_GETTER(NewLine, newLine_);
+            WXEDITOR_GETTER(Content, content_);
         };
 
         class Hunk

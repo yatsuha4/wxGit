@@ -23,7 +23,12 @@ namespace wxgit::git
     /**
      */
     Diff::Line::Line(const git_diff_line* line)
-        : line_(line)
+        : origin_(static_cast<git_diff_line_t>(line->origin)), 
+          oldLine_(line->old_lineno), 
+          newLine_(line->new_lineno), 
+          numLines_(line->num_lines), 
+          contentOffset_(line->content_offset), 
+          content_(line->content, wxConvAuto(), line->content_len)
     {
     }
 

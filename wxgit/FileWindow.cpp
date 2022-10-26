@@ -1,6 +1,6 @@
-﻿#include "wxgit/FileWindow.hpp"
+﻿#include "wxgit/DiffWindow.hpp"
+#include "wxgit/FileWindow.hpp"
 #include "wxgit/MainFrame.hpp"
-#include "wxgit/git/Diff.hpp"
 
 namespace wxgit
 {
@@ -19,6 +19,14 @@ namespace wxgit
                 wxTL_NO_HEADER)
     {
         AppendColumn("Path");
+        Bind(wxEVT_TREELIST_SELECTION_CHANGED, &FileWindow::onSelectionChanged, this);
+    }
+
+    /**
+     */
+    MainFrame* FileWindow::getMainFrame() const
+    {
+        return static_cast<MainFrame*>(GetParent());
     }
 
     /**
@@ -36,12 +44,33 @@ namespace wxgit
             case GIT_DELTA_ADDED:
             case GIT_DELTA_DELETED:
             case GIT_DELTA_MODIFIED:
-                AppendItem(GetRootItem(), 
-                           delta.getNewFile().getPath().GetFullPath(wxPATH_UNIX));
+                {
+                    auto path = delta.getNewFile().getPath().GetFullPath(wxPATH_UNIX);
+                    auto item = AppendItem(GetRootItem(), path);
+                    SetItemData(item, new ItemData(delta));
+                }
                 break;
             default:
                 break;
             }
         }
+    }
+
+    /**
+     */
+    void FileWindow::onSelectionChanged(wxTreeListEvent& event)
+    {
+        if(auto data = static_cast<ItemData*>(GetItemData(event.GetItem())))
+        {
+            wxLogDebug(data->getDelta().getNewFile().getPath().GetFullPath());
+            getMainFrame()->getDiffWindow()->showDelta(data->getDelta());
+        }
+    }
+
+    /**
+     */
+    FileWindow::ItemData::ItemData(const git::Diff::Delta& delta)
+        : delta_(delta)
+    {
     }
 }
