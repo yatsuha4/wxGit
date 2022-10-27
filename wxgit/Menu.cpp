@@ -1,29 +1,30 @@
-﻿/***********************************************************************//**
-	@file
-***************************************************************************/
-#include "wxgit/Menu.hpp"
+﻿#include "wxgit/Menu.hpp"
 
-namespace wxgit {
-/***********************************************************************//**
-	@brief 
-***************************************************************************/
-wxMenuItem* Menu::append(Id id) {
-  return super::Append(static_cast<int>(id), GetText(id));
-}
-/***********************************************************************//**
-	@brief 
-***************************************************************************/
-const char* Menu::GetText(Id id) {
-  static const char* LABELS[] = {
-    "Quit", 
+namespace wxgit
+{
+    /**
+     * @brief 
+     */
+    wxMenuItem* Menu::append(Id id)
+    {
+        return super::Append(static_cast<int>(id), GetText(id));
+    }
 
-    "Clone", 
-    "Add", 
-    "Remove"
-  };
-  return LABELS[static_cast<int>(id) - static_cast<int>(Id::TOP) - 1];
-}
-/***********************************************************************//**
-	$Id$
-***************************************************************************/
+    /**
+     * @brief 
+     */
+    const char* Menu::GetText(Id id)
+    {
+        static const char* LABELS[] =
+        {
+            "Quit", 
+
+            "Clone", 
+            "Add", 
+            "Remove", 
+
+            "Commit"
+        };
+        return LABELS[static_cast<int>(id) - static_cast<int>(Id::TOP) - 1];
+    }
 }

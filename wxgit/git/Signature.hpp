@@ -8,14 +8,15 @@ namespace wxgit::git
     class Signature
     {
     private:
+        git_signature* signature_;
 	wxString name_;
 	wxString email_;
 	wxDateTime when_;
 
     public:
-	Signature() = default;
+	Signature(git_signature* signature);
 	Signature(const git_signature* signature);
-	~Signature() = default;
+	~Signature();
 
 	WXEDITOR_ACCESSOR(Name, name_);
 	WXEDITOR_ACCESSOR(Email, email_);

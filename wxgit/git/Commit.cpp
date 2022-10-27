@@ -8,10 +8,12 @@ namespace wxgit::git
 {
     /**
      * @brief コンストラクタ
+     * @param[in] repository リポジトリ
      * @param[in] commit コミット
      */
-    Commit::Commit(git_commit* commit)
-        : commit_(commit), 
+    Commit::Commit(const RepositoryPtr& repository, git_commit* commit)
+        : repository_(repository), 
+          commit_(commit), 
           tree_(nullptr), 
           message_(wxString::FromUTF8(git_commit_message(commit))), 
           committer_(std::make_shared<Signature>(git_commit_committer(commit))), 
@@ -29,6 +31,15 @@ namespace wxgit::git
             git_tree_free(tree_);
         }
         git_commit_free(commit_);
+    }
+
+    /**
+     * @brief リポジトリを取得する
+     * @return リポジトリ
+     */
+    RepositoryPtr Commit::getRepository() const
+    {
+        return repository_.lock();
     }
 
     /**
@@ -69,7 +80,7 @@ namespace wxgit::git
                                                  tree, 
                                                  &options) == GIT_OK)
                         {
-                            result = std::make_shared<Diff>(diff);
+                            result = std::make_shared<Diff>(shared_from_this(), diff);
                         }
                     }
                     git_tree_free(tree);

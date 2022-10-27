@@ -74,11 +74,13 @@ namespace wxgit::git
         };
 
     private:
+        ConstCommitPtr commit_;
         git_diff* diff_;
         std::vector<Delta> deltas_;
 
     public:
         Diff(git_diff* diff);
+        Diff(const ConstCommitPtr& commit, git_diff* diff);
         ~Diff();
 
         WXEDITOR_GETTER(Deltas, deltas_);

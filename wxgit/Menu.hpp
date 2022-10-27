@@ -1,39 +1,36 @@
-﻿/***********************************************************************//**
-	@file
-***************************************************************************/
-#pragma once
+﻿#pragma once
 
-namespace wxgit {
-/***********************************************************************//**
-	@brief 
-***************************************************************************/
-class Menu
-  : public wxMenu
+namespace wxgit
 {
-  using super = wxMenu;
+    /**
+     * @brief メニュー
+     */
+    class Menu
+        : public wxMenu
+    {
+        using super = wxMenu;
 
- public:
-  enum class Id {
-    TOP = wxID_HIGHEST, 
+    public:
+        enum class Id {
+            TOP = wxID_HIGHEST, 
 
-    FILE_QUIT, 
+            FILE_QUIT, 
 
-    REPOSITORY_CLONE, 
-    REPOSITORY_ADD, 
-    REPOSITORY_REMOVE, 
+            REPOSITORY_CLONE, 
+            REPOSITORY_ADD, 
+            REPOSITORY_REMOVE, 
 
-    BOTTOM
-  };
+            WORK_COMMIT, 
 
- public:
-  Menu() = default;
-  ~Menu() override = default;
+            BOTTOM
+        };
 
-  wxMenuItem* append(Id id);
+    public:
+        Menu() = default;
+        ~Menu() override = default;
 
-  static const char* GetText(Id id);
-};
-/***********************************************************************//**
-	$Id$
-***************************************************************************/
+        wxMenuItem* append(Id id);
+
+        static const char* GetText(Id id);
+    };
 }

@@ -101,6 +101,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\wxgit\Application.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\CommitWindow.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\DiffWindow.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\FileList.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\FileWindow.cpp" />
@@ -130,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\CommitWindow.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\DiffWindow.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\FileList.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\FileWindow.hpp" />

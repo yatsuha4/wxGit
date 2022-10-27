@@ -16,6 +16,7 @@
 namespace wxgit
 {
     WXEDITOR_DECLARE_CLASS(Application);
+    WXEDITOR_DECLARE_CLASS(CommitWindow);
     WXEDITOR_DECLARE_CLASS(DiffWindow);
     WXEDITOR_DECLARE_CLASS(FileList);
     WXEDITOR_DECLARE_CLASS(FileWindow);

@@ -2,6 +2,7 @@
 #include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Config.hpp"
 #include "wxgit/git/Repository.hpp"
+#include "wxgit/git/Signature.hpp"
 #include "wxgit/git/Status.hpp"
 
 namespace wxgit::git
@@ -78,13 +79,14 @@ namespace wxgit::git
 		{
 		    if(git_revwalk_push_head(walk) == GIT_OK)
 		    {
+                        auto self = shared_from_this();
 			git_oid oid;
 			while(git_revwalk_next(&oid, walk) == GIT_OK)
 			{
 			    git_commit* commit;
 			    if(git_commit_lookup(&commit, repository_, &oid) == GIT_OK)
 			    {
-				commits_.push_back(std::make_shared<Commit>(commit));
+				commits_.push_back(std::make_shared<Commit>(self, commit));
 			    }
 			}
 		    }
@@ -109,6 +111,20 @@ namespace wxgit::git
             {
                 return std::make_shared<Status>(list);
             }
+        }
+        return nullptr;
+    }
+
+    /**
+     * @brief シグネチャを取得(生成)する
+     * @return シグネチャ
+     */
+    SignaturePtr Repository::createSignature() const
+    {
+        git_signature* signature;
+        if(git_signature_default(&signature, repository_) == GIT_OK)
+        {
+            return std::make_shared<Signature>(signature);
         }
         return nullptr;
     }

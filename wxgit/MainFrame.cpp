@@ -1,4 +1,5 @@
 ﻿#include "wxgit/Application.hpp"
+#include "wxgit/CommitWindow.hpp"
 #include "wxgit/DiffWindow.hpp"
 #include "wxgit/FileWindow.hpp"
 #include "wxgit/MainFrame.hpp"
@@ -18,6 +19,7 @@ namespace wxgit
     {
         LAYER_HISTORY, 
         LAYER_FILE, 
+        LAYER_COMMIT, 
         LAYER_OUTLINER
     };
 
@@ -33,7 +35,8 @@ namespace wxgit
           outliner_(new outliner::Outliner(this)), 
           history_(new history::History(this)), 
           fileWindow_(new FileWindow(this)), 
-          diffWindow_(new DiffWindow(this))
+          diffWindow_(new DiffWindow(this)), 
+          commitWindow_(new CommitWindow(this))
     {
         setupMenuBar();
         setupToolBar();
@@ -54,6 +57,13 @@ namespace wxgit
                              CloseButton(false).
                              CenterPane().
                              Layer(LAYER_HISTORY));
+        auiManager_->AddPane(commitWindow_, 
+                             wxAuiPaneInfo().
+                             Name("Commit").
+                             Caption("Commit").
+                             CloseButton(false).
+                             Bottom().
+                             Layer(LAYER_COMMIT));
         auiManager_->AddPane(fileWindow_, 
                              wxAuiPaneInfo().
                              Name("File").
@@ -80,6 +90,20 @@ namespace wxgit
     MainFrame::~MainFrame()
     {
         auiManager_->UnInit();
+    }
+
+    /**
+     * @brief リポジトリをセットする
+     * @param[in] repository リポジトリ
+     */
+    void MainFrame::setRepository(const git::RepositoryPtr& repository)
+    {
+        if(repository != repository_)
+        {
+            repository_ = repository;
+            getHistory()->showCommits(repository->getCommits());
+            getCommitWindow()->setSignature(repository->createSignature());
+        }
     }
 
     /**
@@ -163,6 +187,9 @@ namespace wxgit
         toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_ADD), 
                          Menu::GetText(Menu::Id::REPOSITORY_ADD), 
                          wxArtProvider::GetBitmap(wxART_NEW));
+        toolBar->AddTool(static_cast<int>(Menu::Id::WORK_COMMIT), 
+                         Menu::GetText(Menu::Id::WORK_COMMIT), 
+                         wxArtProvider::GetBitmap(wxART_PLUS));
         toolBar->Realize();
         Bind(wxEVT_TOOL, &MainFrame::onSelectMenu, this);
     }
@@ -179,6 +206,8 @@ namespace wxgit
             break;
         case Menu::Id::REPOSITORY_ADD:
             addRepository();
+            break;
+        case Menu::Id::WORK_COMMIT:
             break;
         default:
             break;

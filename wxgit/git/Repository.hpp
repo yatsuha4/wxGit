@@ -6,6 +6,7 @@ namespace wxgit::git
      * @brief リポジトリ
      */
     class Repository
+        : public std::enable_shared_from_this<Repository>
     {
     private:
 	wxFileName dir_;
@@ -26,5 +27,7 @@ namespace wxgit::git
 	std::vector<BranchPtr> getBranches(git_branch_t type) const;
 	const std::vector<CommitPtr>& getCommits(bool update = false);
         StatusPtr fetchStatus() const;
+
+        SignaturePtr createSignature() const;
     };
 }

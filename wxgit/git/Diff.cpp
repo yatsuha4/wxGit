@@ -99,6 +99,17 @@ namespace wxgit::git
     }
 
     /**
+     * @brief コンストラクタ
+     * @param[in] commit コミット
+     * @param[in] diff 差分
+     */
+    Diff::Diff(const ConstCommitPtr& commit, git_diff* diff)
+        : Diff(diff)
+    {
+        commit_ = commit;
+    }
+
+    /**
      * @brief デストラクタ
      */
     Diff::~Diff()
