@@ -30,6 +30,7 @@ namespace wxgit
         WXEDITOR_DECLARE_CLASS(Commit);
         WXEDITOR_DECLARE_CLASS(Config);
         WXEDITOR_DECLARE_CLASS(Diff);
+        WXEDITOR_DECLARE_CLASS(Index);
         WXEDITOR_DECLARE_CLASS(Repository);
         WXEDITOR_DECLARE_CLASS(Signature);
         WXEDITOR_DECLARE_CLASS(Status);

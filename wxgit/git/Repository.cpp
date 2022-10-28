@@ -2,6 +2,7 @@
 #include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Config.hpp"
 #include "wxgit/git/Diff.hpp"
+#include "wxgit/git/Index.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/git/Signature.hpp"
 #include "wxgit/git/Status.hpp"
@@ -164,5 +165,19 @@ namespace wxgit::git
             git_reference_free(reference);
         }
         return result;
+    }
+
+    /**
+     * @brief インデックスを生成する
+     * @return インデックス
+     */
+    IndexPtr Repository::createIndex() const
+    {
+        git_index* index;
+        if(git_repository_index(&index, repository_) == GIT_OK)
+        {
+            return std::make_shared<Index>(index);
+        }
+        return nullptr;
     }
 }

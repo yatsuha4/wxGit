@@ -31,5 +31,7 @@ namespace wxgit::git
         SignaturePtr createSignature() const;
 
         DiffPtr createDiff() const;
+
+        IndexPtr createIndex() const;
     };
 }

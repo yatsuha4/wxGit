@@ -90,6 +90,9 @@
     <ClCompile Include="..\..\..\..\wxgit\CommitWindow.cpp">
       <Filter>wxgit</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Index.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
@@ -163,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\CommitWindow.hpp">
       <Filter>wxgit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Index.hpp">
+      <Filter>wxgit\git</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
