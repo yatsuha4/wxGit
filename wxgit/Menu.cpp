@@ -23,7 +23,7 @@ namespace wxgit
             "Add", 
             "Remove", 
 
-            "Commit"
+            "Status"
         };
         return LABELS[static_cast<int>(id) - static_cast<int>(Id::TOP) - 1];
     }

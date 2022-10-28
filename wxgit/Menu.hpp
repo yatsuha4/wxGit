@@ -20,7 +20,7 @@ namespace wxgit
             REPOSITORY_ADD, 
             REPOSITORY_REMOVE, 
 
-            WORK_COMMIT, 
+            WORK_STATUS, 
 
             BOTTOM
         };

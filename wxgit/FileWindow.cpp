@@ -44,6 +44,7 @@ namespace wxgit
             case GIT_DELTA_ADDED:
             case GIT_DELTA_DELETED:
             case GIT_DELTA_MODIFIED:
+            case GIT_DELTA_UNTRACKED:
                 {
                     auto path = delta.getNewFile().getPath().GetFullPath(wxPATH_UNIX);
                     auto item = AppendItem(GetRootItem(), path);

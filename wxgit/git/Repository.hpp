@@ -29,5 +29,7 @@ namespace wxgit::git
         StatusPtr fetchStatus() const;
 
         SignaturePtr createSignature() const;
+
+        DiffPtr createDiff() const;
     };
 }

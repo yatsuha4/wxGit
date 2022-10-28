@@ -1,6 +1,7 @@
 ﻿#include "wxgit/git/Branch.hpp"
 #include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Config.hpp"
+#include "wxgit/git/Diff.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/git/Signature.hpp"
 #include "wxgit/git/Status.hpp"
@@ -127,5 +128,41 @@ namespace wxgit::git
             return std::make_shared<Signature>(signature);
         }
         return nullptr;
+    }
+
+    /**
+     * @brief 作業ディレクトリとの差分を作成する
+     * @return 差分
+     */
+    DiffPtr Repository::createDiff() const
+    {
+        DiffPtr result;
+        git_reference* reference;
+        if(git_repository_head(&reference, repository_) == GIT_OK)
+        {
+            git_tree* tree;
+            if(git_reference_peel(reinterpret_cast<git_object**>(&tree), 
+                                  reference, 
+                                  GIT_OBJECT_TREE) == GIT_OK)
+            {
+                git_diff_options options;
+                git_diff_options_init(&options, GIT_DIFF_OPTIONS_VERSION);
+                options.flags = 
+                    GIT_DIFF_NORMAL;
+                /*
+                  |
+                    GIT_DIFF_INCLUDE_UNTRACKED |
+                    GIT_DIFF_SHOW_UNTRACKED_CONTENT;
+                */
+                git_diff* diff;
+                if(git_diff_tree_to_workdir(&diff, repository_, tree, &options) == GIT_OK)
+                {
+                    result = std::make_shared<Diff>(diff);
+                }
+                git_tree_free(tree);
+            }
+            git_reference_free(reference);
+        }
+        return result;
     }
 }

@@ -187,8 +187,8 @@ namespace wxgit
         toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_ADD), 
                          Menu::GetText(Menu::Id::REPOSITORY_ADD), 
                          wxArtProvider::GetBitmap(wxART_NEW));
-        toolBar->AddTool(static_cast<int>(Menu::Id::WORK_COMMIT), 
-                         Menu::GetText(Menu::Id::WORK_COMMIT), 
+        toolBar->AddTool(static_cast<int>(Menu::Id::WORK_STATUS), 
+                         Menu::GetText(Menu::Id::WORK_STATUS), 
                          wxArtProvider::GetBitmap(wxART_PLUS));
         toolBar->Realize();
         Bind(wxEVT_TOOL, &MainFrame::onSelectMenu, this);
@@ -207,7 +207,8 @@ namespace wxgit
         case Menu::Id::REPOSITORY_ADD:
             addRepository();
             break;
-        case Menu::Id::WORK_COMMIT:
+        case Menu::Id::WORK_STATUS:
+            status();
             break;
         default:
             break;
@@ -237,6 +238,19 @@ namespace wxgit
             auto repository = new outliner::Repository(dialog.GetPath());
             outliner_->appendNode(repository);
             history_->showCommits(repository->getRepository()->getCommits());
+        }
+    }
+
+    /**
+     */
+    void MainFrame::status()
+    {
+        if(repository_)
+        {
+            if(auto diff = repository_->createDiff())
+            {
+                getFileWindow()->showDiff(diff);
+            }
         }
     }
 }

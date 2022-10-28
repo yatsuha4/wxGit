@@ -47,5 +47,6 @@ namespace wxgit
         void onClose(wxCloseEvent& event);
 
         void addRepository();
+        void status();
     };
 }
