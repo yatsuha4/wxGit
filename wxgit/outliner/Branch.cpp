@@ -13,6 +13,7 @@ Branch::Branch(const git::BranchPtr& branch)
   : branch_(branch)
 {
   setName(branch->getName());
+  wxLogDebug("%s %d", branch->getName(), branch->isHead());
 }
 /***********************************************************************//**
 	@brief デストラクタ

@@ -50,7 +50,7 @@ namespace wxgit::git
 
     /**
      */
-    std::vector<BranchPtr> Repository::getBranches(git_branch_t type) const
+    std::vector<BranchPtr> Repository::getBranches(git_branch_t type)
     {
 	std::vector<BranchPtr> branches;
 	if(isOk())
@@ -58,10 +58,11 @@ namespace wxgit::git
 	    git_branch_iterator* iterator = nullptr;
 	    if(git_branch_iterator_new(&iterator, repository_, type) == GIT_OK)
 	    {
+                auto repository = shared_from_this();
 		git_reference* reference = nullptr;
 		while(git_branch_next(&reference, &type, iterator) == GIT_OK)
 		{
-		    branches.push_back(std::make_shared<Branch>(reference, type));
+		    branches.push_back(std::make_shared<Branch>(repository, reference, type));
 		}
 		git_branch_iterator_free(iterator);
 	    }
@@ -202,6 +203,19 @@ namespace wxgit::git
         if(git_repository_index(&index, repository_) == GIT_OK)
         {
             return std::make_shared<Index>(index);
+        }
+        return nullptr;
+    }
+
+    /**
+     * @brief
+     */
+    ReferencePtr Repository::head()
+    {
+        git_reference* reference;
+        if(git_repository_head(&reference, repository_) == GIT_OK)
+        {
+            return std::make_shared<Reference>(shared_from_this(), reference);
         }
         return nullptr;
     }

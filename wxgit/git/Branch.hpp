@@ -1,27 +1,23 @@
-﻿/***********************************************************************//**
-	@file
-***************************************************************************/
-#pragma once
+﻿#pragma once
 
-namespace wxgit {
-namespace git {
-/***********************************************************************//**
-	@brief 
-***************************************************************************/
-class Branch {
- private:
-  git_reference* reference_;
-  git_branch_t type_;
-  wxString name_;
+#include "wxgit/git/Reference.hpp"
 
- public:
-  Branch(git_reference* reference, git_branch_t type);
-  ~Branch();
+namespace wxgit::git
+{
+    class Branch
+        : public Reference
+    {
+        using super = Reference;
 
-  WXEDITOR_GETTER(Name, name_);
-};
-/***********************************************************************//**
-	$Id$
-***************************************************************************/
-}
+    private:
+        git_branch_t type_;
+
+    public:
+        Branch(const RepositoryPtr& repository, 
+               git_reference* reference, 
+               git_branch_t type);
+        ~Branch() = default;
+
+        bool isHead() const;
+    };
 }

@@ -105,6 +105,9 @@
     <ClCompile Include="..\..\..\..\wxgit\outliner\RefspecNode.cpp">
       <Filter>wxgit\outliner</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Reference.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
@@ -193,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\outliner\RefspecNode.hpp">
       <Filter>wxgit\outliner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Reference.hpp">
+      <Filter>wxgit\git</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

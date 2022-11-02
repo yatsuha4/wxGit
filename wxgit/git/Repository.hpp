@@ -24,7 +24,7 @@ namespace wxgit::git
 
 	bool isOk() const;
 
-	std::vector<BranchPtr> getBranches(git_branch_t type) const;
+	std::vector<BranchPtr> getBranches(git_branch_t type);
 	const std::vector<CommitPtr>& getCommits(bool update = false);
         StatusPtr fetchStatus() const;
         std::vector<RemotePtr> takeRemotes();
@@ -34,5 +34,7 @@ namespace wxgit::git
         DiffPtr createDiff() const;
 
         IndexPtr createIndex() const;
+
+        ReferencePtr head();
     };
 }
