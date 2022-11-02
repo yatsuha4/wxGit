@@ -16,6 +16,7 @@ namespace wxgit::outliner
         : super(mainFrame, wxID_ANY, wxDefaultPosition, wxDefaultSize, 
                 wxTR_DEFAULT_STYLE)
     {
+        AddRoot("wxGit");
         Bind(wxEVT_TREE_SEL_CHANGED, &Outliner::onSelectionChanged, this);
         //Bind(wxEVT_TREE_ITEM_CONTEXT_MENU, &Outliner::onContextMenu, this);
     }

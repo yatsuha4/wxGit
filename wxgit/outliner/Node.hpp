@@ -36,5 +36,7 @@ namespace wxgit::outliner
         WXGIT_GET_SERIAL_NAME(Node);
 
         static Node* Create(const wxString& serialName);
+
+        void setBold(bool isBold);
     };
 }

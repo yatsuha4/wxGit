@@ -79,4 +79,12 @@ namespace wxgit::outliner
         }
         return nullptr;
     }
+
+    /**
+     * @brief
+     */
+    void Node::setBold(bool isBold)
+    {
+        outliner_->SetItemBold(GetId(), isBold);
+    }
 }

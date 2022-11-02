@@ -1,27 +1,22 @@
-﻿/***********************************************************************//**
-	@file
-***************************************************************************/
-#include "wxgit/git/Branch.hpp"
+﻿#include "wxgit/git/Branch.hpp"
 #include "wxgit/outliner/Branch.hpp"
 
-namespace wxgit {
-namespace outliner {
-/***********************************************************************//**
-	@brief コンストラクタ
-***************************************************************************/
-Branch::Branch(const git::BranchPtr& branch)
-  : branch_(branch)
+namespace wxgit::outliner
 {
-  setName(branch->getName());
-  wxLogDebug("%s %d", branch->getName(), branch->isHead());
-}
-/***********************************************************************//**
-	@brief デストラクタ
-***************************************************************************/
-Branch::~Branch() {
-}
-/***********************************************************************//**
-	$Id$
-***************************************************************************/
-}
+    /**
+     * @brief コンストラクタ
+     */
+    Branch::Branch(const git::BranchPtr& branch)
+        : branch_(branch)
+    {
+        setName(branch->getName());
+    }
+
+    /**
+     */
+    void Branch::onAppend(Outliner* outliner)
+    {
+        super::onAppend(outliner);
+        setBold(branch_->isHead());
+    }
 }

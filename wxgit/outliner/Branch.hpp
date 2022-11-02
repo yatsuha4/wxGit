@@ -1,29 +1,25 @@
-﻿/***********************************************************************//**
-	@file
-***************************************************************************/
-#pragma once
+﻿#pragma once
 
 #include "wxgit/outliner/Node.hpp"
 
-namespace wxgit {
-namespace outliner {
-/***********************************************************************//**
-	@brief 
-***************************************************************************/
-class Branch
-  : public Node
+namespace wxgit::outliner
 {
-  using super = Node;
+    /**
+     * @brief ブランチノード
+     */
+    class Branch
+        : public Node
+    {
+        using super = Node;
 
- private:
-  git::BranchPtr branch_;
+    private:
+        git::BranchPtr branch_;
 
- public:
-  Branch(const git::BranchPtr& branch);
-  ~Branch() override;
-};
-/***********************************************************************//**
-	$Id$
-***************************************************************************/
-}
+    public:
+        Branch(const git::BranchPtr& branch);
+        ~Branch() override = default;
+
+    protected:
+        void onAppend(Outliner* outliner) override;
+    };
 }
