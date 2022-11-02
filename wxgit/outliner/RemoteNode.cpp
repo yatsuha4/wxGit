@@ -1,4 +1,6 @@
 ﻿#include "wxgit/git/Remote.hpp"
+#include "wxgit/outliner/Outliner.hpp"
+#include "wxgit/outliner/RefspecNode.hpp"
 #include "wxgit/outliner/RemoteNode.hpp"
 
 namespace wxgit::outliner
@@ -18,5 +20,23 @@ namespace wxgit::outliner
      */
     RemoteNode::~RemoteNode()
     {
+    }
+
+    /**
+     */
+    void RemoteNode::onAppend(Outliner* outliner, const wxTreeListItem& id)
+    {
+        super::onAppend(outliner, id);
+        auto& refspecs = remote_->getRefspecs();
+        if(!refspecs.empty())
+        {
+            auto folder = new Node();
+            folder->setName("Branch");
+            outliner->appendNode(folder, this);
+            for(auto& refspec : refspecs)
+            {
+                outliner->appendNode(new RefspecNode(refspec), folder);
+            }
+        }
     }
 }

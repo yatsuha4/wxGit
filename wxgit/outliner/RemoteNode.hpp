@@ -18,5 +18,8 @@ namespace wxgit::outliner
     public:
         RemoteNode(const git::RemotePtr& remote);
         ~RemoteNode() override;
+
+    protected:
+        void onAppend(Outliner* outliner, const wxTreeListItem& id) override;
     };
 }

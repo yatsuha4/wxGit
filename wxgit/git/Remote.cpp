@@ -1,4 +1,5 @@
-﻿#include "wxgit/git/Remote.hpp"
+﻿#include "wxgit/git/Refspec.hpp"
+#include "wxgit/git/Remote.hpp"
 
 namespace wxgit::git
 {
@@ -11,6 +12,10 @@ namespace wxgit::git
           remote_(remote), 
           name_(wxString::FromUTF8(git_remote_name(remote)))
     {
+        for(size_t i = 0, n = git_remote_refspec_count(remote); i < n; ++i)
+        {
+            refspecs_.push_back(std::make_shared<Refspec>(git_remote_get_refspec(remote_, i)));
+        }
     }
 
     /**

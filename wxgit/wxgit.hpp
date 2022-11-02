@@ -31,6 +31,7 @@ namespace wxgit
         WXEDITOR_DECLARE_CLASS(Config);
         WXEDITOR_DECLARE_CLASS(Diff);
         WXEDITOR_DECLARE_CLASS(Index);
+        WXEDITOR_DECLARE_CLASS(Refspec);
         WXEDITOR_DECLARE_CLASS(Remote);
         WXEDITOR_DECLARE_CLASS(Repository);
         WXEDITOR_DECLARE_CLASS(Signature);
@@ -46,6 +47,7 @@ namespace wxgit
         WXEDITOR_DECLARE_CLASS(Branch);
         WXEDITOR_DECLARE_CLASS(Node);
         WXEDITOR_DECLARE_CLASS(Outliner);
+        WXEDITOR_DECLARE_CLASS(RefspecNode);
         WXEDITOR_DECLARE_CLASS(RemoteNode);
         WXEDITOR_DECLARE_CLASS(Repository);
     }
