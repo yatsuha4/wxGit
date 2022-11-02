@@ -8,10 +8,10 @@ namespace wxgit::outliner
      * @brief アウトライナ
      */
     class Outliner
-        : public wxTreeListCtrl, 
+        : public wxTreeCtrl, 
           public Serializable
     {
-        using super = wxTreeListCtrl;
+        using super = wxTreeCtrl;
 
     public:
         Outliner(MainFrame* mainFrame);
@@ -29,7 +29,7 @@ namespace wxgit::outliner
         WXGIT_GET_SERIAL_NAME(Outliner);
 
     private:
-        void onSelectionChanged(wxTreeListEvent& event);
-        void onContextMenu(wxTreeListEvent& event);
+        void onSelectionChanged(wxTreeEvent& event);
+        void onContextMenu(wxTreeEvent& event);
     };
 }

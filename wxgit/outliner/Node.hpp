@@ -1,49 +1,40 @@
-﻿/***********************************************************************//**
-	@file
-***************************************************************************/
-#pragma once
+﻿#pragma once
 
 #include "wxgit/Serializable.hpp"
 
-namespace wxgit {
-namespace outliner {
-/***********************************************************************//**
-	@brief ノード基底クラス
-***************************************************************************/
-class Node
-  : public wxClientData, 
-    public Serializable
+namespace wxgit::outliner
 {
- private: 
-  wxString name_;
-  Outliner* outliner_;
-  wxTreeListItem id_;
+    /**
+     * @brief ノード基底クラス
+     */
+    class Node
+        : public wxTreeItemData, 
+          public Serializable
+    {
+    private: 
+        wxString name_;
+        Outliner* outliner_;
 
- public:
-  Node();
-  ~Node() override = default;
+    public:
+        Node();
+        ~Node() override = default;
 
-  void setName(const wxString& name);
-  WXEDITOR_GETTER(Name, name_);
+        void setName(const wxString& name);
+        WXEDITOR_GETTER(Name, name_);
 
-  WXEDITOR_GETTER(Outliner, outliner_);
-  WXEDITOR_GETTER(Id, id_);
+        WXEDITOR_GETTER(Outliner, outliner_);
 
-  virtual void onAppend(Outliner* outliner, const wxTreeListItem& id);
+        virtual void onAppend(Outliner* outliner);
 
-  virtual void onAppendChild(Outliner& outliner, Node* child) {}
-  virtual void onRemoveChild(Outliner& outliner, Node* child) {}
+        virtual void onAppendChild(Outliner& outliner, Node* child) {}
+        virtual void onRemoveChild(Outliner& outliner, Node* child) {}
 
-  virtual wxMenu* getContextMenu();
+        virtual wxMenu* getContextMenu();
 
-  wxXmlNode* serialize() const override;
-  bool deserialize(const wxXmlNode* xml) override;
-  WXGIT_GET_SERIAL_NAME(Node);
+        wxXmlNode* serialize() const override;
+        bool deserialize(const wxXmlNode* xml) override;
+        WXGIT_GET_SERIAL_NAME(Node);
 
-  static Node* Create(const wxString& serialName);
-};
-/***********************************************************************//**
-	$Id$
-***************************************************************************/
-}
+        static Node* Create(const wxString& serialName);
+    };
 }

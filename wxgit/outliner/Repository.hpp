@@ -30,7 +30,7 @@ namespace wxgit::outliner
         WXGIT_GET_SERIAL_NAME(Repository);
 
     protected:
-        void onAppend(Outliner* outliner, const wxTreeListItem& id) override;
+        void onAppend(Outliner* outliner) override;
 
     private:
         void appendBranches(const wxString& name, git_branch_t type);

@@ -51,9 +51,9 @@ namespace wxgit::outliner
 
     /**
      */
-    void Repository::onAppend(Outliner* outliner, const wxTreeListItem& id)
+    void Repository::onAppend(Outliner* outliner)
     {
-        super::onAppend(outliner, id);
+        super::onAppend(outliner);
         if(getName().IsEmpty())
         {
             setName(wxFileName(dir_).GetName());

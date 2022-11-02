@@ -24,9 +24,9 @@ namespace wxgit::outliner
 
     /**
      */
-    void RemoteNode::onAppend(Outliner* outliner, const wxTreeListItem& id)
+    void RemoteNode::onAppend(Outliner* outliner)
     {
-        super::onAppend(outliner, id);
+        super::onAppend(outliner);
         auto& refspecs = remote_->getRefspecs();
         if(!refspecs.empty())
         {

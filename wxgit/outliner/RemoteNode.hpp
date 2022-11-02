@@ -20,6 +20,6 @@ namespace wxgit::outliner
         ~RemoteNode() override;
 
     protected:
-        void onAppend(Outliner* outliner, const wxTreeListItem& id) override;
+        void onAppend(Outliner* outliner) override;
     };
 }

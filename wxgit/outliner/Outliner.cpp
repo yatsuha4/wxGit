@@ -14,11 +14,10 @@ namespace wxgit::outliner
      */
     Outliner::Outliner(MainFrame* mainFrame)
         : super(mainFrame, wxID_ANY, wxDefaultPosition, wxDefaultSize, 
-                wxTL_DEFAULT_STYLE | wxTL_NO_HEADER)
+                wxTR_DEFAULT_STYLE)
     {
-        AppendColumn("Name");
-        Bind(wxEVT_TREELIST_SELECTION_CHANGED, &Outliner::onSelectionChanged, this);
-        Bind(wxEVT_TREELIST_ITEM_CONTEXT_MENU, &Outliner::onContextMenu, this);
+        Bind(wxEVT_TREE_SEL_CHANGED, &Outliner::onSelectionChanged, this);
+        //Bind(wxEVT_TREE_ITEM_CONTEXT_MENU, &Outliner::onContextMenu, this);
     }
 
     /**
@@ -35,10 +34,10 @@ namespace wxgit::outliner
      */
     Node* Outliner::appendNode(Node* node, Node* parent)
     {
-        auto id = AppendItem((parent ? parent->getId() : GetRootItem()), 
+        auto id = AppendItem((parent ? parent->GetId() : GetRootItem()), 
                              node->getName());
         SetItemData(id, node);
-        node->onAppend(this, id);
+        node->onAppend(this);
         if(parent)
         {
             parent->onAppendChild(*this, node);
@@ -51,9 +50,10 @@ namespace wxgit::outliner
      */
     void Outliner::removeNode(Node* node)
     {
-        for(auto child = GetFirstChild(node->getId());
+        wxTreeItemIdValue cookie;
+        for(auto child = GetFirstChild(node->GetId(), cookie);
             child.IsOk();
-            child = GetNextItem(child))
+            child = GetNextChild(child, cookie))
         {
             removeNode(static_cast<Node*>(GetItemData(child)));
         }
@@ -61,7 +61,7 @@ namespace wxgit::outliner
         {
             parent->onRemoveChild(*this, node);
         }
-        DeleteItem(node->getId());
+        Delete(node->GetId());
     }
 
     /**
@@ -71,7 +71,7 @@ namespace wxgit::outliner
      */
     Node* Outliner::getParentNode(Node* node) const
     {
-        auto id = GetItemParent(node->getId());
+        auto id = GetItemParent(node->GetId());
         return id.IsOk() ? static_cast<Node*>(GetItemData(id)) : nullptr;
     }
 
@@ -81,7 +81,8 @@ namespace wxgit::outliner
     wxXmlNode* Outliner::serialize() const
     {
         auto xml = Serializable::serialize();
-        for(auto iter = GetFirstChild(GetRootItem());
+        wxTreeItemIdValue cookie;
+        for(auto iter = GetFirstChild(GetRootItem(), cookie);
             iter.IsOk();
             iter = GetNextSibling(iter))
         {
@@ -117,7 +118,7 @@ namespace wxgit::outliner
     /**
      * @brief 
      */
-    void Outliner::onSelectionChanged(wxTreeListEvent& event)
+    void Outliner::onSelectionChanged(wxTreeEvent& event)
     {
         auto node = static_cast<Node*>(GetItemData(event.GetItem()));
         if(auto repository = dynamic_cast<Repository*>(node))
@@ -129,7 +130,7 @@ namespace wxgit::outliner
     /**
      * @brief 
      */
-    void Outliner::onContextMenu(wxTreeListEvent& event)
+    void Outliner::onContextMenu(wxTreeEvent& event)
     {
         if(auto node = static_cast<Node*>(GetItemData(event.GetItem())))
         {
