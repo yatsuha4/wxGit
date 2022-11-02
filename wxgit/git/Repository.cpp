@@ -3,6 +3,7 @@
 #include "wxgit/git/Config.hpp"
 #include "wxgit/git/Diff.hpp"
 #include "wxgit/git/Index.hpp"
+#include "wxgit/git/Remote.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/git/Signature.hpp"
 #include "wxgit/git/Status.hpp"
@@ -115,6 +116,30 @@ namespace wxgit::git
             }
         }
         return nullptr;
+    }
+
+    /**
+     * @brief リモートを取得する
+     * @return リモート
+     */
+    std::vector<RemotePtr> Repository::takeRemotes()
+    {
+        std::vector<RemotePtr> result;
+        auto repository = shared_from_this();
+        git_strarray names;
+        if(git_remote_list(&names, repository_) == GIT_OK)
+        {
+            for(int i = 0; i < names.count; ++i)
+            {
+                git_remote* remote;
+                if(git_remote_lookup(&remote, repository_, names.strings[i]) == GIT_OK)
+                {
+                    result.push_back(std::make_shared<Remote>(repository, remote));
+                }
+            }
+            git_strarray_free(&names);
+        }
+        return result;
     }
 
     /**

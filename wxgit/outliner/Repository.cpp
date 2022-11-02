@@ -2,6 +2,7 @@
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/outliner/Branch.hpp"
 #include "wxgit/outliner/Outliner.hpp"
+#include "wxgit/outliner/RemoteNode.hpp"
 #include "wxgit/outliner/Repository.hpp"
 
 namespace wxgit::outliner
@@ -61,6 +62,7 @@ namespace wxgit::outliner
         repository_ = std::make_shared<git::Repository>(dir);
         appendBranches("Local branch", GIT_BRANCH_LOCAL);
         appendBranches("Remote branch", GIT_BRANCH_REMOTE);
+        appendRemotes();
     }
 
     /**
@@ -77,6 +79,24 @@ namespace wxgit::outliner
             for(auto& branch: branches)
             {
                 getOutliner()->appendNode(new Branch(branch), folder);
+            }
+        }
+    }
+
+    /**
+     * @brief リモートを追加する
+     */
+    void Repository::appendRemotes()
+    {
+        auto remotes = repository_->takeRemotes();
+        if(!remotes.empty())
+        {
+            auto folder = new Node();
+            folder->setName("Remote");
+            getOutliner()->appendNode(folder, this);
+            for(auto& remote : remotes)
+            {
+                getOutliner()->appendNode(new RemoteNode(remote), folder);
             }
         }
     }

@@ -93,6 +93,12 @@
     <ClCompile Include="..\..\..\..\wxgit\git\Index.cpp">
       <Filter>wxgit\git</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Remote.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\outliner\RemoteNode.cpp">
+      <Filter>wxgit\outliner</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
@@ -169,6 +175,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\git\Index.hpp">
       <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Remote.hpp">
+      <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\outliner\RemoteNode.hpp">
+      <Filter>wxgit\outliner</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

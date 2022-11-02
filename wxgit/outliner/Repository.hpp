@@ -34,5 +34,6 @@ namespace wxgit::outliner
 
     private:
         void appendBranches(const wxString& name, git_branch_t type);
+        void appendRemotes();
     };
 }

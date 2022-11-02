@@ -111,6 +111,7 @@
     <ClCompile Include="..\..\..\..\wxgit\git\Config.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Diff.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Index.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\git\Remote.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Repository.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Signature.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Status.cpp" />
@@ -122,6 +123,7 @@
     <ClCompile Include="..\..\..\..\wxgit\outliner\Branch.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\outliner\Node.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\outliner\Outliner.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\outliner\RemoteNode.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\outliner\Repository.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\RepoBrowser.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\Serializable.cpp" />
@@ -142,6 +144,7 @@
     <ClInclude Include="..\..\..\..\wxgit\git\Config.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Diff.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Index.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\git\Remote.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Repository.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Signature.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Status.hpp" />
@@ -152,6 +155,7 @@
     <ClInclude Include="..\..\..\..\wxgit\outliner\Branch.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\outliner\Node.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\outliner\Outliner.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\outliner\RemoteNode.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\outliner\Repository.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\RepoBrowser.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\Serializable.hpp" />
