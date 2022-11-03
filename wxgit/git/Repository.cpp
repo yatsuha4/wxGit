@@ -105,7 +105,7 @@ namespace wxgit::git
      * @brief ステータスを取得する
      * @return ステータス
      */
-    StatusPtr Repository::fetchStatus() const
+    StatusPtr Repository::takeStatus()
     {
         git_status_options options;
         if(git_status_options_init(&options, GIT_STATUS_OPTIONS_VERSION) == GIT_OK)
@@ -113,7 +113,7 @@ namespace wxgit::git
             git_status_list* list;
             if(git_status_list_new(&list, repository_, &options) == GIT_OK)
             {
-                return std::make_shared<Status>(list);
+                return std::make_shared<Status>(shared_from_this(), list);
             }
         }
         return nullptr;

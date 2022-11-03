@@ -14,6 +14,7 @@ namespace wxgit
 
     private:
         git::DiffPtr diff_;
+        git::StatusPtr status_;
 
     public:
         FileWindow(MainFrame* mainFrame);
@@ -22,8 +23,11 @@ namespace wxgit
         MainFrame* getMainFrame() const;
 
         void showDiff(const git::DiffPtr& diff);
+        void showStatus(const git::StatusPtr& status);
 
     private:
+        void clear();
+        void showDelta(const git::Diff::Delta& delta);
         void onSelectionChanged(wxTreeListEvent& event);
 
     private:

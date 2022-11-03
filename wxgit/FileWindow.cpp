@@ -1,6 +1,7 @@
 ﻿#include "wxgit/DiffWindow.hpp"
 #include "wxgit/FileWindow.hpp"
 #include "wxgit/MainFrame.hpp"
+#include "wxgit/git/Status.hpp"
 
 namespace wxgit
 {
@@ -35,25 +36,58 @@ namespace wxgit
      */
     void FileWindow::showDiff(const git::DiffPtr& diff)
     {
-        DeleteAllItems();
+        clear();
         diff_ = diff;
         for(auto& delta : diff->getDeltas())
         {
-            switch(delta.getStatus())
+            showDelta(delta);
+        }
+    }
+
+    /**
+     * @brief ステータスを表示する
+     * @param[in] status ステータス
+     */
+    void FileWindow::showStatus(const git::StatusPtr& status)
+    {
+        clear();
+        status_ = status;
+        for(auto& entry : status->getEntries())
+        {
+            showDelta(entry.getIndexToWorkdir());
+        }
+    }
+
+    /**
+     * @brief 内容を消去する
+     */
+    void FileWindow::clear()
+    {
+        DeleteAllItems();
+        diff_.reset();
+        status_.reset();
+    }
+
+    /**
+     * @brief デルタを表示する
+     * @param[in] delta デルタ
+     */
+    void FileWindow::showDelta(const git::Diff::Delta& delta)
+    {
+        switch(delta.getStatus())
+        {
+        case GIT_DELTA_ADDED:
+        case GIT_DELTA_DELETED:
+        case GIT_DELTA_MODIFIED:
+        case GIT_DELTA_UNTRACKED:
             {
-            case GIT_DELTA_ADDED:
-            case GIT_DELTA_DELETED:
-            case GIT_DELTA_MODIFIED:
-            case GIT_DELTA_UNTRACKED:
-                {
-                    auto path = delta.getNewFile().getPath().GetFullPath(wxPATH_UNIX);
-                    auto item = AppendItem(GetRootItem(), path);
-                    SetItemData(item, new ItemData(delta));
-                }
-                break;
-            default:
-                break;
+                auto path = delta.getNewFile().getPath().GetFullPath(wxPATH_UNIX);
+                auto item = AppendItem(GetRootItem(), path);
+                SetItemData(item, new ItemData(delta));
             }
+            break;
+        default:
+            break;
         }
     }
 

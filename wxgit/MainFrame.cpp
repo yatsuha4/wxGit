@@ -247,9 +247,9 @@ namespace wxgit
     {
         if(repository_)
         {
-            if(auto diff = repository_->createDiff())
+            if(auto status = repository_->takeStatus())
             {
-                getFileWindow()->showDiff(diff);
+                getFileWindow()->showStatus(status);
             }
         }
     }
