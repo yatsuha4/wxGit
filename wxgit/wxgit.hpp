@@ -13,6 +13,8 @@
 
 #include "git2.h"
 
+#include <map>
+
 namespace wxgit
 {
     WXEDITOR_DECLARE_CLASS(Application);
@@ -21,6 +23,7 @@ namespace wxgit
     WXEDITOR_DECLARE_CLASS(FileList);
     WXEDITOR_DECLARE_CLASS(FileWindow);
     WXEDITOR_DECLARE_CLASS(MainFrame);
+    WXEDITOR_DECLARE_CLASS(PathList);
     WXEDITOR_DECLARE_CLASS(RepoBrowser);
 
     namespace git

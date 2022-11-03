@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include "wxgit/PathList.hpp"
 #include "wxgit/git/Diff.hpp"
 
 namespace wxgit
@@ -15,6 +16,7 @@ namespace wxgit
     private:
         git::DiffPtr diff_;
         git::StatusPtr status_;
+        PathListPtr pathList_;
 
     public:
         FileWindow(MainFrame* mainFrame);
@@ -27,7 +29,12 @@ namespace wxgit
 
     private:
         void clear();
-        void showDelta(const git::Diff::Delta& delta);
+        void appendDelta(const git::Diff::Delta& delta);
+        void update();
+        void update(const wxTreeListItem& parent, 
+                    const wxString& parentPath, 
+                    const std::shared_ptr<PathList::Item>& item);
+
         void onSelectionChanged(wxTreeListEvent& event);
 
     private:

@@ -128,6 +128,7 @@
     <ClCompile Include="..\..\..\..\wxgit\outliner\RefspecNode.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\outliner\RemoteNode.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\outliner\Repository.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\PathList.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\RepoBrowser.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\Serializable.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\wxgit.cpp">
@@ -163,6 +164,7 @@
     <ClInclude Include="..\..\..\..\wxgit\outliner\RefspecNode.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\outliner\RemoteNode.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\outliner\Repository.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\PathList.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\RepoBrowser.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\Serializable.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\wxgit.hpp" />

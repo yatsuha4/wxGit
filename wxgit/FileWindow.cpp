@@ -40,8 +40,9 @@ namespace wxgit
         diff_ = diff;
         for(auto& delta : diff->getDeltas())
         {
-            showDelta(delta);
+            appendDelta(delta);
         }
+        update();
     }
 
     /**
@@ -54,8 +55,9 @@ namespace wxgit
         status_ = status;
         for(auto& entry : status->getEntries())
         {
-            showDelta(entry.getIndexToWorkdir());
+            appendDelta(entry.getIndexToWorkdir());
         }
+        update();
     }
 
     /**
@@ -66,13 +68,14 @@ namespace wxgit
         DeleteAllItems();
         diff_.reset();
         status_.reset();
+        pathList_ = std::make_shared<PathList>();
     }
 
     /**
      * @brief デルタを表示する
      * @param[in] delta デルタ
      */
-    void FileWindow::showDelta(const git::Diff::Delta& delta)
+    void FileWindow::appendDelta(const git::Diff::Delta& delta)
     {
         switch(delta.getStatus())
         {
@@ -80,14 +83,37 @@ namespace wxgit
         case GIT_DELTA_DELETED:
         case GIT_DELTA_MODIFIED:
         case GIT_DELTA_UNTRACKED:
-            {
-                auto path = delta.getNewFile().getPath().GetFullPath(wxPATH_UNIX);
-                auto item = AppendItem(GetRootItem(), path);
-                SetItemData(item, new ItemData(delta));
-            }
+            pathList_->append(delta.getNewFile().getPath(), new ItemData(delta));
             break;
         default:
             break;
+        }
+    }
+
+    /**
+     */
+    void FileWindow::update()
+    {
+        update(GetRootItem(), wxEmptyString, pathList_->update());
+        pathList_.reset();
+    }
+
+    /**
+     */
+    void FileWindow::update(const wxTreeListItem& parent, 
+                            const wxString& parentPath, 
+                            const std::shared_ptr<PathList::Item>& item)
+    {
+        auto path = item->getPath();
+        if(!parentPath.IsEmpty())
+        {
+            path.MakeRelativeTo(parentPath);
+        }
+        auto id = AppendItem(parent, path.GetFullPath(wxPATH_UNIX));
+        SetItemData(id, item->getData());
+        for(auto& child : item->getChildren())
+        {
+            update(id, item->getPath().GetFullPath(), child);
         }
     }
 
@@ -97,7 +123,6 @@ namespace wxgit
     {
         if(auto data = static_cast<ItemData*>(GetItemData(event.GetItem())))
         {
-            wxLogDebug(data->getDelta().getNewFile().getPath().GetFullPath());
             getMainFrame()->getDiffWindow()->showDelta(data->getDelta());
         }
     }
