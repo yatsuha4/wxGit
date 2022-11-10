@@ -53,11 +53,14 @@ namespace wxgit
     {
         clear();
         status_ = status;
-        for(auto& entry : status->getEntries())
+        if(!status->getEntries().empty())
         {
-            appendDelta(entry.getIndexToWorkdir());
+            for(auto& entry : status->getEntries())
+            {
+                appendDelta(entry.getIndexToWorkdir());
+            }
+            update();
         }
-        update();
     }
 
     /**
@@ -115,6 +118,7 @@ namespace wxgit
         {
             update(id, item->getPath().GetFullPath(), child);
         }
+        Expand(id);
     }
 
     /**
