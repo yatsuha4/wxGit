@@ -59,10 +59,12 @@ namespace wxgit::outliner
             setName(wxFileName(dir_).GetName());
         }
         wxFileName dir(dir_, ".git");
-        repository_ = std::make_shared<git::Repository>(dir);
-        appendBranches("Local branch", GIT_BRANCH_LOCAL);
-        appendBranches("Remote branch", GIT_BRANCH_REMOTE);
-        appendRemotes();
+        if(repository_ = git::Repository::Open(dir))
+        {
+            appendBranches("Local branch", GIT_BRANCH_LOCAL);
+            appendBranches("Remote branch", GIT_BRANCH_REMOTE);
+            appendRemotes();
+        }
     }
 
     /**

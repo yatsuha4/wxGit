@@ -17,6 +17,7 @@ namespace wxgit::git
         Path() = default;
         Path(const char* path);
         Path(const Path& dir, const char* name);
+        Path(const wxFileName& path);
         Path(const Path& src) = default;
         ~Path() = default;
 

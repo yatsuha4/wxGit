@@ -12,21 +12,18 @@ namespace wxgit::git
     {
     private:
 	git_repository* repository_;
-	int error_;
 	Path workDir_;
-	std::vector<CommitPtr> commits_;
 	ConfigPtr config_;
         IndexPtr index_;
+	std::vector<CommitPtr> commits_;
 
     public:
-	Repository(const wxFileName& dir);
+        Repository(git_repository* repository);
 	~Repository();
 
 	WXEDITOR_GETTER(WorkDir, workDir_);
 	WXEDITOR_GETTER(Config, config_);
         wxString getNamespace() const;
-
-	bool isOk() const;
 
 	std::vector<BranchPtr> getBranches(git_branch_t type);
 	const std::vector<CommitPtr>& getCommits(bool update = false);
@@ -40,5 +37,8 @@ namespace wxgit::git
         IndexPtr takeIndex();
 
         ReferencePtr head();
+
+	static RepositoryPtr Open(const wxFileName& dir);
+        static RepositoryPtr Init(const wxFileName& dir, bool isBare = false);
     };
 }

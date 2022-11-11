@@ -22,6 +22,15 @@ namespace wxgit::git
     }
 
     /**
+     * @brief コンストラクタ
+     * @param[in] path パス
+     */
+    Path::Path(const wxFileName& path)
+        : super(path)
+    {
+    }
+
+    /**
      */
     bool Path::isValid() const
     {
