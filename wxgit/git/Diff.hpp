@@ -64,6 +64,8 @@ namespace wxgit::git
             Delta(const git_diff_delta* delta);
             ~Delta() = default;
 
+            bool isValid() const;
+
             WXEDITOR_GETTER(Delta, delta_);
             WXEDITOR_ACCESSOR(Hunks, hunks_);
             Hunk& findHunk(const git_diff_hunk* hunk);
@@ -74,15 +76,17 @@ namespace wxgit::git
         };
 
     private:
+        std::weak_ptr<Repository> repository_;
         ConstCommitPtr commit_;
         git_diff* diff_;
         std::vector<Delta> deltas_;
 
     public:
-        Diff(git_diff* diff);
+        Diff(const RepositoryPtr& repository, git_diff* diff);
         Diff(const ConstCommitPtr& commit, git_diff* diff);
         ~Diff();
 
+        RepositoryPtr getRepository() const;
         WXEDITOR_GETTER(Deltas, deltas_);
         Delta& findDelta(const git_diff_delta* delta);
 

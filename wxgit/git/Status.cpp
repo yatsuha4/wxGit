@@ -26,6 +26,13 @@ namespace wxgit::git
     }
 
     /**
+     */
+    RepositoryPtr Status::getRepository() const
+    {
+        return repository_.lock();
+    }
+
+    /**
      * @brief コンストラクタ
      */
     Status::Entry::Entry(const git_status_entry* entry)

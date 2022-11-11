@@ -13,5 +13,9 @@ namespace wxgit::git
     public:
         Index(git_index* index);
         ~Index();
+
+        bool addByPath(const wxFileName& path);
+        bool removeByPath(const wxFileName& path);
+        bool write();
     };
 }

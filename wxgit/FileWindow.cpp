@@ -1,6 +1,8 @@
 ﻿#include "wxgit/DiffWindow.hpp"
 #include "wxgit/FileWindow.hpp"
 #include "wxgit/MainFrame.hpp"
+#include "wxgit/git/Index.hpp"
+#include "wxgit/git/Repository.hpp"
 #include "wxgit/git/Status.hpp"
 
 namespace wxgit
@@ -21,6 +23,7 @@ namespace wxgit
     {
         AppendColumn("Path");
         Bind(wxEVT_TREELIST_SELECTION_CHANGED, &FileWindow::onSelectionChanged, this);
+        Bind(wxEVT_TREELIST_ITEM_CHECKED, &FileWindow::onItemChecked, this);
     }
 
     /**
@@ -40,7 +43,7 @@ namespace wxgit
         diff_ = diff;
         for(auto& delta : diff->getDeltas())
         {
-            appendDelta(delta);
+            appendDelta(delta, wxCHK_UNCHECKED);
         }
         update();
     }
@@ -57,10 +60,33 @@ namespace wxgit
         {
             for(auto& entry : status->getEntries())
             {
-                appendDelta(entry.getIndexToWorkdir());
+                if(entry.getHeadToIndex().isValid())
+                {
+                    appendDelta(entry.getHeadToIndex(), 
+                                entry.getIndexToWorkdir().isValid()
+                                ? wxCHK_UNDETERMINED
+                                : wxCHK_CHECKED);
+                }
+                else if(entry.getIndexToWorkdir().isValid())
+                {
+                    appendDelta(entry.getIndexToWorkdir(), wxCHK_UNCHECKED);
+                }
             }
             update();
         }
+    }
+
+    /**
+     * @brief リポジトリを取得する
+     * @return リポジトリ
+     */
+    git::RepositoryPtr FileWindow::getRepository() const
+    {
+        return diff_
+            ? diff_->getRepository()
+            : status_
+            ? status_->getRepository()
+            : nullptr;
     }
 
     /**
@@ -77,8 +103,9 @@ namespace wxgit
     /**
      * @brief デルタを表示する
      * @param[in] delta デルタ
+     * @param[in] state チェック状態
      */
-    void FileWindow::appendDelta(const git::Diff::Delta& delta)
+    void FileWindow::appendDelta(const git::Diff::Delta& delta, wxCheckBoxState state)
     {
         switch(delta.getStatus())
         {
@@ -86,7 +113,7 @@ namespace wxgit
         case GIT_DELTA_DELETED:
         case GIT_DELTA_MODIFIED:
         case GIT_DELTA_UNTRACKED:
-            pathList_->append(delta.getNewFile().getPath(), new ItemData(delta));
+            pathList_->append(delta.getNewFile().getPath(), new ItemData(delta, state));
             break;
         default:
             break;
@@ -103,22 +130,37 @@ namespace wxgit
 
     /**
      */
-    void FileWindow::update(const wxTreeListItem& parent, 
+    bool FileWindow::update(const wxTreeListItem& parent, 
                             const wxString& parentPath, 
                             const std::shared_ptr<PathList::Item>& item)
     {
         auto path = item->getPath();
-        if(!parentPath.IsEmpty())
+        if(!path.IsOk())
+        {
+            path.Assign(getRepository()->getWorkDir());
+        }
+        else if(!parentPath.IsEmpty())
         {
             path.MakeRelativeTo(parentPath);
         }
         auto id = AppendItem(parent, path.GetFullPath(wxPATH_UNIX));
         SetItemData(id, item->getData());
+        bool check = true;
         for(auto& child : item->getChildren())
         {
-            update(id, item->getPath().GetFullPath(), child);
+            check = (update(id, item->getPath().GetFullPath(), child) && check);
+        }
+        if(auto data = dynamic_cast<ItemData*>(item->getData()))
+        {
+            CheckItem(id, data->getState());
+            check = (check && (data->getState() == wxCHK_CHECKED));
+        }
+        else
+        {
+            CheckItem(id, (check ? wxCHK_CHECKED : wxCHK_UNCHECKED));
         }
         Expand(id);
+        return check;
     }
 
     /**
@@ -133,8 +175,84 @@ namespace wxgit
 
     /**
      */
-    FileWindow::ItemData::ItemData(const git::Diff::Delta& delta)
-        : delta_(delta)
+    void FileWindow::onItemChecked(wxTreeListEvent& event)
+    {
+        onCheckItem(event.GetItem(), 
+                    GetCheckedState(event.GetItem()), 
+                    event.GetOldCheckedState());
+        status_->getRepository()->takeIndex()->write();
+    }
+
+    /**
+     */
+    void FileWindow::onCheckItem(wxTreeListItem item, 
+                                 wxCheckBoxState state, 
+                                 wxCheckBoxState oldState)
+    {
+        CheckItem(item, state);
+        if(auto data = static_cast<ItemData*>(GetItemData(item)))
+        {
+            if(state != oldState)
+            {
+                switch(state)
+                {
+                case wxCHK_CHECKED:
+                    addDelta(data->getDelta());
+                    break;
+                case wxCHK_UNCHECKED:
+                    removeDelta(data->getDelta());
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+        else
+        {
+            for(auto child = GetFirstChild(item);
+                child.IsOk();
+                child = GetNextSibling(child))
+            {
+                onCheckItem(child, state, GetCheckedState(child));
+            }
+        }
+    }
+
+    /**
+     */
+    void FileWindow::addDelta(const git::Diff::Delta& delta)
+    {
+        switch(delta.getStatus())
+        {
+        case GIT_DELTA_MODIFIED:
+        case GIT_DELTA_UNTRACKED:
+            status_->getRepository()->takeIndex()->addByPath(delta.getNewFile().getPath());
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
+     */
+    void FileWindow::removeDelta(const git::Diff::Delta& delta)
+    {
+        switch(delta.getStatus())
+        {
+        case GIT_DELTA_MODIFIED:
+        case GIT_DELTA_UNTRACKED:
+            status_->getRepository()->takeIndex()->removeByPath(delta.getNewFile().getPath());
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
+     */
+    FileWindow::ItemData::ItemData(const git::Diff::Delta& delta, wxCheckBoxState state)
+        : delta_(delta), 
+          state_(state)
     {
     }
 }

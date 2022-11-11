@@ -15,15 +15,15 @@ namespace wxgit::git
      * @param[in] dir ディレクトリ
      */
     Repository::Repository(const wxFileName& dir)
-	: dir_(dir), 
-	  repository_(nullptr), 
-	  error_(GIT_ERROR)
+	: repository_(nullptr), 
+          error_(git_repository_open(&repository_, dir.GetFullPath().ToUTF8()))
     {
-	error_ = git_repository_open(&repository_, dir.GetFullPath().c_str());
 	if(isOk())
 	{
+            workDir_.Assign(wxFileName(wxString::FromUTF8(git_repository_workdir(repository_)), 
+                                       wxPATH_UNIX).GetPath());
 	    git_config* config;
-	    if(git_repository_config(&config, repository_) == GIT_OK)
+	    if((error_ = git_repository_config(&config, repository_)) == GIT_OK)
 	    {
 		config_ = std::make_shared<Config>(config);
 	    }
@@ -39,6 +39,15 @@ namespace wxgit::git
 	{
 	    git_repository_free(repository_);
 	}
+    }
+
+    /**
+     * @brief ネームスペースを取得する
+     * @return ネームスペース
+     */
+    wxString Repository::getNamespace() const
+    {
+        return wxString::FromUTF8(git_repository_get_namespace(repository_));
     }
 
     /**
@@ -161,7 +170,7 @@ namespace wxgit::git
      * @brief 作業ディレクトリとの差分を作成する
      * @return 差分
      */
-    DiffPtr Repository::createDiff() const
+    DiffPtr Repository::createDiff()
     {
         DiffPtr result;
         git_reference* reference;
@@ -184,7 +193,7 @@ namespace wxgit::git
                 git_diff* diff;
                 if(git_diff_tree_to_workdir(&diff, repository_, tree, &options) == GIT_OK)
                 {
-                    result = std::make_shared<Diff>(diff);
+                    result = std::make_shared<Diff>(shared_from_this(), diff);
                 }
                 git_tree_free(tree);
             }
@@ -194,17 +203,20 @@ namespace wxgit::git
     }
 
     /**
-     * @brief インデックスを生成する
+     * @brief インデックスを取得する
      * @return インデックス
      */
-    IndexPtr Repository::createIndex() const
+    IndexPtr Repository::takeIndex()
     {
-        git_index* index;
-        if(git_repository_index(&index, repository_) == GIT_OK)
+        if(!index_)
         {
-            return std::make_shared<Index>(index);
+            git_index* index;
+            if(git_repository_index(&index, repository_) == GIT_OK)
+            {
+                index_ = std::make_shared<Index>(index);
+            }
         }
-        return nullptr;
+        return index_;
     }
 
     /**

@@ -31,6 +31,7 @@ namespace wxgit::git
         Status(const RepositoryPtr& repository, git_status_list* list);
         ~Status();
 
+        RepositoryPtr getRepository() const;
         WXEDITOR_GETTER(Entries, entries_);
     };
 }

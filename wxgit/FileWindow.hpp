@@ -28,27 +28,38 @@ namespace wxgit
         void showStatus(const git::StatusPtr& status);
 
     private:
+        git::RepositoryPtr getRepository() const;
+
         void clear();
-        void appendDelta(const git::Diff::Delta& delta);
+        void appendDelta(const git::Diff::Delta& delta, wxCheckBoxState state);
         void update();
-        void update(const wxTreeListItem& parent, 
+        bool update(const wxTreeListItem& parent, 
                     const wxString& parentPath, 
                     const std::shared_ptr<PathList::Item>& item);
 
         void onSelectionChanged(wxTreeListEvent& event);
 
-    private:
+        void onItemChecked(wxTreeListEvent& event);
+        void onCheckItem(wxTreeListItem item, 
+                         wxCheckBoxState state, 
+                         wxCheckBoxState oldState);
+
+        void addDelta(const git::Diff::Delta& delta);
+        void removeDelta(const git::Diff::Delta& delta);
+
         class ItemData
             : public wxClientData
         {
         private:
             const git::Diff::Delta& delta_;
+            wxCheckBoxState state_;
 
         public:
-            ItemData(const git::Diff::Delta& delta);
+            ItemData(const git::Diff::Delta& delta, wxCheckBoxState state);
             ~ItemData() = default;
 
             WXEDITOR_GETTER(Delta, delta_);
+            WXEDITOR_GETTER(State, state_);
         };
     };
 }

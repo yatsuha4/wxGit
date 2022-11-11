@@ -1,4 +1,5 @@
-﻿#include "wxgit/git/Diff.hpp"
+﻿#include "wxgit/git/Commit.hpp"
+#include "wxgit/git/Diff.hpp"
 
 namespace wxgit::git
 {
@@ -49,6 +50,15 @@ namespace wxgit::git
     }
 
     /**
+     * @brief 正規かどうか調べる
+     * @return 正規なとき真
+     */
+    bool Diff::Delta::isValid() const
+    {
+        return delta_ != nullptr;
+    }
+
+    /**
      */
     Diff::Hunk& Diff::Delta::findHunk(const git_diff_hunk* hunk)
     {
@@ -85,10 +95,12 @@ namespace wxgit::git
 
     /**
      * @brief コンストラクタ
+     * @param[in] repository リポジトリ
      * @param[in] diff 差分
      */
-    Diff::Diff(git_diff* diff)
-        : diff_(diff)
+    Diff::Diff(const RepositoryPtr& repository, git_diff* diff)
+        : repository_(repository), 
+          diff_(diff)
     {
         git_diff_foreach(diff, 
                          Diff::OnFile, 
@@ -104,7 +116,7 @@ namespace wxgit::git
      * @param[in] diff 差分
      */
     Diff::Diff(const ConstCommitPtr& commit, git_diff* diff)
-        : Diff(diff)
+        : Diff(commit->getRepository(), diff)
     {
         commit_ = commit;
     }
@@ -115,6 +127,15 @@ namespace wxgit::git
     Diff::~Diff()
     {
         git_diff_free(diff_);
+    }
+
+    /**
+     * @brief リポジトリを取得する
+     * @return リポジトリ
+     */
+    RepositoryPtr Diff::getRepository() const
+    {
+        return repository_.lock();
     }
 
     /**
