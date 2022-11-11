@@ -106,7 +106,6 @@
     <ClCompile Include="..\..\..\..\wxgit\FileList.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\FileWindow.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Blob.cpp" />
-    <ClCompile Include="..\..\..\..\wxgit\git\Branch.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Commit.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Config.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Diff.cpp" />
@@ -144,7 +143,6 @@
     <ClInclude Include="..\..\..\..\wxgit\FileList.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\FileWindow.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Blob.hpp" />
-    <ClInclude Include="..\..\..\..\wxgit\git\Branch.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Commit.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Config.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Diff.hpp" />

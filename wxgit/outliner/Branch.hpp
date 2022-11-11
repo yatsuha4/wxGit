@@ -13,10 +13,10 @@ namespace wxgit::outliner
         using super = Node;
 
     private:
-        git::BranchPtr branch_;
+        git::ReferencePtr branch_;
 
     public:
-        Branch(const git::BranchPtr& branch);
+        Branch(const git::ReferencePtr& branch);
         ~Branch() override = default;
 
     protected:

@@ -18,6 +18,7 @@ namespace wxgit
 
             REPOSITORY_CLONE, 
             REPOSITORY_ADD, 
+            REPOSITORY_INIT, 
             REPOSITORY_REMOVE, 
 
             WORK_STATUS, 

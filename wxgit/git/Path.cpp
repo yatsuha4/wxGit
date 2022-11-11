@@ -31,6 +31,15 @@ namespace wxgit::git
     }
 
     /**
+     * @brief コンストラクタ
+     * @param[in] path パス
+     */
+    Path::Path(const wxString& path)
+        : super(path)
+    {
+    }
+
+    /**
      */
     bool Path::isValid() const
     {
@@ -71,12 +80,5 @@ namespace wxgit::git
     bool Path::makeRelativeTo(const Path& base)
     {
         return super::MakeRelativeTo(base.toString());
-    }
-
-    /**
-     */
-    Path::Path(const wxString& path)
-        : super(path)
-    {
     }
 }

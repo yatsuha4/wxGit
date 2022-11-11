@@ -17,7 +17,9 @@ namespace wxgit::git
         ~Reference();
 
         WXEDITOR_GETTER(Name, name_);
+
         bool isBranch() const;
+        bool isHead() const;
 
     protected:
         WXEDITOR_GETTER(Reference, reference_);

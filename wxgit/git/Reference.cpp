@@ -21,4 +21,19 @@ namespace wxgit::git
     {
         git_reference_free(reference_);
     }
+
+    /**
+     */
+    bool Reference::isBranch() const
+    {
+        return git_reference_is_branch(reference_);
+    }
+
+    /**
+     * @brief
+     */
+    bool Reference::isHead() const
+    {
+        return isBranch() && git_branch_is_head(reference_);
+    }
 }

@@ -21,6 +21,7 @@ namespace wxgit
 
             "Clone", 
             "Add", 
+            "Init", 
             "Remove", 
 
             "Status"

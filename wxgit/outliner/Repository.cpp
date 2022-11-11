@@ -9,10 +9,10 @@ namespace wxgit::outliner
 {
     /**
      * @brief コンストラクタ
-     * @param[in] dir ディレクトリ
+     * @param[in] repository リポジトリ
      */
-    Repository::Repository(const wxString& dir)
-        : dir_(dir)
+    Repository::Repository(const git::RepositoryPtr& repository)
+        : repository_(repository)
     {
     }
 
@@ -32,7 +32,7 @@ namespace wxgit::outliner
     wxXmlNode* Repository::serialize() const
     {
         auto xml = super::serialize();
-        xml->AddAttribute("dir", dir_);
+        xml->AddAttribute("dir", repository_->getWorkDir().toString());
         return xml;
     }
 
@@ -43,7 +43,7 @@ namespace wxgit::outliner
     {
         if(super::deserialize(xml))
         {
-            dir_ = xml->GetAttribute("dir");
+            repository_ = git::Repository::Open(git::Path(xml->GetAttribute("dir")));
             return true;
         }
         return false;
@@ -54,15 +54,10 @@ namespace wxgit::outliner
     void Repository::onAppend(Outliner* outliner)
     {
         super::onAppend(outliner);
-        if(getName().IsEmpty())
+        if(repository_)
         {
-            setName(wxFileName(dir_).GetName());
-        }
-        wxFileName dir(dir_, ".git");
-        if(repository_ = git::Repository::Open(dir))
-        {
-            appendBranches("Local branch", GIT_BRANCH_LOCAL);
-            appendBranches("Remote branch", GIT_BRANCH_REMOTE);
+            appendBranches("Local branch", repository_->takeLocalBranches());
+            appendBranches("Remote branch", repository_->takeRemoteBranches());
             appendRemotes();
         }
     }
@@ -70,9 +65,9 @@ namespace wxgit::outliner
     /**
      * @brief 
      */
-    void Repository::appendBranches(const wxString& name, git_branch_t type)
+    void Repository::appendBranches(const wxString& name, 
+                                    const std::vector<git::ReferencePtr>& branches)
     {
-        auto branches = repository_->getBranches(type);
         if(!branches.empty())
         {
             auto folder = new Node();

@@ -13,12 +13,11 @@ namespace wxgit::outliner
         using super = Node;
 
     private:
-        wxString dir_;
         git::RepositoryPtr repository_;
 
     public:
         Repository() = default;
-        Repository(const wxString& dir);
+        Repository(const git::RepositoryPtr& repository);
         ~Repository() override = default;
 
         WXEDITOR_GETTER(Repository, repository_);
@@ -33,7 +32,8 @@ namespace wxgit::outliner
         void onAppend(Outliner* outliner) override;
 
     private:
-        void appendBranches(const wxString& name, git_branch_t type);
+        void appendBranches(const wxString& name, 
+                            const std::vector<git::ReferencePtr>& branches);
         void appendRemotes();
     };
 }

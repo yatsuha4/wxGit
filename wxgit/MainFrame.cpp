@@ -186,6 +186,9 @@ namespace wxgit
                          wxArtProvider::GetBitmap(wxART_COPY));
         toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_ADD), 
                          Menu::GetText(Menu::Id::REPOSITORY_ADD), 
+                         wxArtProvider::GetBitmap(wxART_FILE_OPEN));
+        toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_INIT), 
+                         Menu::GetText(Menu::Id::REPOSITORY_INIT), 
                          wxArtProvider::GetBitmap(wxART_NEW));
         toolBar->AddTool(static_cast<int>(Menu::Id::WORK_STATUS), 
                          Menu::GetText(Menu::Id::WORK_STATUS), 
@@ -206,6 +209,9 @@ namespace wxgit
             break;
         case Menu::Id::REPOSITORY_ADD:
             addRepository();
+            break;
+        case Menu::Id::REPOSITORY_INIT:
+            initRepository();
             break;
         case Menu::Id::WORK_STATUS:
             status();
@@ -235,9 +241,27 @@ namespace wxgit
         wxDirDialog dialog(this, "Select repository");
         if(dialog.ShowModal() == wxID_OK)
         {
-            auto repository = new outliner::Repository(dialog.GetPath());
-            outliner_->appendNode(repository);
-            history_->showCommits(repository->getRepository()->getCommits());
+            git::Path dir(dialog.GetPath());
+            if(auto repository = git::Repository::Open(git::Path(dir, ".git")))
+            {
+                outliner_->appendNode(new outliner::Repository(repository));
+            }
+        }
+    }
+
+    /**
+     * @brief ローカルリポジトリを初期化する
+     */
+    void MainFrame::initRepository()
+    {
+        wxDirDialog dialog(this, "Select init repository");
+        if(dialog.ShowModal() == wxID_OK)
+        {
+            git::Path dir(dialog.GetPath());
+            if(auto repository = git::Repository::Init(dir))
+            {
+                outliner_->appendNode(new outliner::Repository(repository));
+            }
         }
     }
 

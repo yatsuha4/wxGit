@@ -1,9 +1,9 @@
-﻿#include "wxgit/git/Branch.hpp"
-#include "wxgit/git/Commit.hpp"
+﻿#include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Config.hpp"
 #include "wxgit/git/Diff.hpp"
 #include "wxgit/git/Index.hpp"
 #include "wxgit/git/Path.hpp"
+#include "wxgit/git/Reference.hpp"
 #include "wxgit/git/Remote.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/git/Signature.hpp"
@@ -18,7 +18,6 @@ namespace wxgit::git
     Repository::Repository(git_repository* repository)
 	: repository_(repository)
     {
-        workDir_ = Path(git_repository_workdir(repository_)).getDir();
         git_config* config;
         if(git_repository_config(&config, repository_) == GIT_OK)
         {
@@ -35,6 +34,24 @@ namespace wxgit::git
     }
 
     /**
+     * @brief ファイルパスを取得する
+     * @return ファイルパス
+     */
+    Path Repository::getPath() const
+    {
+        return Path(git_repository_path(repository_));
+    }
+
+    /**
+     * @brief 作業ディレクトリを取得する
+     * @return 作業ディレクトリ
+     */
+    Path Repository::getWorkDir() const
+    {
+        return Path(git_repository_workdir(repository_));
+    }
+
+    /**
      * @brief ネームスペースを取得する
      * @return ネームスペース
      */
@@ -44,22 +61,34 @@ namespace wxgit::git
     }
 
     /**
+     * @brief
      */
-    std::vector<BranchPtr> Repository::getBranches(git_branch_t type)
+    ReferencePtr Repository::takeHead()
     {
-	std::vector<BranchPtr> branches;
-        git_branch_iterator* iterator = nullptr;
-        if(git_branch_iterator_new(&iterator, repository_, type) == GIT_OK)
+        git_reference* reference;
+        if(git_repository_head(&reference, repository_) != GIT_OK)
         {
-            auto repository = shared_from_this();
-            git_reference* reference = nullptr;
-            while(git_branch_next(&reference, &type, iterator) == GIT_OK)
-            {
-                branches.push_back(std::make_shared<Branch>(repository, reference, type));
-            }
-            git_branch_iterator_free(iterator);
+            return nullptr;
         }
-	return branches;
+        return std::make_shared<Reference>(shared_from_this(), reference);
+    }
+
+    /**
+     * @brief ローカルブランチのリストを取得する
+     * @return ローカルブランチのリスト
+     */
+    std::vector<ReferencePtr> Repository::takeLocalBranches()
+    {
+        return takeBranches(GIT_BRANCH_LOCAL);
+    }
+
+    /**
+     * @brief リモートブランチのリストを取得する
+     * @return リモートブランチのリスト
+     */
+    std::vector<ReferencePtr> Repository::takeRemoteBranches()
+    {
+        return takeBranches(GIT_BRANCH_REMOTE);
     }
 
     /**
@@ -200,27 +229,14 @@ namespace wxgit::git
     }
 
     /**
-     * @brief
-     */
-    ReferencePtr Repository::head()
-    {
-        git_reference* reference;
-        if(git_repository_head(&reference, repository_) == GIT_OK)
-        {
-            return std::make_shared<Reference>(shared_from_this(), reference);
-        }
-        return nullptr;
-    }
-
-    /**
      * @brief リポジトリを開く
      * @param[in] dir ディレクトリ
      * @return 開いたリポジトリ
      */
-    RepositoryPtr Repository::Open(const wxFileName& dir)
+    RepositoryPtr Repository::Open(const Path& dir)
     {
 	git_repository* repository;
-        if(git_repository_open(&repository, Path(dir)) != GIT_OK)
+        if(git_repository_open(&repository, dir) != GIT_OK)
         {
             return nullptr;
         }
@@ -232,13 +248,32 @@ namespace wxgit::git
      * @param[in] dir ディレクトリ
      * @return 初期化したリポジトリ
      */
-    RepositoryPtr Repository::Init(const wxFileName& dir, bool isBare)
+    RepositoryPtr Repository::Init(const Path& dir, bool isBare)
     {
         git_repository* repository;
-        if(git_repository_init(&repository, Path(dir), isBare) != GIT_OK)
+        if(git_repository_init(&repository, dir, isBare) != GIT_OK)
         {
             return nullptr;
         }
         return std::make_shared<Repository>(repository);
+    }
+
+    /**
+     */
+    std::vector<ReferencePtr> Repository::takeBranches(git_branch_t type)
+    {
+	std::vector<ReferencePtr> branches;
+        git_branch_iterator* iterator;
+        if(git_branch_iterator_new(&iterator, repository_, type) == GIT_OK)
+        {
+            auto repository = shared_from_this();
+            git_reference* reference;
+            while(git_branch_next(&reference, &type, iterator) == GIT_OK)
+            {
+                branches.push_back(std::make_shared<Reference>(repository, reference));
+            }
+            git_branch_iterator_free(iterator);
+        }
+	return branches;
     }
 }

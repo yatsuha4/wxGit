@@ -18,6 +18,7 @@ namespace wxgit::git
         Path(const char* path);
         Path(const Path& dir, const char* name);
         Path(const wxFileName& path);
+        Path(const wxString& path);
         Path(const Path& src) = default;
         ~Path() = default;
 
@@ -30,8 +31,5 @@ namespace wxgit::git
         Path getDir() const;
 
         bool makeRelativeTo(const Path& base);
-
-    private:
-        Path(const wxString& path);
     };
 }

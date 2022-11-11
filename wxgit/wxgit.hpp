@@ -29,7 +29,6 @@ namespace wxgit
     namespace git
     {
         WXEDITOR_DECLARE_CLASS(Blob);
-        WXEDITOR_DECLARE_CLASS(Branch);
         WXEDITOR_DECLARE_CLASS(Commit);
         WXEDITOR_DECLARE_CLASS(Config);
         WXEDITOR_DECLARE_CLASS(Diff);
