@@ -111,6 +111,9 @@
     <ClCompile Include="..\..\..\..\wxgit\PathList.cpp">
       <Filter>wxgit</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\Path.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
@@ -205,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\PathList.hpp">
       <Filter>wxgit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\Path.hpp">
+      <Filter>wxgit\git</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

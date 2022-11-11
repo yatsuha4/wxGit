@@ -111,6 +111,7 @@
     <ClCompile Include="..\..\..\..\wxgit\git\Config.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Diff.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Index.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\git\Path.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Reference.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Refspec.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Remote.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="..\..\..\..\wxgit\git\Config.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Diff.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Index.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\git\Path.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Reference.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Refspec.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Remote.hpp" />

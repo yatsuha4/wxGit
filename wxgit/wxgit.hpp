@@ -34,6 +34,7 @@ namespace wxgit
         WXEDITOR_DECLARE_CLASS(Config);
         WXEDITOR_DECLARE_CLASS(Diff);
         WXEDITOR_DECLARE_CLASS(Index);
+        WXEDITOR_DECLARE_CLASS(Path);
         WXEDITOR_DECLARE_CLASS(Reference);
         WXEDITOR_DECLARE_CLASS(Refspec);
         WXEDITOR_DECLARE_CLASS(Remote);
