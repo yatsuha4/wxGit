@@ -1,6 +1,7 @@
 ﻿#include "wxgit/git/Blob.hpp"
 #include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Diff.hpp"
+#include "wxgit/git/Path.hpp"
 #include "wxgit/git/Signature.hpp"
 #include "wxgit/git/Tree.hpp"
 
@@ -50,7 +51,7 @@ namespace wxgit::git
         {
             if(git_commit_tree(&tree_, commit_) == GIT_OK)
             {
-                parseTree(tree_, wxFileName());
+                parseTree(tree_, Path());
             }
         }
         return blobs_;
@@ -94,13 +95,12 @@ namespace wxgit::git
 
     /**
      */
-    void Commit::parseTree(git_tree* tree, const wxFileName& dir)
+    void Commit::parseTree(git_tree* tree, const Path& dir)
     {
         for(size_t i = 0, n = git_tree_entrycount(tree); i < n; ++i)
         {
             auto entry = git_tree_entry_byindex(tree, i);
-            wxFileName path(dir.GetFullPath(), 
-                            wxString::FromUTF8(git_tree_entry_name(entry)));
+            Path path(dir, git_tree_entry_name(entry));
             switch(git_tree_entry_type(entry))
             {
             case GIT_OBJECT_TREE:

@@ -1,5 +1,6 @@
 ﻿#include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Diff.hpp"
+#include "wxgit/git/Path.hpp"
 
 namespace wxgit::git
 {
@@ -16,9 +17,9 @@ namespace wxgit::git
      * @brief パスを取得する
      * @return パス
      */
-    wxFileName Diff::File::getPath() const
+    Path Diff::File::getPath() const
     {
-        return wxFileName(wxString::FromUTF8(file_.path), wxPATH_UNIX);
+        return Path(file_.path);
     }
 
     /**

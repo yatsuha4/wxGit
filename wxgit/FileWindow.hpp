@@ -34,7 +34,7 @@ namespace wxgit
         void appendDelta(const git::Diff::Delta& delta, wxCheckBoxState state);
         void update();
         bool update(const wxTreeListItem& parent, 
-                    const wxString& parentPath, 
+                    const git::Path& parentPath, 
                     const std::shared_ptr<PathList::Item>& item);
 
         void onSelectionChanged(wxTreeListEvent& event);

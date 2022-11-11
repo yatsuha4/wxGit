@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include "wxgit/git/Path.hpp"
+
 namespace wxgit
 {
     /**
@@ -11,12 +13,12 @@ namespace wxgit
         class Item
         {
         private:
-            wxFileName path_;
+            git::Path path_;
             wxClientData* data_;
             std::vector<std::shared_ptr<Item>> children_;
 
         public:
-            Item(const wxFileName& path, wxClientData* data);
+            Item(const git::Path& path, wxClientData* data);
             ~Item() = default;
 
             WXEDITOR_GETTER(Path, path_);
@@ -32,12 +34,12 @@ namespace wxgit
         PathList();
         ~PathList() = default;
 
-        std::shared_ptr<Item> append(const wxFileName& path, wxClientData* data = nullptr);
+        std::shared_ptr<Item> append(const git::Path& path, wxClientData* data = nullptr);
         const std::shared_ptr<Item>& update();
 
     private:
-        std::shared_ptr<Item> takeItem(const wxFileName& path);
-        std::shared_ptr<Item> findItem(const wxFileName& path) const;
+        std::shared_ptr<Item> takeItem(const git::Path& path);
+        std::shared_ptr<Item> findItem(const git::Path& path) const;
         void update(std::shared_ptr<Item>& item);
     };
 }

@@ -124,31 +124,31 @@ namespace wxgit
      */
     void FileWindow::update()
     {
-        update(GetRootItem(), wxEmptyString, pathList_->update());
+        update(GetRootItem(), git::Path(), pathList_->update());
         pathList_.reset();
     }
 
     /**
      */
     bool FileWindow::update(const wxTreeListItem& parent, 
-                            const wxString& parentPath, 
+                            const git::Path& parentPath, 
                             const std::shared_ptr<PathList::Item>& item)
     {
         auto path = item->getPath();
-        if(!path.IsOk())
+        if(!path.isValid())
         {
-            path.Assign(getRepository()->getWorkDir());
+            path = getRepository()->getWorkDir();
         }
-        else if(!parentPath.IsEmpty())
+        else if(parentPath.isValid())
         {
-            path.MakeRelativeTo(parentPath);
+            path.makeRelativeTo(parentPath);
         }
-        auto id = AppendItem(parent, path.GetFullPath(wxPATH_UNIX));
+        auto id = AppendItem(parent, path.toString(wxPATH_UNIX));
         SetItemData(id, item->getData());
         bool check = true;
         for(auto& child : item->getChildren())
         {
-            check = (update(id, item->getPath().GetFullPath(), child) && check);
+            check = (update(id, item->getPath(), child) && check);
         }
         if(auto data = dynamic_cast<ItemData*>(item->getData()))
         {
@@ -222,30 +222,15 @@ namespace wxgit
      */
     void FileWindow::addDelta(const git::Diff::Delta& delta)
     {
-        switch(delta.getStatus())
-        {
-        case GIT_DELTA_MODIFIED:
-        case GIT_DELTA_UNTRACKED:
-            status_->getRepository()->takeIndex()->addByPath(delta.getNewFile().getPath());
-            break;
-        default:
-            break;
-        }
+        getRepository()->takeIndex()->add(delta.getNewFile().getPath());
     }
 
     /**
      */
     void FileWindow::removeDelta(const git::Diff::Delta& delta)
     {
-        switch(delta.getStatus())
-        {
-        case GIT_DELTA_MODIFIED:
-        case GIT_DELTA_UNTRACKED:
-            status_->getRepository()->takeIndex()->removeByPath(delta.getNewFile().getPath());
-            break;
-        default:
-            break;
-        }
+        getRepository()->takeIndex()->remove(delta.getNewFile().getPath(), 
+                                             GIT_INDEX_STAGE_NORMAL);
     }
 
     /**

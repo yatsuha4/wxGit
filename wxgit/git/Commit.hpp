@@ -31,6 +31,6 @@ namespace wxgit::git
         DiffPtr createDiff() const;
 
     private:
-        void parseTree(git_tree* tree, const wxFileName& dir);
+        void parseTree(git_tree* tree, const Path& dir);
     };
 }

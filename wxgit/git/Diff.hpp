@@ -17,7 +17,7 @@ namespace wxgit::git
             File(const git_diff_file& file);
             ~File() = default;
 
-            wxFileName getPath() const;
+            Path getPath() const;
         };
 
         class Line

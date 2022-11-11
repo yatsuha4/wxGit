@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include "wxgit/git/Path.hpp"
+
 namespace wxgit::git
 {
     /**
@@ -11,7 +13,7 @@ namespace wxgit::git
     private:
 	git_repository* repository_;
 	int error_;
-	wxFileName workDir_;
+	Path workDir_;
 	std::vector<CommitPtr> commits_;
 	ConfigPtr config_;
         IndexPtr index_;

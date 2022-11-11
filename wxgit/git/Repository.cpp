@@ -3,6 +3,7 @@
 #include "wxgit/git/Config.hpp"
 #include "wxgit/git/Diff.hpp"
 #include "wxgit/git/Index.hpp"
+#include "wxgit/git/Path.hpp"
 #include "wxgit/git/Remote.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/git/Signature.hpp"
@@ -20,8 +21,7 @@ namespace wxgit::git
     {
 	if(isOk())
 	{
-            workDir_.Assign(wxFileName(wxString::FromUTF8(git_repository_workdir(repository_)), 
-                                       wxPATH_UNIX).GetPath());
+            workDir_ = Path(git_repository_workdir(repository_)).getDir();
 	    git_config* config;
 	    if((error_ = git_repository_config(&config, repository_)) == GIT_OK)
 	    {
@@ -213,7 +213,7 @@ namespace wxgit::git
             git_index* index;
             if(git_repository_index(&index, repository_) == GIT_OK)
             {
-                index_ = std::make_shared<Index>(index);
+                index_ = std::make_shared<Index>(shared_from_this(), index);
             }
         }
         return index_;

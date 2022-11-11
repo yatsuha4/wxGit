@@ -7,7 +7,7 @@ namespace wxgit
      * @param[in] path パス
      * @param[in] data データ
      */
-    PathList::Item::Item(const wxFileName& path, wxClientData* data)
+    PathList::Item::Item(const git::Path& path, wxClientData* data)
         : path_(path), 
           data_(data)
     {
@@ -17,7 +17,7 @@ namespace wxgit
      * @brief コンストラクタ
      */
     PathList::PathList()
-        : root_(std::make_shared<Item>(wxFileName(), nullptr))
+        : root_(std::make_shared<Item>(git::Path(), nullptr))
     {
     }
 
@@ -27,14 +27,14 @@ namespace wxgit
      * @param[in] data データ
      * @return 追加した要素
      */
-    std::shared_ptr<PathList::Item> PathList::append(const wxFileName& path, 
+    std::shared_ptr<PathList::Item> PathList::append(const git::Path& path, 
                                                      wxClientData* data)
     {
-        auto dir = path.GetPath();
-        auto parent = dir.IsEmpty() ? root_ : takeItem(wxFileName(dir));
+        auto dir = path.getDir();
+        auto parent = dir.isValid() ? takeItem(dir) : root_;
         auto item = std::make_shared<Item>(path, data);
         parent->getChildren().push_back(item);
-        items_.emplace(path.GetFullPath(), item);
+        items_.emplace(path.toString(), item);
         return item;
     }
 
@@ -51,9 +51,9 @@ namespace wxgit
 
     /**
      */
-    std::shared_ptr<PathList::Item> PathList::takeItem(const wxFileName& path)
+    std::shared_ptr<PathList::Item> PathList::takeItem(const git::Path& path)
     {
-        auto iter = items_.find(path.GetFullPath());
+        auto iter = items_.find(path.toString());
         if(iter != items_.end())
         {
             return iter->second;
