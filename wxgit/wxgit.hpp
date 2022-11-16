@@ -48,7 +48,7 @@ namespace wxgit
     }
     namespace outliner
     {
-        WXEDITOR_DECLARE_CLASS(Branch);
+        WXEDITOR_DECLARE_CLASS(BranchNode);
         WXEDITOR_DECLARE_CLASS(Node);
         WXEDITOR_DECLARE_CLASS(Outliner);
         WXEDITOR_DECLARE_CLASS(RefspecNode);

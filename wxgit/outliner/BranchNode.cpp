@@ -1,5 +1,5 @@
 ﻿#include "wxgit/git/Reference.hpp"
-#include "wxgit/outliner/Branch.hpp"
+#include "wxgit/outliner/BranchNode.hpp"
 
 namespace wxgit::outliner
 {
@@ -7,7 +7,7 @@ namespace wxgit::outliner
      * @brief コンストラクタ
      * @param[in] branch ブランチ
      */
-    Branch::Branch(const git::ReferencePtr& branch)
+    BranchNode::BranchNode(const git::ReferencePtr& branch)
         : branch_(branch)
     {
         setName(branch->getName());
@@ -15,7 +15,7 @@ namespace wxgit::outliner
 
     /**
      */
-    void Branch::onAppend(Outliner* outliner)
+    void BranchNode::onAppend(Outliner* outliner)
     {
         super::onAppend(outliner);
         setBold(branch_->isHead());

@@ -1,6 +1,6 @@
 ﻿#include "wxgit/Menu.hpp"
 #include "wxgit/git/Repository.hpp"
-#include "wxgit/outliner/Branch.hpp"
+#include "wxgit/outliner/BranchNode.hpp"
 #include "wxgit/outliner/Outliner.hpp"
 #include "wxgit/outliner/RemoteNode.hpp"
 #include "wxgit/outliner/Repository.hpp"
@@ -75,7 +75,7 @@ namespace wxgit::outliner
             getOutliner()->appendNode(folder, this);
             for(auto& branch: branches)
             {
-                getOutliner()->appendNode(new Branch(branch), folder);
+                getOutliner()->appendNode(new BranchNode(branch), folder);
             }
         }
     }

@@ -48,7 +48,7 @@
     <ClCompile Include="..\..\..\..\wxgit\history\History.cpp">
       <Filter>wxgit\history</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\wxgit\outliner\Branch.cpp">
+    <ClCompile Include="..\..\..\..\wxgit\outliner\BranchNode.cpp">
       <Filter>wxgit\outliner</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\wxgit\outliner\Node.cpp">
@@ -143,7 +143,7 @@
     <ClInclude Include="..\..\..\..\wxgit\history\History.hpp">
       <Filter>wxgit\history</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\wxgit\outliner\Branch.hpp">
+    <ClInclude Include="..\..\..\..\wxgit\outliner\BranchNode.hpp">
       <Filter>wxgit\outliner</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\outliner\Node.hpp">

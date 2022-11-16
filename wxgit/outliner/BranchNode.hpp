@@ -7,7 +7,7 @@ namespace wxgit::outliner
     /**
      * @brief ブランチノード
      */
-    class Branch
+    class BranchNode
         : public Node
     {
         using super = Node;
@@ -16,8 +16,8 @@ namespace wxgit::outliner
         git::ReferencePtr branch_;
 
     public:
-        Branch(const git::ReferencePtr& branch);
-        ~Branch() override = default;
+        BranchNode(const git::ReferencePtr& branch);
+        ~BranchNode() override = default;
 
     protected:
         void onAppend(Outliner* outliner) override;
