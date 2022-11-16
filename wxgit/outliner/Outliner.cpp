@@ -4,7 +4,7 @@
 #include "wxgit/history/History.hpp"
 #include "wxgit/outliner/Node.hpp"
 #include "wxgit/outliner/Outliner.hpp"
-#include "wxgit/outliner/Repository.hpp"
+#include "wxgit/outliner/RepositoryNode.hpp"
 
 namespace wxgit::outliner
 {
@@ -122,7 +122,7 @@ namespace wxgit::outliner
     void Outliner::onSelectionChanged(wxTreeEvent& event)
     {
         auto node = static_cast<Node*>(GetItemData(event.GetItem()));
-        if(auto repository = dynamic_cast<Repository*>(node))
+        if(auto repository = dynamic_cast<RepositoryNode*>(node))
         {
             getMainFrame()->setRepository(repository->getRepository());
         }

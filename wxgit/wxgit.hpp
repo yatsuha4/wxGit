@@ -53,6 +53,6 @@ namespace wxgit
         WXEDITOR_DECLARE_CLASS(Outliner);
         WXEDITOR_DECLARE_CLASS(RefspecNode);
         WXEDITOR_DECLARE_CLASS(RemoteNode);
-        WXEDITOR_DECLARE_CLASS(Repository);
+        WXEDITOR_DECLARE_CLASS(RepositoryNode);
     }
 }

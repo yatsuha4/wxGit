@@ -3,7 +3,7 @@
 #include "wxgit/outliner/BranchNode.hpp"
 #include "wxgit/outliner/Outliner.hpp"
 #include "wxgit/outliner/RemoteNode.hpp"
-#include "wxgit/outliner/Repository.hpp"
+#include "wxgit/outliner/RepositoryNode.hpp"
 
 namespace wxgit::outliner
 {
@@ -11,7 +11,7 @@ namespace wxgit::outliner
      * @brief コンストラクタ
      * @param[in] repository リポジトリ
      */
-    Repository::Repository(const git::RepositoryPtr& repository)
+    RepositoryNode::RepositoryNode(const git::RepositoryPtr& repository)
         : repository_(repository)
     {
     }
@@ -19,7 +19,7 @@ namespace wxgit::outliner
     /**
      * @copydoc Node::getContextMenu
      */
-    wxMenu* Repository::getContextMenu()
+    wxMenu* RepositoryNode::getContextMenu()
     {
         auto menu = new Menu();
         menu->append(Menu::Id::REPOSITORY_REMOVE);
@@ -29,7 +29,7 @@ namespace wxgit::outliner
     /**
      * @copydoc Serializable::serialize
      */
-    wxXmlNode* Repository::serialize() const
+    wxXmlNode* RepositoryNode::serialize() const
     {
         auto xml = super::serialize();
         xml->AddAttribute("dir", repository_->getWorkDir().toString());
@@ -39,7 +39,7 @@ namespace wxgit::outliner
     /**
      * @copydoc Serializable::deserialize
      */
-    bool Repository::deserialize(const wxXmlNode* xml)
+    bool RepositoryNode::deserialize(const wxXmlNode* xml)
     {
         if(super::deserialize(xml))
         {
@@ -51,7 +51,7 @@ namespace wxgit::outliner
 
     /**
      */
-    void Repository::onAppend(Outliner* outliner)
+    void RepositoryNode::onAppend(Outliner* outliner)
     {
         super::onAppend(outliner);
         if(repository_)
@@ -65,7 +65,7 @@ namespace wxgit::outliner
     /**
      * @brief 
      */
-    void Repository::appendBranches(const wxString& name, 
+    void RepositoryNode::appendBranches(const wxString& name, 
                                     const std::vector<git::ReferencePtr>& branches)
     {
         if(!branches.empty())
@@ -83,7 +83,7 @@ namespace wxgit::outliner
     /**
      * @brief リモートを追加する
      */
-    void Repository::appendRemotes()
+    void RepositoryNode::appendRemotes()
     {
         auto remotes = repository_->takeRemotes();
         if(!remotes.empty())

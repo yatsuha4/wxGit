@@ -5,9 +5,9 @@
 namespace wxgit::outliner
 {
     /**
-     * @brief リポジトリ
+     * @brief リポジトリノード
      */
-    class Repository
+    class RepositoryNode
         : public Node
     {
         using super = Node;
@@ -16,9 +16,9 @@ namespace wxgit::outliner
         git::RepositoryPtr repository_;
 
     public:
-        Repository() = default;
-        Repository(const git::RepositoryPtr& repository);
-        ~Repository() override = default;
+        RepositoryNode() = default;
+        RepositoryNode(const git::RepositoryPtr& repository);
+        ~RepositoryNode() override = default;
 
         WXEDITOR_GETTER(Repository, repository_);
 

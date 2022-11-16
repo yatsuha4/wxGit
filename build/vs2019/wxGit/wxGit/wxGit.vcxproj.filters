@@ -57,7 +57,7 @@
     <ClCompile Include="..\..\..\..\wxgit\outliner\Outliner.cpp">
       <Filter>wxgit\outliner</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\wxgit\outliner\Repository.cpp">
+    <ClCompile Include="..\..\..\..\wxgit\outliner\RepositoryNode.cpp">
       <Filter>wxgit\outliner</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\wxgit\wxgit.cpp">
@@ -152,7 +152,7 @@
     <ClInclude Include="..\..\..\..\wxgit\outliner\Outliner.hpp">
       <Filter>wxgit\outliner</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\wxgit\outliner\Repository.hpp">
+    <ClInclude Include="..\..\..\..\wxgit\outliner\RepositoryNode.hpp">
       <Filter>wxgit\outliner</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\wxgit.hpp">

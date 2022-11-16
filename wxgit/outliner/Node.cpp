@@ -1,6 +1,6 @@
 ﻿#include "wxgit/outliner/Node.hpp"
 #include "wxgit/outliner/Outliner.hpp"
-#include "wxgit/outliner/Repository.hpp"
+#include "wxgit/outliner/RepositoryNode.hpp"
 
 namespace wxgit::outliner
 {
@@ -73,9 +73,9 @@ namespace wxgit::outliner
         {
             return new Node();
         }
-        else if(serialName == Repository::GetSerialName())
+        else if(serialName == RepositoryNode::GetSerialName())
         {
-            return new Repository();
+            return new RepositoryNode();
         }
         return nullptr;
     }

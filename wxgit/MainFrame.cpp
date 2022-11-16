@@ -8,7 +8,7 @@
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/history/History.hpp"
 #include "wxgit/outliner/Outliner.hpp"
-#include "wxgit/outliner/Repository.hpp"
+#include "wxgit/outliner/RepositoryNode.hpp"
 
 namespace wxgit
 {
@@ -244,7 +244,7 @@ namespace wxgit
             git::Path dir(dialog.GetPath());
             if(auto repository = git::Repository::Open(git::Path(dir, ".git")))
             {
-                outliner_->appendNode(new outliner::Repository(repository));
+                outliner_->appendNode(new outliner::RepositoryNode(repository));
             }
         }
     }
@@ -260,7 +260,7 @@ namespace wxgit
             git::Path dir(dialog.GetPath());
             if(auto repository = git::Repository::Init(dir))
             {
-                outliner_->appendNode(new outliner::Repository(repository));
+                outliner_->appendNode(new outliner::RepositoryNode(repository));
             }
         }
     }
