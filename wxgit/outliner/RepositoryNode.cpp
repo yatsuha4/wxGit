@@ -12,9 +12,10 @@ namespace wxgit::outliner
      * @param[in] repository リポジトリ
      */
     RepositoryNode::RepositoryNode(const git::RepositoryPtr& repository)
-        : repository_(repository)
+        : super(repository->getName()), 
+          repository_(repository), 
+          branch_(nullptr)
     {
-        setName(repository_->getName());
     }
 
     /**
@@ -57,27 +58,13 @@ namespace wxgit::outliner
         super::onAppend(outliner);
         if(repository_)
         {
-            appendBranches("Local branch", repository_->takeLocalBranches());
-            appendBranches("Remote branch", repository_->takeRemoteBranches());
-            appendRemotes();
-        }
-    }
-
-    /**
-     * @brief 
-     */
-    void RepositoryNode::appendBranches(const wxString& name, 
-                                    const std::vector<git::ReferencePtr>& branches)
-    {
-        if(!branches.empty())
-        {
-            auto folder = new Node();
-            folder->setName(name);
-            getOutliner()->appendNode(folder, this);
-            for(auto& branch: branches)
+            branch_ = new Node(_("Branch"));
+            getOutliner()->appendNode(branch_, this);
+            for(auto& branch : repository_->takeLocalBranches())
             {
-                getOutliner()->appendNode(new BranchNode(branch), folder);
+                getOutliner()->appendNode(new BranchNode(branch), branch_);
             }
+            appendRemotes();
         }
     }
 
@@ -89,8 +76,7 @@ namespace wxgit::outliner
         auto remotes = repository_->takeRemotes();
         if(!remotes.empty())
         {
-            auto folder = new Node();
-            folder->setName("Remote");
+            auto folder = new Node(_("Remote"));
             getOutliner()->appendNode(folder, this);
             for(auto& remote : remotes)
             {

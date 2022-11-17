@@ -5,10 +5,20 @@
 namespace wxgit::outliner
 {
     /**
-     * @brief コンストラクタ
+     * @brief デフォルトコンストラクタ
      */
     Node::Node()
-        : outliner_(nullptr)
+        : Node(wxEmptyString)
+    {
+    }
+
+    /**
+     * @brief コンストラクタ
+     * @param[in] name 名前
+     */
+    Node::Node(const wxString& name)
+        : name_(name), 
+          outliner_(nullptr)
     {
     }
 

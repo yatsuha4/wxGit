@@ -17,6 +17,7 @@ namespace wxgit::outliner
 
     public:
         Node();
+        Node(const wxString& name);
         ~Node() override = default;
 
         void setName(const wxString& name);

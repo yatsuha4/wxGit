@@ -14,6 +14,7 @@ namespace wxgit::outliner
 
     private:
         git::RepositoryPtr repository_;
+        Node* branch_;
 
     public:
         RepositoryNode() = default;
@@ -32,8 +33,6 @@ namespace wxgit::outliner
         void onAppend(Outliner* outliner) override;
 
     private:
-        void appendBranches(const wxString& name, 
-                            const std::vector<git::ReferencePtr>& branches);
         void appendRemotes();
     };
 }
