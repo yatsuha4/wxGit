@@ -18,7 +18,7 @@ namespace wxgit::outliner
     {
         AddRoot("wxGit");
         Bind(wxEVT_TREE_SEL_CHANGED, &Outliner::onSelectionChanged, this);
-        //Bind(wxEVT_TREE_ITEM_CONTEXT_MENU, &Outliner::onContextMenu, this);
+        Bind(wxEVT_TREE_ITEM_MENU, &Outliner::onContextMenu, this);
     }
 
     /**
@@ -135,9 +135,9 @@ namespace wxgit::outliner
     {
         if(auto node = static_cast<Node*>(GetItemData(event.GetItem())))
         {
-            if(auto menu = node->getContextMenu())
+            if(auto menu = std::unique_ptr<wxMenu>(node->getContextMenu()))
             {
-                PopupMenu(menu);
+                getMainFrame()->popupMenu(node, menu.get());
             }
         }
     }

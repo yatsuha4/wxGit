@@ -22,7 +22,7 @@ namespace wxgit::outliner
     wxMenu* RepositoryNode::getContextMenu()
     {
         auto menu = new Menu();
-        menu->append(Menu::Id::REPOSITORY_REMOVE);
+        menu->append(Menu::Id::REPOSITORY_CLOSE);
         return menu;
     }
 

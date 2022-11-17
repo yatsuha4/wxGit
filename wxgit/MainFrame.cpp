@@ -36,7 +36,8 @@ namespace wxgit
           history_(new history::History(this)), 
           fileWindow_(new FileWindow(this)), 
           diffWindow_(new DiffWindow(this)), 
-          commitWindow_(new CommitWindow(this))
+          commitWindow_(new CommitWindow(this)), 
+          menuNode_(nullptr)
     {
         setupMenuBar();
         setupToolBar();
@@ -155,6 +156,18 @@ namespace wxgit
     }
 
     /**
+     * @brief ポップアップメニューを開く
+     * @param[in] node ノード
+     * @param[in] menu メニュー
+     */
+    void MainFrame::popupMenu(outliner::Node* node, wxMenu* menu)
+    {
+        menuNode_ = node;
+        auto result = PopupMenu(menu);
+        menuNode_ = nullptr;
+    }
+
+    /**
      * @brief メニューバーを設定する
      */
     void MainFrame::setupMenuBar()
@@ -167,7 +180,7 @@ namespace wxgit
         }
         {
             auto menu = new Menu();
-            menu->append(Menu::Id::REPOSITORY_ADD);
+            menu->append(Menu::Id::REPOSITORY_OPEN);
             menu->append(Menu::Id::REPOSITORY_CLONE);
             menuBar->Append(menu, "Repository");
         }
@@ -184,8 +197,8 @@ namespace wxgit
         toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_CLONE), 
                          Menu::GetText(Menu::Id::REPOSITORY_CLONE), 
                          wxArtProvider::GetBitmap(wxART_COPY));
-        toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_ADD), 
-                         Menu::GetText(Menu::Id::REPOSITORY_ADD), 
+        toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_OPEN), 
+                         Menu::GetText(Menu::Id::REPOSITORY_OPEN), 
                          wxArtProvider::GetBitmap(wxART_FILE_OPEN));
         toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_INIT), 
                          Menu::GetText(Menu::Id::REPOSITORY_INIT), 
@@ -202,16 +215,23 @@ namespace wxgit
      */
     void MainFrame::onSelectMenu(wxCommandEvent& event)
     {
-        switch(static_cast<Menu::Id>(event.GetId()))
+        auto id = static_cast<Menu::Id>(event.GetId());
+        switch(id)
         {
         case Menu::Id::FILE_QUIT:
             Close();
             break;
-        case Menu::Id::REPOSITORY_ADD:
-            addRepository();
+        case Menu::Id::REPOSITORY_OPEN:
+            openRepository();
             break;
         case Menu::Id::REPOSITORY_INIT:
             initRepository();
+            break;
+        case Menu::Id::REPOSITORY_CLOSE:
+            if(auto node = dynamic_cast<outliner::RepositoryNode*>(menuNode_))
+            {
+                closeRepository(node);
+            }
             break;
         case Menu::Id::WORK_STATUS:
             status();
@@ -234,11 +254,11 @@ namespace wxgit
     }
 
     /**
-     * @brief ローカルリポジトリを追加する
+     * @brief ローカルリポジトリを開く
      */
-    void MainFrame::addRepository()
+    void MainFrame::openRepository()
     {
-        wxDirDialog dialog(this, "Select repository");
+        wxDirDialog dialog(this, _("Select repository"));
         if(dialog.ShowModal() == wxID_OK)
         {
             git::Path dir(dialog.GetPath());
@@ -263,6 +283,15 @@ namespace wxgit
                 outliner_->appendNode(new outliner::RepositoryNode(repository));
             }
         }
+    }
+
+    /**
+     * @brief リポジトリを閉じる
+     * @param[in] node リポジトリノード
+     */
+    void MainFrame::closeRepository(outliner::RepositoryNode* node)
+    {
+        outliner_->removeNode(node);
     }
 
     /**

@@ -20,6 +20,7 @@ namespace wxgit
         DiffWindow* diffWindow_;
         CommitWindow* commitWindow_;
         git::RepositoryPtr repository_;
+        outliner::Node* menuNode_;
 
     public:
         MainFrame(Application* application);
@@ -39,6 +40,8 @@ namespace wxgit
 
         WXGIT_GET_SERIAL_NAME(MainFrame);
 
+        void popupMenu(outliner::Node* node, wxMenu* menu);
+
     private:
         void setupMenuBar();
         void setupToolBar();
@@ -46,8 +49,9 @@ namespace wxgit
         void onSelectMenu(wxCommandEvent& event);
         void onClose(wxCloseEvent& event);
 
-        void addRepository();
+        void openRepository();
         void initRepository();
+        void closeRepository(outliner::RepositoryNode* node);
         void status();
     };
 }

@@ -17,9 +17,9 @@ namespace wxgit
             FILE_QUIT, 
 
             REPOSITORY_CLONE, 
-            REPOSITORY_ADD, 
+            REPOSITORY_OPEN, 
             REPOSITORY_INIT, 
-            REPOSITORY_REMOVE, 
+            REPOSITORY_CLOSE, 
 
             WORK_STATUS, 
 

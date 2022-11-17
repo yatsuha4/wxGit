@@ -17,14 +17,14 @@ namespace wxgit
     {
         static const char* LABELS[] =
         {
-            "Quit", 
+            _("Quit"), 
 
-            "Clone", 
-            "Add", 
-            "Init", 
-            "Remove", 
+            _("Clone"), 
+            _("Open"), 
+            _("Init"), 
+            _("Close"), 
 
-            "Status"
+            _("Status")
         };
         return LABELS[static_cast<int>(id) - static_cast<int>(Id::TOP) - 1];
     }
