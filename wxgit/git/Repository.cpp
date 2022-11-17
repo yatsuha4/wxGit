@@ -39,7 +39,7 @@ namespace wxgit::git
      */
     Path Repository::getPath() const
     {
-        return Path(git_repository_path(repository_));
+        return Path(git_repository_path(repository_)).getDir();
     }
 
     /**
@@ -48,7 +48,16 @@ namespace wxgit::git
      */
     Path Repository::getWorkDir() const
     {
-        return Path(git_repository_workdir(repository_));
+        return Path(git_repository_workdir(repository_)).getDir();
+    }
+
+    /**
+     * @brief 名前を取得する
+     * @return 名前
+     */
+    wxString Repository::getName() const
+    {
+        return getWorkDir().toString(wxPATH_UNIX);
     }
 
     /**

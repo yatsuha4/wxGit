@@ -14,6 +14,7 @@ namespace wxgit::outliner
     RepositoryNode::RepositoryNode(const git::RepositoryPtr& repository)
         : repository_(repository)
     {
+        setName(repository_->getName());
     }
 
     /**

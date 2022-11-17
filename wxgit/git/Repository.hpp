@@ -24,6 +24,7 @@ namespace wxgit::git
 
         Path getPath() const;
         Path getWorkDir() const;
+        wxString getName() const;
         wxString getNamespace() const;
 
         ReferencePtr takeHead();
