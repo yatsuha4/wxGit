@@ -137,6 +137,8 @@ namespace wxgit::git
         git_status_options options;
         if(git_status_options_init(&options, GIT_STATUS_OPTIONS_VERSION) == GIT_OK)
         {
+            options.flags = GIT_STATUS_OPT_DEFAULTS;
+            options.rename_threshold = 50;
             git_status_list* list;
             if(git_status_list_new(&list, repository_, &options) == GIT_OK)
             {
