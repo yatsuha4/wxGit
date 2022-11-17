@@ -94,17 +94,29 @@ namespace wxgit
     }
 
     /**
-     * @brief リポジトリをセットする
-     * @param[in] repository リポジトリ
+     * @brief リポジトリノードをセットする
+     * @param[in] node リポジトリノード
      */
-    void MainFrame::setRepository(const git::RepositoryPtr& repository)
+    void MainFrame::setRepositoryNode(outliner::RepositoryNode* node)
     {
-        if(repository != repository_)
+        if(node != repositoryNode_)
         {
-            repository_ = repository;
-            getHistory()->showCommits(repository->getCommits());
-            getCommitWindow()->setSignature(repository->createSignature());
+            repositoryNode_ = node;
+            if(auto repository = getRepository())
+            {
+                getHistory()->showCommits(repository->getCommits());
+                getCommitWindow()->setSignature(repository->createSignature());
+            }
         }
+    }
+
+    /**
+     * @brief リポジトリを取得する
+     * @return リポジトリ
+     */
+    const git::RepositoryPtr& MainFrame::getRepository() const
+    {
+        return repositoryNode_ ? repositoryNode_->getRepository() : nullptr;
     }
 
     /**
@@ -291,6 +303,10 @@ namespace wxgit
      */
     void MainFrame::closeRepository(outliner::RepositoryNode* node)
     {
+        if(node == repositoryNode_)
+        {
+            setRepositoryNode(nullptr);
+        }
         outliner_->removeNode(node);
     }
 
@@ -298,9 +314,9 @@ namespace wxgit
      */
     void MainFrame::status()
     {
-        if(repository_)
+        if(auto repository = getRepository())
         {
-            if(auto status = repository_->takeStatus())
+            if(auto status = repository->takeStatus())
             {
                 getFileWindow()->showStatus(status);
             }

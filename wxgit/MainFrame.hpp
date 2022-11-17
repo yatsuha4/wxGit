@@ -19,7 +19,7 @@ namespace wxgit
         FileWindow* fileWindow_;
         DiffWindow* diffWindow_;
         CommitWindow* commitWindow_;
-        git::RepositoryPtr repository_;
+        outliner::RepositoryNode* repositoryNode_;
         outliner::Node* menuNode_;
 
     public:
@@ -32,8 +32,8 @@ namespace wxgit
         WXEDITOR_GETTER(DiffWindow, diffWindow_);
         WXEDITOR_GETTER(CommitWindow, commitWindow_);
 
-        WXEDITOR_GETTER(Repository, repository_);
-        void setRepository(const git::RepositoryPtr& repository);
+        void setRepositoryNode(outliner::RepositoryNode* node);
+        const git::RepositoryPtr& getRepository() const;
 
         wxXmlNode* serialize() const override;
         bool deserialize(const wxXmlNode* xml) override;

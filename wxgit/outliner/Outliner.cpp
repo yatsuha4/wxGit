@@ -121,10 +121,12 @@ namespace wxgit::outliner
      */
     void Outliner::onSelectionChanged(wxTreeEvent& event)
     {
-        auto node = static_cast<Node*>(GetItemData(event.GetItem()));
-        if(auto repository = dynamic_cast<RepositoryNode*>(node))
+        if(auto node = static_cast<Node*>(GetItemData(event.GetItem())))
         {
-            getMainFrame()->setRepository(repository->getRepository());
+            if(auto repository = dynamic_cast<RepositoryNode*>(node))
+            {
+                getMainFrame()->setRepositoryNode(repository);
+            }
         }
     }
 
