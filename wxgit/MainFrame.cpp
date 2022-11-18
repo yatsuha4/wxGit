@@ -4,7 +4,6 @@
 #include "wxgit/FileWindow.hpp"
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/Menu.hpp"
-#include "wxgit/RepoBrowser.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/history/History.hpp"
 #include "wxgit/outliner/Outliner.hpp"

@@ -20,18 +20,12 @@ namespace wxgit
                 wxTL_MULTIPLE | 
                 wxTL_CHECKBOX |
                 wxTL_3STATE |
-                wxTL_NO_HEADER)
+                wxTL_NO_HEADER), 
+          Window(mainFrame)
     {
         AppendColumn("Path");
         Bind(wxEVT_TREELIST_SELECTION_CHANGED, &FileWindow::onSelectionChanged, this);
         Bind(wxEVT_TREELIST_ITEM_CHECKED, &FileWindow::onItemChecked, this);
-    }
-
-    /**
-     */
-    MainFrame* FileWindow::getMainFrame() const
-    {
-        return static_cast<MainFrame*>(GetParent());
     }
 
     /**

@@ -103,7 +103,6 @@
     <ClCompile Include="..\..\..\..\wxgit\Application.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\CommitWindow.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\DiffWindow.cpp" />
-    <ClCompile Include="..\..\..\..\wxgit\FileList.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\FileWindow.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Blob.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Commit.cpp" />
@@ -130,7 +129,6 @@
     <ClCompile Include="..\..\..\..\wxgit\outliner\RemoteNode.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\outliner\RepositoryNode.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\PathList.cpp" />
-    <ClCompile Include="..\..\..\..\wxgit\RepoBrowser.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\Serializable.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\Window.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\wxgit.cpp">
@@ -142,7 +140,6 @@
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\CommitWindow.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\DiffWindow.hpp" />
-    <ClInclude Include="..\..\..\..\wxgit\FileList.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\FileWindow.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Blob.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Commit.hpp" />
@@ -168,7 +165,6 @@
     <ClInclude Include="..\..\..\..\wxgit\outliner\RemoteNode.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\outliner\RepositoryNode.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\PathList.hpp" />
-    <ClInclude Include="..\..\..\..\wxgit\RepoBrowser.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\Serializable.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\Window.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\wxgit.hpp" />

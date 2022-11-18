@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "wxgit/PathList.hpp"
+#include "wxgit/Window.hpp"
 #include "wxgit/git/Diff.hpp"
 
 namespace wxgit
@@ -9,7 +10,8 @@ namespace wxgit
      * @brief ファイル一覧
      */
     class FileWindow
-        : public wxTreeListCtrl
+        : public wxTreeListCtrl, 
+          public Window
     {
         using super = wxTreeListCtrl;
 
@@ -22,8 +24,6 @@ namespace wxgit
     public:
         FileWindow(MainFrame* mainFrame);
         ~FileWindow() override = default;
-
-        MainFrame* getMainFrame() const;
 
         WXEDITOR_GETTER(CheckFiles, checkFiles_);
 

@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include "wxgit/Window.hpp"
 #include "wxgit/git/Diff.hpp"
 
 namespace wxgit
@@ -8,7 +9,8 @@ namespace wxgit
      * @brief 差分表示
      */
     class DiffWindow
-        : public wxListCtrl
+        : public wxListCtrl, 
+          public Window
     {
         using super = wxListCtrl;
 

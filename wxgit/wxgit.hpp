@@ -20,11 +20,9 @@ namespace wxgit
     WXEDITOR_DECLARE_CLASS(Application);
     WXEDITOR_DECLARE_CLASS(CommitWindow);
     WXEDITOR_DECLARE_CLASS(DiffWindow);
-    WXEDITOR_DECLARE_CLASS(FileList);
     WXEDITOR_DECLARE_CLASS(FileWindow);
     WXEDITOR_DECLARE_CLASS(MainFrame);
     WXEDITOR_DECLARE_CLASS(PathList);
-    WXEDITOR_DECLARE_CLASS(RepoBrowser);
 
     namespace git
     {

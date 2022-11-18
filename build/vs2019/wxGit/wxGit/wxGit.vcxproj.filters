@@ -18,9 +18,6 @@
     <ClCompile Include="..\..\..\..\wxgit\Application.cpp">
       <Filter>wxgit</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\wxgit\FileList.cpp">
-      <Filter>wxgit</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\wxgit\main.cpp">
       <Filter>wxgit</Filter>
     </ClCompile>
@@ -28,9 +25,6 @@
       <Filter>wxgit</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\wxgit\Menu.cpp">
-      <Filter>wxgit</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\wxgit\RepoBrowser.cpp">
       <Filter>wxgit</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\wxgit\Serializable.cpp">
@@ -122,16 +116,10 @@
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
       <Filter>wxgit</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\wxgit\FileList.hpp">
-      <Filter>wxgit</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\MainFrame.hpp">
       <Filter>wxgit</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\Menu.hpp">
-      <Filter>wxgit</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\wxgit\RepoBrowser.hpp">
       <Filter>wxgit</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\Serializable.hpp">
