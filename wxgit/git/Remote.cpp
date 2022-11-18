@@ -8,7 +8,7 @@ namespace wxgit::git
      * @param[in] remote リモート
      */
     Remote::Remote(RepositoryPtr& repository, git_remote* remote)
-        : repository_(repository_), 
+        : RepositoryReference(repository), 
           remote_(remote), 
           name_(wxString::FromUTF8(git_remote_name(remote)))
     {
@@ -16,14 +16,6 @@ namespace wxgit::git
         {
             refspecs_.push_back(std::make_shared<Refspec>(git_remote_get_refspec(remote_, i)));
         }
-    }
-
-    /**
-     * @brief リポジトリ
-     */
-    RepositoryPtr Remote::getRepository() const
-    {
-        return repository_.lock();
     }
 
     /**

@@ -8,7 +8,7 @@ namespace wxgit::git
      * @param[in] list リスト
      */
     Status::Status(const RepositoryPtr& repository, git_status_list* list)
-        : repository_(repository), 
+        : RepositoryReference(repository), 
           list_(list)
     {
         for(size_t i = 0, n = git_status_list_entrycount(list_); i < n; ++i)
@@ -23,13 +23,6 @@ namespace wxgit::git
     Status::~Status()
     {
         git_status_list_free(list_);
-    }
-
-    /**
-     */
-    RepositoryPtr Status::getRepository() const
-    {
-        return repository_.lock();
     }
 
     /**

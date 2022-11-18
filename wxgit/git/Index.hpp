@@ -1,21 +1,21 @@
 ﻿#pragma once
 
+#include "wxgit/git/RepositoryReference.hpp"
+
 namespace wxgit::git
 {
     /**
      * @brief インデックス
      */
     class Index
+        : public RepositoryReference
     {
     private:
-        std::weak_ptr<Repository> repository_;
         git_index* index_;
 
     public:
         Index(const RepositoryPtr& repository, git_index* index);
         ~Index();
-
-        RepositoryPtr getRepository() const;
 
         bool add(const Path& path);
         bool cancel(const Path& path);

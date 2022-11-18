@@ -100,7 +100,7 @@ namespace wxgit::git
      * @param[in] diff 差分
      */
     Diff::Diff(const RepositoryPtr& repository, git_diff* diff)
-        : repository_(repository), 
+        : RepositoryReference(repository), 
           diff_(diff)
     {
         git_diff_foreach(diff, 
@@ -128,15 +128,6 @@ namespace wxgit::git
     Diff::~Diff()
     {
         git_diff_free(diff_);
-    }
-
-    /**
-     * @brief リポジトリを取得する
-     * @return リポジトリ
-     */
-    RepositoryPtr Diff::getRepository() const
-    {
-        return repository_.lock();
     }
 
     /**

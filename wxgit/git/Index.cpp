@@ -10,7 +10,7 @@ namespace wxgit::git
      * @param[in] index インデックス
      */
     Index::Index(const RepositoryPtr& repository, git_index* index)
-        : repository_(repository), 
+        : RepositoryReference(repository), 
           index_(index)
     {
     }
@@ -21,15 +21,6 @@ namespace wxgit::git
     Index::~Index()
     {
         git_index_free(index_);
-    }
-
-    /**
-     * @brief リポジトリを取得する
-     * @return リポジトリ
-     */
-    RepositoryPtr Index::getRepository() const
-    {
-        return repository_.lock();
     }
 
     /**

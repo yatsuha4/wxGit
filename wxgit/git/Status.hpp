@@ -1,10 +1,12 @@
 ﻿#include "wxgit/git/Diff.hpp"
+#include "wxgit/git/RepositoryReference.hpp"
 
 namespace wxgit::git
 {
     /**
      */
     class Status
+        : public RepositoryReference
     {
     public:
         class Entry
@@ -23,7 +25,6 @@ namespace wxgit::git
         };
 
     private:
-        std::weak_ptr<Repository> repository_;
         git_status_list* list_;
         std::vector<Entry> entries_;
 
@@ -31,7 +32,6 @@ namespace wxgit::git
         Status(const RepositoryPtr& repository, git_status_list* list);
         ~Status();
 
-        RepositoryPtr getRepository() const;
         WXEDITOR_GETTER(Entries, entries_);
     };
 }
