@@ -1,4 +1,5 @@
-﻿#include "wxgit/DiffWindow.hpp"
+﻿#include "wxgit/CommitWindow.hpp"
+#include "wxgit/DiffWindow.hpp"
 #include "wxgit/FileWindow.hpp"
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/git/Index.hpp"
@@ -74,6 +75,7 @@ namespace wxgit
             }
             update();
         }
+        updateCheckFiles();
     }
 
     /**
@@ -98,6 +100,7 @@ namespace wxgit
         diff_.reset();
         status_.reset();
         pathList_ = std::make_shared<PathList>();
+        checkFiles_.clear();
     }
 
     /**
@@ -164,6 +167,25 @@ namespace wxgit
     }
 
     /**
+     * @brief チェックされたファイルのリストを更新する
+     */
+    void FileWindow::updateCheckFiles()
+    {
+        checkFiles_.clear();
+        for(auto item = GetFirstItem(); item.IsOk(); item = GetNextItem(item))
+        {
+            if(auto data = static_cast<ItemData*>(GetItemData(item)))
+            {
+                if(GetCheckedState(item) == wxCHK_CHECKED)
+                {
+                    checkFiles_.push_back(data->getDelta().getNewFile().getPath());
+                }
+            }
+        }
+        getMainFrame()->getCommitWindow()->setCanCommit(!checkFiles_.empty());
+    }
+
+    /**
      */
     void FileWindow::onSelectionChanged(wxTreeListEvent& event)
     {
@@ -177,60 +199,25 @@ namespace wxgit
      */
     void FileWindow::onItemChecked(wxTreeListEvent& event)
     {
-        onCheckItem(event.GetItem(), 
-                    GetCheckedState(event.GetItem()), 
-                    event.GetOldCheckedState());
-        status_->getRepository()->takeIndex()->write();
+        onCheckItem(event.GetItem(), GetCheckedState(event.GetItem()));
+        updateCheckFiles();
     }
 
     /**
      */
-    void FileWindow::onCheckItem(wxTreeListItem item, 
-                                 wxCheckBoxState state, 
-                                 wxCheckBoxState oldState)
+    void FileWindow::onCheckItem(wxTreeListItem item, wxCheckBoxState state)
     {
-        CheckItem(item, state);
-        if(auto data = static_cast<ItemData*>(GetItemData(item)))
-        {
-            if(state != oldState)
-            {
-                switch(state)
-                {
-                case wxCHK_CHECKED:
-                    addDelta(data->getDelta());
-                    break;
-                case wxCHK_UNCHECKED:
-                    removeDelta(data->getDelta());
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
-        else
+        auto data = static_cast<ItemData*>(GetItemData(item));
+        if(!data)
         {
             for(auto child = GetFirstChild(item);
                 child.IsOk();
                 child = GetNextSibling(child))
             {
-                onCheckItem(child, state, GetCheckedState(child));
+                CheckItem(child, state);
+                onCheckItem(child, state);
             }
         }
-    }
-
-    /**
-     */
-    void FileWindow::addDelta(const git::Diff::Delta& delta)
-    {
-        getRepository()->takeIndex()->add(delta.getNewFile().getPath());
-    }
-
-    /**
-     */
-    void FileWindow::removeDelta(const git::Diff::Delta& delta)
-    {
-        getRepository()->takeIndex()->remove(delta.getNewFile().getPath(), 
-                                             GIT_INDEX_STAGE_NORMAL);
     }
 
     /**

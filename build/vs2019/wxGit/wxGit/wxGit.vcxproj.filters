@@ -111,6 +111,12 @@
     <ClCompile Include="..\..\..\..\wxgit\git\Path.cpp">
       <Filter>wxgit\git</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\Window.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\git\RepositoryReference.cpp">
+      <Filter>wxgit\git</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
@@ -204,6 +210,12 @@
       <Filter>wxgit</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\git\Path.hpp">
+      <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\Window.hpp">
+      <Filter>wxgit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\git\RepositoryReference.hpp">
       <Filter>wxgit\git</Filter>
     </ClInclude>
   </ItemGroup>

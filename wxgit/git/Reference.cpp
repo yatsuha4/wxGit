@@ -1,4 +1,5 @@
-﻿#include "wxgit/git/Reference.hpp"
+﻿#include "wxgit/git/Commit.hpp"
+#include "wxgit/git/Reference.hpp"
 
 namespace wxgit::git
 {
@@ -8,7 +9,7 @@ namespace wxgit::git
      * @param[in] reference リファレンス
      */
     Reference::Reference(const RepositoryPtr& repository, git_reference* reference)
-        : repository_(repository), 
+        : RepositoryReference(repository), 
           reference_(reference), 
           name_(wxString::FromUTF8(git_reference_name(reference_)))
     {
@@ -35,5 +36,18 @@ namespace wxgit::git
     bool Reference::isHead() const
     {
         return isBranch() && git_branch_is_head(reference_);
+    }
+
+    /**
+     */
+    CommitPtr Reference::takeCommit() const
+    {
+        git_object* commit;
+        if(git_reference_peel(&commit, reference_, GIT_OBJECT_COMMIT))
+        {
+            return std::make_shared<Commit>(getRepository(), 
+                                            reinterpret_cast<git_commit*>(commit));
+        }
+        return nullptr;
     }
 }

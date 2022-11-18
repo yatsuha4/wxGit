@@ -1,5 +1,6 @@
 ﻿#include "wxgit/CommitWindow.hpp"
 #include "wxgit/MainFrame.hpp"
+#include "wxgit/git/Repository.hpp"
 #include "wxgit/git/Signature.hpp"
 
 namespace wxgit
@@ -10,22 +11,22 @@ namespace wxgit
      */
     CommitWindow::CommitWindow(MainFrame* mainFrame)
         : super(mainFrame, wxID_ANY), 
+          Window(mainFrame), 
           messageText_(new wxTextCtrl(this, wxID_ANY)), 
-          signatureText_(new wxStaticText(this, wxID_ANY, wxT("Sinature")))
+          signatureText_(new wxStaticText(this, wxID_ANY, _("Sinature"))), 
+          commitButton_(new wxButton(this, wxID_ANY, _("Commit")))
     {
         auto vbox = new wxBoxSizer(wxVERTICAL);
         vbox->Add(messageText_, wxSizerFlags().Expand().Proportion(1));
         {
             auto hbox = new wxBoxSizer(wxHORIZONTAL);
-            {
-                hbox->Add(signatureText_, wxSizerFlags().Expand().Proportion(1));
-                auto button = new wxButton(this, wxID_ANY, wxT("Commit"));
-                hbox->Add(button);
-            }
-            vbox->Add(hbox, wxSizerFlags().Expand().Proportion(1));
+            hbox->Add(signatureText_, wxSizerFlags().Expand().Proportion(1));
+            hbox->Add(commitButton_);
+            vbox->Add(hbox, wxSizerFlags().Expand());
         }
         SetSizerAndFit(vbox);
-        Disable();
+        setCanCommit(false);
+        Bind(wxEVT_BUTTON, &CommitWindow::onButtonCommit, this, commitButton_->GetId());
     }
 
     /**
@@ -38,5 +39,39 @@ namespace wxgit
         signatureText_->SetLabel(wxString::Format("%s <%s>", 
                                                   signature->getName(), 
                                                   signature->getEmail()));
+    }
+
+    /**
+     * @brief コミット可能かセットする
+     * @param[in] canCommit コミット可能なとき真
+     */
+    void CommitWindow::setCanCommit(bool canCommit)
+    {
+        commitButton_->Enable(canCommit);
+    }
+
+    /**
+     * @brief コミットボタンが押された
+     */
+    void CommitWindow::onButtonCommit(wxCommandEvent& event)
+    {
+        auto message = messageText_->GetValue();
+        if(message.IsEmpty())
+        {
+            wxMessageDialog dialog(getMainFrame(), 
+                                   _("Message is empty"), 
+                                   _("Commit"), 
+                                   wxYES_NO | wxNO_DEFAULT |
+                                   wxICON_WARNING |
+                                   wxCENTRE);
+            if(dialog.ShowModal() != wxOK)
+            {
+                return;
+            }
+        }
+        if(!getMainFrame()->getRepository()->commit(message))
+        {
+            wxLogError("commit failed");
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace wxgit::git
      * @param[in] commit コミット
      */
     Commit::Commit(const RepositoryPtr& repository, git_commit* commit)
-        : repository_(repository), 
+        : RepositoryReference(repository), 
           commit_(commit), 
           tree_(nullptr), 
           message_(wxString::FromUTF8(git_commit_message(commit))), 
@@ -32,15 +32,6 @@ namespace wxgit::git
             git_tree_free(tree_);
         }
         git_commit_free(commit_);
-    }
-
-    /**
-     * @brief リポジトリを取得する
-     * @return リポジトリ
-     */
-    RepositoryPtr Commit::getRepository() const
-    {
-        return repository_.lock();
     }
 
     /**

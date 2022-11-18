@@ -1,14 +1,16 @@
 ﻿#pragma once
 
+#include "wxgit/git/RepositoryReference.hpp"
+
 namespace wxgit::git
 {
     /**
      * @brief
      */
     class Reference
+        : public RepositoryReference
     {
     private:
-        std::weak_ptr<Repository> repository_;
         git_reference* reference_;
         wxString name_;
 
@@ -20,6 +22,8 @@ namespace wxgit::git
 
         bool isBranch() const;
         bool isHead() const;
+
+        CommitPtr takeCommit() const;
 
     protected:
         WXEDITOR_GETTER(Reference, reference_);

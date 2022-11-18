@@ -28,6 +28,7 @@ namespace wxgit::git
         Tree(git_tree* tree);
         ~Tree();
 
+        WXEDITOR_GETTER(Tree, tree_);
         WXEDITOR_GETTER(Entries, entries_);
 
     private:

@@ -32,19 +32,24 @@ namespace wxgit::git
         std::vector<ReferencePtr> takeRemoteBranches();
 
 	const std::vector<CommitPtr>& getCommits(bool update = false);
+
         StatusPtr takeStatus();
         std::vector<RemotePtr> takeRemotes();
 
-        SignaturePtr createSignature() const;
+        SignaturePtr takeSignature() const;
 
         DiffPtr createDiff();
 
         IndexPtr takeIndex();
+        CommitPtr commit(const wxString& message);
+
+        TreePtr lookupTree(const git_oid& oid) const;
 
 	static RepositoryPtr Open(const Path& dir);
         static RepositoryPtr Init(const Path& dir, bool isBare = false);
 
     private:
 	std::vector<ReferencePtr> takeBranches(git_branch_t type);
+        CommitPtr lookupCommit(const git_oid& oid);
     };
 }

@@ -22,6 +22,8 @@ namespace wxgit::git
         bool remove(const Path& path, git_index_stage_t stage);
         bool write();
 
+        TreePtr writeTree() const;
+
     private:
         static int UpdateCancel(const char* path, const char* pathspec, void* payload);
     };

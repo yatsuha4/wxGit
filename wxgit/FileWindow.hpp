@@ -17,12 +17,15 @@ namespace wxgit
         git::DiffPtr diff_;
         git::StatusPtr status_;
         PathListPtr pathList_;
+        std::vector<git::Path> checkFiles_;
 
     public:
         FileWindow(MainFrame* mainFrame);
         ~FileWindow() override = default;
 
         MainFrame* getMainFrame() const;
+
+        WXEDITOR_GETTER(CheckFiles, checkFiles_);
 
         void showDiff(const git::DiffPtr& diff);
         void showStatus(const git::StatusPtr& status);
@@ -36,17 +39,16 @@ namespace wxgit
         bool update(const wxTreeListItem& parent, 
                     const git::Path& parentPath, 
                     const std::shared_ptr<PathList::Item>& item);
+        void updateCheckFiles();
 
         void onSelectionChanged(wxTreeListEvent& event);
 
         void onItemChecked(wxTreeListEvent& event);
-        void onCheckItem(wxTreeListItem item, 
-                         wxCheckBoxState state, 
-                         wxCheckBoxState oldState);
+        void onCheckItem(wxTreeListItem item, wxCheckBoxState state);
 
-        void addDelta(const git::Diff::Delta& delta);
-        void removeDelta(const git::Diff::Delta& delta);
-
+        /**
+         * @brief 各ファイルのデータ
+         */
         class ItemData
             : public wxClientData
         {

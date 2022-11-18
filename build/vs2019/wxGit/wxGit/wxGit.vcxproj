@@ -115,6 +115,7 @@
     <ClCompile Include="..\..\..\..\wxgit\git\Refspec.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Remote.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Repository.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\git\RepositoryReference.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Signature.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Status.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Tree.cpp" />
@@ -131,6 +132,7 @@
     <ClCompile Include="..\..\..\..\wxgit\PathList.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\RepoBrowser.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\Serializable.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\Window.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\wxgit.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -152,6 +154,7 @@
     <ClInclude Include="..\..\..\..\wxgit\git\Refspec.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Remote.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Repository.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\git\RepositoryReference.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Signature.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Status.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Tree.hpp" />
@@ -167,6 +170,7 @@
     <ClInclude Include="..\..\..\..\wxgit\PathList.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\RepoBrowser.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\Serializable.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\Window.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\wxgit.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,5 +1,6 @@
 ﻿#include "wxgit/git/Index.hpp"
 #include "wxgit/git/Path.hpp"
+#include "wxgit/git/Repository.hpp"
 
 namespace wxgit::git
 {
@@ -66,6 +67,20 @@ namespace wxgit::git
     bool Index::write()
     {
         return git_index_write(index_) == GIT_OK;
+    }
+
+    /**
+     * @brief ツリーを取得する
+     * @return ツリー
+     */
+    TreePtr Index::writeTree() const
+    {
+        git_oid oid;
+        if(git_index_write_tree(&oid, index_) == GIT_OK)
+        {
+            return getRepository()->lookupTree(oid);
+        }
+        return nullptr;
     }
 
     int Index::UpdateCancel(const char* path, const char* pathspec, void* payload)

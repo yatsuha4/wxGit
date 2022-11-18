@@ -105,7 +105,7 @@ namespace wxgit
             if(auto repository = getRepository())
             {
                 getHistory()->showCommits(repository->getCommits());
-                getCommitWindow()->setSignature(repository->createSignature());
+                getCommitWindow()->setSignature(repository->takeSignature());
             }
         }
     }

@@ -8,6 +8,7 @@
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/git/Signature.hpp"
 #include "wxgit/git/Status.hpp"
+#include "wxgit/git/Tree.hpp"
 
 namespace wxgit::git
 {
@@ -115,10 +116,9 @@ namespace wxgit::git
                     git_oid oid;
                     while(git_revwalk_next(&oid, walk) == GIT_OK)
                     {
-                        git_commit* commit;
-                        if(git_commit_lookup(&commit, repository_, &oid) == GIT_OK)
+                        if(auto commit = lookupCommit(oid))
                         {
-                            commits_.push_back(std::make_shared<Commit>(self, commit));
+                            commits_.push_back(commit);
                         }
                     }
                 }
@@ -173,10 +173,10 @@ namespace wxgit::git
     }
 
     /**
-     * @brief シグネチャを取得(生成)する
+     * @brief シグネチャを取得する
      * @return シグネチャ
      */
-    SignaturePtr Repository::createSignature() const
+    SignaturePtr Repository::takeSignature() const
     {
         git_signature* signature;
         if(git_signature_default(&signature, repository_) == GIT_OK)
@@ -240,6 +240,50 @@ namespace wxgit::git
     }
 
     /**
+     * @brief コミット
+     * @param[in] message メッセージ
+     */
+    CommitPtr Repository::commit(const wxString& message)
+    {
+        auto head = takeHead();
+        auto parent = head ? head->takeCommit()->getCommit() : nullptr;
+        auto index = takeIndex();
+        auto tree = index->writeTree();
+        auto signature = takeSignature();
+        git_oid oid;
+        auto result = git_commit_create_v(&oid, 
+                                          repository_, 
+                                          "HEAD", 
+                                          signature->getSignature(), 
+                                          signature->getSignature(), 
+                                          nullptr, 
+                                          message.ToUTF8(), 
+                                          tree ? tree->getTree() : nullptr, 
+                                          parent ? 1 : 0, 
+                                          parent);
+        if(result == GIT_OK)
+        {
+            return lookupCommit(oid);
+        }
+        return nullptr;
+    }
+
+    /**
+     * @brief ツリーを取得する
+     * @param[in] oid ツリーのオブジェクトID
+     * @return ツリー
+     */
+    TreePtr Repository::lookupTree(const git_oid& oid) const
+    {
+        git_tree* tree;
+        if(git_tree_lookup(&tree, repository_, &oid) == GIT_OK)
+        {
+            return std::make_shared<Tree>(tree);
+        }
+        return nullptr;
+    }
+
+    /**
      * @brief リポジトリを開く
      * @param[in] dir ディレクトリ
      * @return 開いたリポジトリ
@@ -267,6 +311,18 @@ namespace wxgit::git
             return nullptr;
         }
         return std::make_shared<Repository>(repository);
+    }
+
+    /**
+     */
+    CommitPtr Repository::lookupCommit(const git_oid& oid)
+    {
+        git_commit* commit;
+        if(git_commit_lookup(&commit, repository_, &oid) == GIT_OK)
+        {
+            return std::make_shared<Commit>(shared_from_this(), commit);
+        }
+        return nullptr;
     }
 
     /**
