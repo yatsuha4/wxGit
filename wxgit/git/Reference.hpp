@@ -23,6 +23,8 @@ namespace wxgit::git
         bool isBranch() const;
         bool isHead() const;
 
+        wxString getBranchName() const;
+
         CommitPtr takeCommit() const;
 
     protected:

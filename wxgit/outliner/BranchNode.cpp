@@ -8,9 +8,9 @@ namespace wxgit::outliner
      * @param[in] branch ブランチ
      */
     BranchNode::BranchNode(const git::ReferencePtr& branch)
-        : branch_(branch)
+        : super(branch->getBranchName()), 
+          branch_(branch)
     {
-        setName(branch->getName());
     }
 
     /**

@@ -39,6 +39,20 @@ namespace wxgit::git
     }
 
     /**
+     * @brief ブランチ名を取得する
+     * @return ブランチ名
+     */
+    wxString Reference::getBranchName() const
+    {
+        const char* name;
+        if(git_branch_name(&name, reference_) == GIT_OK)
+        {
+            return wxString::FromUTF8(name);
+        }
+        return wxEmptyString;
+    }
+
+    /**
      */
     CommitPtr Reference::takeCommit() const
     {
