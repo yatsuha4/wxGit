@@ -105,6 +105,7 @@ namespace wxgit
             {
                 getHistory()->showCommits(repository->getCommits());
                 getCommitWindow()->setSignature(repository->takeSignature());
+                status();
             }
         }
     }
