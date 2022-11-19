@@ -5,15 +5,33 @@ namespace wxgit
     /**
      * @brief ウィンドウ
      */
+    template <class T>
     class Window
+        : public T
     {
-    private:
-        MainFrame* mainFrame_;
-
     public:
-        Window(MainFrame* mainFrame);
-        ~Window() = default;
+        /**
+         * @brief コンストラクタ
+         * @param[in] mainFrame メインフレーム(親)
+         */
+        template <class... Args>
+        Window(MainFrame* mainFrame, Args&&... args)
+            : T(mainFrame, args...)
+        {
+        }
 
-        WXEDITOR_GETTER(MainFrame, mainFrame_);
+        /**
+         * @brief デストラクタ
+         */
+        ~Window() override = default;
+
+        /**
+         * @brief メインフレームを取得する
+         * @return メインフレーム
+         */
+        MainFrame* getMainFrame() const
+        {
+            return static_cast<MainFrame*>(T::GetParent());
+        }
     };
 }

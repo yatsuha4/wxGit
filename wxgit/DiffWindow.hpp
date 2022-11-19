@@ -9,10 +9,9 @@ namespace wxgit
      * @brief 差分表示
      */
     class DiffWindow
-        : public wxListCtrl, 
-          public Window
+        : public Window<wxListCtrl>
     {
-        using super = wxListCtrl;
+        using super = Window<wxListCtrl>;
 
     private:
         enum Column

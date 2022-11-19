@@ -20,8 +20,7 @@ namespace wxgit
                 wxTL_MULTIPLE | 
                 wxTL_CHECKBOX |
                 wxTL_3STATE |
-                wxTL_NO_HEADER), 
-          Window(mainFrame)
+                wxTL_NO_HEADER)
     {
         AppendColumn("Path");
         Bind(wxEVT_TREELIST_SELECTION_CHANGED, &FileWindow::onSelectionChanged, this);

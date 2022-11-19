@@ -11,7 +11,6 @@ namespace wxgit
      */
     CommitWindow::CommitWindow(MainFrame* mainFrame)
         : super(mainFrame, wxID_ANY), 
-          Window(mainFrame), 
           messageText_(new wxTextCtrl(this, wxID_ANY)), 
           signatureText_(new wxStaticText(this, wxID_ANY, _("Sinature"))), 
           commitButton_(new wxButton(this, wxID_ANY, _("Commit")))

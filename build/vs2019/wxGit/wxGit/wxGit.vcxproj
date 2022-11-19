@@ -130,7 +130,6 @@
     <ClCompile Include="..\..\..\..\wxgit\outliner\RepositoryNode.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\PathList.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\Serializable.cpp" />
-    <ClCompile Include="..\..\..\..\wxgit\Window.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\wxgit.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>

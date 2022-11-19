@@ -8,10 +8,9 @@ namespace wxgit
      * @brief コミットウィンドウ
      */
     class CommitWindow
-        : public wxWindow, 
-          public Window
+        : public Window<wxWindow>
     {
-        using super = wxWindow;
+        using super = Window<wxWindow>;
 
     private:
         wxTextCtrl* messageText_;

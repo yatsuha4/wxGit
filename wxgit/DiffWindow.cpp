@@ -12,8 +12,7 @@ namespace wxgit
                 wxID_ANY, 
                 wxDefaultPosition, 
                 wxDefaultSize, 
-                wxLC_REPORT), 
-          Window(mainFrame)
+                wxLC_REPORT)
     {
         InsertColumn(Column::OLD_LINE, wxT("OldLine"));
         InsertColumn(Column::NEW_LINE, wxT("NewLine"));

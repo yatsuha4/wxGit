@@ -105,9 +105,6 @@
     <ClCompile Include="..\..\..\..\wxgit\git\Path.cpp">
       <Filter>wxgit\git</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\wxgit\Window.cpp">
-      <Filter>wxgit</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\wxgit\git\RepositoryReference.cpp">
       <Filter>wxgit\git</Filter>
     </ClCompile>
