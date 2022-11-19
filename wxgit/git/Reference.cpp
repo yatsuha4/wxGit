@@ -57,7 +57,7 @@ namespace wxgit::git
     CommitPtr Reference::takeCommit() const
     {
         git_object* commit;
-        if(git_reference_peel(&commit, reference_, GIT_OBJECT_COMMIT))
+        if(git_reference_peel(&commit, reference_, GIT_OBJECT_COMMIT) == GIT_OK)
         {
             return std::make_shared<Commit>(getRepository(), 
                                             reinterpret_cast<git_commit*>(commit));

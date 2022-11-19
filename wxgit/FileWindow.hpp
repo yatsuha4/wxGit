@@ -3,6 +3,7 @@
 #include "wxgit/PathList.hpp"
 #include "wxgit/Window.hpp"
 #include "wxgit/git/Diff.hpp"
+#include "wxgit/git/Status.hpp"
 
 namespace wxgit
 {
@@ -33,7 +34,8 @@ namespace wxgit
         git::RepositoryPtr getRepository() const;
 
         void clear();
-        void appendDelta(const git::Diff::Delta& delta, wxCheckBoxState state);
+        void appendDelta(const git::Diff::Delta& delta);
+        void appendEntry(const git::Status::Entry& entry);
         void update();
         bool update(const wxTreeListItem& parent, 
                     const git::Path& parentPath, 
@@ -53,14 +55,30 @@ namespace wxgit
         {
         private:
             const git::Diff::Delta& delta_;
-            wxCheckBoxState state_;
 
         public:
-            ItemData(const git::Diff::Delta& delta, wxCheckBoxState state);
+            ItemData(const git::Diff::Delta& delta);
             ~ItemData() = default;
 
             WXEDITOR_GETTER(Delta, delta_);
-            WXEDITOR_GETTER(State, state_);
+        };
+
+        /**
+         */
+        class EntryItem
+            : public wxClientData
+        {
+        private:
+            const git::Status::Entry& entry_;
+
+        public:
+            EntryItem(const git::Status::Entry& entry);
+            ~EntryItem() = default;
+
+            WXEDITOR_GETTER(Entry, entry_);
+
+            git::Path getPath() const;
+            wxCheckBoxState getState() const;
         };
     };
 }

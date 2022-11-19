@@ -4,7 +4,6 @@
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/git/Index.hpp"
 #include "wxgit/git/Repository.hpp"
-#include "wxgit/git/Status.hpp"
 
 namespace wxgit
 {
@@ -37,7 +36,7 @@ namespace wxgit
         diff_ = diff;
         for(auto& delta : diff->getDeltas())
         {
-            appendDelta(delta, wxCHK_UNCHECKED);
+            appendDelta(delta);
         }
         update();
     }
@@ -54,17 +53,7 @@ namespace wxgit
         {
             for(auto& entry : status->getEntries())
             {
-                if(entry.getHeadToIndex().isValid())
-                {
-                    appendDelta(entry.getHeadToIndex(), 
-                                entry.getIndexToWorkdir().isValid()
-                                ? wxCHK_UNDETERMINED
-                                : wxCHK_CHECKED);
-                }
-                else if(entry.getIndexToWorkdir().isValid())
-                {
-                    appendDelta(entry.getIndexToWorkdir(), wxCHK_UNCHECKED);
-                }
+                appendEntry(entry);
             }
             update();
         }
@@ -99,9 +88,8 @@ namespace wxgit
     /**
      * @brief デルタを表示する
      * @param[in] delta デルタ
-     * @param[in] state チェック状態
      */
-    void FileWindow::appendDelta(const git::Diff::Delta& delta, wxCheckBoxState state)
+    void FileWindow::appendDelta(const git::Diff::Delta& delta)
     {
         switch(delta.getStatus())
         {
@@ -109,11 +97,21 @@ namespace wxgit
         case GIT_DELTA_DELETED:
         case GIT_DELTA_MODIFIED:
         case GIT_DELTA_UNTRACKED:
-            pathList_->append(delta.getNewFile().getPath(), new ItemData(delta, state));
+            pathList_->append(delta.getNewFile().getPath(), new ItemData(delta));
             break;
         default:
             break;
         }
+    }
+
+    /**
+     * @brief ステータスのエントリを追加する
+     * @param[in] entry ステータスのエントリ
+     */
+    void FileWindow::appendEntry(const git::Status::Entry& entry)
+    {
+        auto item = new EntryItem(entry);
+        pathList_->append(item->getPath(), item);
     }
 
     /**
@@ -146,10 +144,11 @@ namespace wxgit
         {
             check = (update(id, item->getPath(), child) && check);
         }
-        if(auto data = dynamic_cast<ItemData*>(item->getData()))
+        if(auto data = dynamic_cast<EntryItem*>(item->getData()))
         {
-            CheckItem(id, data->getState());
-            check = (check && (data->getState() == wxCHK_CHECKED));
+            auto state = data->getState();
+            CheckItem(id, state);
+            check = (check && (state == wxCHK_CHECKED));
         }
         else
         {
@@ -167,11 +166,11 @@ namespace wxgit
         checkFiles_.clear();
         for(auto item = GetFirstItem(); item.IsOk(); item = GetNextItem(item))
         {
-            if(auto data = static_cast<ItemData*>(GetItemData(item)))
+            if(auto data = dynamic_cast<EntryItem*>(GetItemData(item)))
             {
-                if(GetCheckedState(item) == wxCHK_CHECKED)
+                if(GetCheckedState(item) != wxCHK_UNCHECKED)
                 {
-                    checkFiles_.push_back(data->getDelta().getNewFile().getPath());
+                    checkFiles_.push_back(data->getPath());
                 }
             }
         }
@@ -182,7 +181,7 @@ namespace wxgit
      */
     void FileWindow::onSelectionChanged(wxTreeListEvent& event)
     {
-        if(auto data = static_cast<ItemData*>(GetItemData(event.GetItem())))
+        if(auto data = dynamic_cast<ItemData*>(GetItemData(event.GetItem())))
         {
             getMainFrame()->getDiffWindow()->showDelta(data->getDelta());
         }
@@ -200,8 +199,14 @@ namespace wxgit
      */
     void FileWindow::onCheckItem(wxTreeListItem item, wxCheckBoxState state)
     {
-        auto data = static_cast<ItemData*>(GetItemData(item));
-        if(!data)
+        if(auto data = dynamic_cast<EntryItem*>(GetItemData(item)))
+        {
+            if(state == wxCHK_UNCHECKED)
+            {
+                CheckItem(item, data->getState());
+            }
+        }
+        else
         {
             for(auto child = GetFirstChild(item);
                 child.IsOk();
@@ -215,9 +220,35 @@ namespace wxgit
 
     /**
      */
-    FileWindow::ItemData::ItemData(const git::Diff::Delta& delta, wxCheckBoxState state)
-        : delta_(delta), 
-          state_(state)
+    FileWindow::ItemData::ItemData(const git::Diff::Delta& delta)
+        : delta_(delta)
     {
+    }
+
+    /**
+     */
+    FileWindow::EntryItem::EntryItem(const git::Status::Entry& entry)
+        : entry_(entry)
+    {
+        wxASSERT(entry_.getHeadToIndex().isValid() ||
+                 entry_.getIndexToWorkdir().isValid());
+    }
+
+    /**
+     */
+    git::Path FileWindow::EntryItem::getPath() const
+    {
+        return (entry_.getHeadToIndex().isValid()
+                ? entry_.getHeadToIndex()
+                : entry_.getIndexToWorkdir()).getNewFile().getPath();
+    }
+
+    /**
+     */
+    wxCheckBoxState FileWindow::EntryItem::getState() const
+    {
+        return entry_.getHeadToIndex().isValid()
+            ? wxCHK_UNDETERMINED
+            : wxCHK_UNCHECKED;
     }
 }
