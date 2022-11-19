@@ -13,7 +13,15 @@ namespace wxgit::git
     {
         for(size_t i = 0, n = git_status_list_entrycount(list_); i < n; ++i)
         {
-            entries_.emplace_back(git_status_byindex(list_, i));
+            auto entry = git_status_byindex(list_, i);
+            switch(entry->status)
+            {
+            case GIT_STATUS_IGNORED:
+                break;
+            default:
+                entries_.emplace_back(entry);
+                break;
+            }
         }
     }
 
