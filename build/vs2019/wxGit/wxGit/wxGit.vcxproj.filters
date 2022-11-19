@@ -24,9 +24,6 @@
     <ClCompile Include="..\..\..\..\wxgit\MainFrame.cpp">
       <Filter>wxgit</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\wxgit\Menu.cpp">
-      <Filter>wxgit</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\wxgit\Serializable.cpp">
       <Filter>wxgit</Filter>
     </ClCompile>
@@ -116,7 +113,7 @@
     <ClInclude Include="..\..\..\..\wxgit\MainFrame.hpp">
       <Filter>wxgit</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\wxgit\Menu.hpp">
+    <ClInclude Include="..\..\..\..\wxgit\Id.hpp">
       <Filter>wxgit</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\Serializable.hpp">

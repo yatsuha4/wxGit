@@ -1,5 +1,4 @@
 ﻿#include "wxgit/MainFrame.hpp"
-#include "wxgit/Menu.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/history/History.hpp"
 #include "wxgit/outliner/Node.hpp"

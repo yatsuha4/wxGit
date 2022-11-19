@@ -2,8 +2,8 @@
 #include "wxgit/CommitWindow.hpp"
 #include "wxgit/DiffWindow.hpp"
 #include "wxgit/FileWindow.hpp"
+#include "wxgit/Id.hpp"
 #include "wxgit/MainFrame.hpp"
-#include "wxgit/Menu.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/history/History.hpp"
 #include "wxgit/outliner/Outliner.hpp"
@@ -185,15 +185,15 @@ namespace wxgit
     {
         auto menuBar = new wxMenuBar();
         {
-            auto menu = new Menu();
-            menu->append(Menu::Id::FILE_QUIT);
-            menuBar->Append(menu, "File");
+            auto menu = new wxMenu();
+            menu->Append(ID_FILE_QUIT, _("Quit"));
+            menuBar->Append(menu, _("File"));
         }
         {
-            auto menu = new Menu();
-            menu->append(Menu::Id::REPOSITORY_OPEN);
-            menu->append(Menu::Id::REPOSITORY_CLONE);
-            menuBar->Append(menu, "Repository");
+            auto menu = new wxMenu();
+            menu->Append(ID_REPOSITORY_OPEN, _("Open"));
+            menu->Append(ID_REPOSITORY_CLONE, _("Clone"));
+            menuBar->Append(menu, _("Repository"));
         }
         SetMenuBar(menuBar);
         Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::onSelectMenu, this);
@@ -205,17 +205,17 @@ namespace wxgit
     void MainFrame::setupToolBar()
     {
         auto toolBar = CreateToolBar(wxTB_DEFAULT_STYLE | wxTB_TEXT);
-        toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_CLONE), 
-                         Menu::GetText(Menu::Id::REPOSITORY_CLONE), 
+        toolBar->AddTool(ID_REPOSITORY_CLONE, 
+                         _("Clone"), 
                          wxArtProvider::GetBitmap(wxART_COPY));
-        toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_OPEN), 
-                         Menu::GetText(Menu::Id::REPOSITORY_OPEN), 
+        toolBar->AddTool(ID_REPOSITORY_OPEN, 
+                         _("Open"), 
                          wxArtProvider::GetBitmap(wxART_FILE_OPEN));
-        toolBar->AddTool(static_cast<int>(Menu::Id::REPOSITORY_INIT), 
-                         Menu::GetText(Menu::Id::REPOSITORY_INIT), 
+        toolBar->AddTool(ID_REPOSITORY_INIT, 
+                         _("Init"), 
                          wxArtProvider::GetBitmap(wxART_NEW));
-        toolBar->AddTool(static_cast<int>(Menu::Id::WORK_STATUS), 
-                         Menu::GetText(Menu::Id::WORK_STATUS), 
+        toolBar->AddTool(ID_WORK_STATUS, 
+                         _("Status"), 
                          wxArtProvider::GetBitmap(wxART_PLUS));
         toolBar->Realize();
         Bind(wxEVT_TOOL, &MainFrame::onSelectMenu, this);
@@ -226,25 +226,24 @@ namespace wxgit
      */
     void MainFrame::onSelectMenu(wxCommandEvent& event)
     {
-        auto id = static_cast<Menu::Id>(event.GetId());
-        switch(id)
+        switch(event.GetId())
         {
-        case Menu::Id::FILE_QUIT:
+        case ID_FILE_QUIT:
             Close();
             break;
-        case Menu::Id::REPOSITORY_OPEN:
+        case ID_REPOSITORY_OPEN:
             openRepository();
             break;
-        case Menu::Id::REPOSITORY_INIT:
+        case ID_REPOSITORY_INIT:
             initRepository();
             break;
-        case Menu::Id::REPOSITORY_CLOSE:
+        case ID_REPOSITORY_CLOSE:
             if(auto node = dynamic_cast<outliner::RepositoryNode*>(menuNode_))
             {
                 closeRepository(node);
             }
             break;
-        case Menu::Id::WORK_STATUS:
+        case ID_WORK_STATUS:
             status();
             break;
         default:

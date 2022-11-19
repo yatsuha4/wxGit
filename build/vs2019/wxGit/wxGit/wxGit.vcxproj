@@ -121,7 +121,6 @@
     <ClCompile Include="..\..\..\..\wxgit\history\History.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\main.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\MainFrame.cpp" />
-    <ClCompile Include="..\..\..\..\wxgit\Menu.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\outliner\BranchNode.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\outliner\Node.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\outliner\Outliner.cpp" />
@@ -156,7 +155,7 @@
     <ClInclude Include="..\..\..\..\wxgit\git\Tree.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\history\History.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\MainFrame.hpp" />
-    <ClInclude Include="..\..\..\..\wxgit\Menu.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\Id.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\outliner\BranchNode.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\outliner\Node.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\outliner\Outliner.hpp" />

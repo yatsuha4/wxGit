@@ -1,4 +1,4 @@
-﻿#include "wxgit/Menu.hpp"
+﻿#include "wxgit/Id.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/outliner/BranchNode.hpp"
 #include "wxgit/outliner/Outliner.hpp"
@@ -23,8 +23,8 @@ namespace wxgit::outliner
      */
     wxMenu* RepositoryNode::getContextMenu()
     {
-        auto menu = new Menu();
-        menu->append(Menu::Id::REPOSITORY_CLOSE);
+        auto menu = new wxMenu();
+        menu->Append(ID_REPOSITORY_CLOSE, _("Close repository"));
         return menu;
     }
 
