@@ -122,7 +122,7 @@ namespace wxgit::outliner
     {
         if(auto node = static_cast<Node*>(GetItemData(event.GetItem())))
         {
-            if(auto repository = dynamic_cast<RepositoryNode*>(node))
+            if(auto repository = findParentNode<RepositoryNode>(node))
             {
                 getMainFrame()->setRepositoryNode(repository);
             }

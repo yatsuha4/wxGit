@@ -28,6 +28,19 @@ namespace wxgit::outliner
         bool deserialize(const wxXmlNode* xml) override;
         WXGIT_GET_SERIAL_NAME(Outliner);
 
+        template <class T>
+        T* findParentNode(Node* node) const
+        {
+            for(auto iter = node; iter; iter = getParentNode(iter))
+            {
+                if(auto parent = dynamic_cast<T*>(iter))
+                {
+                    return parent;
+                }
+            }
+            return nullptr;
+        }
+
     private:
         void onSelectionChanged(wxTreeEvent& event);
         void onContextMenu(wxTreeEvent& event);
