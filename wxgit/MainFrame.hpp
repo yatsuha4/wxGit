@@ -15,7 +15,7 @@ namespace wxgit
         wxStatusBar* statusBar_;
         std::unique_ptr<wxAuiManager> auiManager_;
         outliner::Outliner* outliner_;
-        history::History* history_;
+        LogWindow* logWindow_;
         FileWindow* fileWindow_;
         DiffWindow* diffWindow_;
         CommitWindow* commitWindow_;
@@ -27,7 +27,7 @@ namespace wxgit
         ~MainFrame() override;
 
         WXEDITOR_GETTER(Outliner, outliner_);
-        WXEDITOR_GETTER(History, history_);
+        WXEDITOR_GETTER(LogWindow, logWindow_);
         WXEDITOR_GETTER(FileWindow, fileWindow_);
         WXEDITOR_GETTER(DiffWindow, diffWindow_);
         WXEDITOR_GETTER(CommitWindow, commitWindow_);

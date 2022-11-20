@@ -3,9 +3,9 @@
 #include "wxgit/DiffWindow.hpp"
 #include "wxgit/FileWindow.hpp"
 #include "wxgit/Id.hpp"
+#include "wxgit/LogWindow.hpp"
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/git/Repository.hpp"
-#include "wxgit/history/History.hpp"
 #include "wxgit/outliner/Outliner.hpp"
 #include "wxgit/outliner/RepositoryNode.hpp"
 
@@ -16,7 +16,7 @@ namespace wxgit
      */
     enum
     {
-        LAYER_HISTORY, 
+        LAYER_LOG, 
         LAYER_FILE, 
         LAYER_COMMIT, 
         LAYER_OUTLINER
@@ -32,7 +32,7 @@ namespace wxgit
           statusBar_(CreateStatusBar()), 
           auiManager_(new wxAuiManager(this)), 
           outliner_(new outliner::Outliner(this)), 
-          history_(new history::History(this)), 
+          logWindow_(new LogWindow(this)), 
           fileWindow_(new FileWindow(this)), 
           diffWindow_(new DiffWindow(this)), 
           commitWindow_(new CommitWindow(this)), 
@@ -50,13 +50,13 @@ namespace wxgit
                              Left().
                              BestSize(200, 800).
                              Layer(LAYER_OUTLINER));
-        auiManager_->AddPane(history_, 
+        auiManager_->AddPane(logWindow_, 
                              wxAuiPaneInfo().
-                             Name("History").
-                             Caption("History").
+                             Name("Log").
+                             Caption("Log").
                              CloseButton(false).
                              CenterPane().
-                             Layer(LAYER_HISTORY));
+                             Layer(LAYER_LOG));
         auiManager_->AddPane(commitWindow_, 
                              wxAuiPaneInfo().
                              Name("Commit").
@@ -103,7 +103,7 @@ namespace wxgit
             repositoryNode_ = node;
             if(auto repository = getRepository())
             {
-                getHistory()->showCommits(repository->getCommits());
+                getLogWindow()->showCommits(repository->getCommits());
                 getCommitWindow()->setSignature(repository->takeSignature());
                 status();
             }

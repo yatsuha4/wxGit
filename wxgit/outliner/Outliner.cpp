@@ -1,6 +1,5 @@
 ﻿#include "wxgit/MainFrame.hpp"
 #include "wxgit/git/Repository.hpp"
-#include "wxgit/history/History.hpp"
 #include "wxgit/outliner/Node.hpp"
 #include "wxgit/outliner/Outliner.hpp"
 #include "wxgit/outliner/RepositoryNode.hpp"

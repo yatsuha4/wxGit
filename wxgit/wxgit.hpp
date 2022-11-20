@@ -21,6 +21,7 @@ namespace wxgit
     WXEDITOR_DECLARE_CLASS(CommitWindow);
     WXEDITOR_DECLARE_CLASS(DiffWindow);
     WXEDITOR_DECLARE_CLASS(FileWindow);
+    WXEDITOR_DECLARE_CLASS(LogWindow);
     WXEDITOR_DECLARE_CLASS(MainFrame);
     WXEDITOR_DECLARE_CLASS(PathList);
 
@@ -40,10 +41,7 @@ namespace wxgit
         WXEDITOR_DECLARE_CLASS(Status);
         WXEDITOR_DECLARE_CLASS(Tree);
     }
-    namespace history
-    {
-        WXEDITOR_DECLARE_CLASS(History);
-    }
+
     namespace outliner
     {
         WXEDITOR_DECLARE_CLASS(BranchNode);

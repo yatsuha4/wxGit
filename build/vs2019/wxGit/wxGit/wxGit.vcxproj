@@ -118,7 +118,7 @@
     <ClCompile Include="..\..\..\..\wxgit\git\Signature.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Status.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\git\Tree.cpp" />
-    <ClCompile Include="..\..\..\..\wxgit\history\History.cpp" />
+    <ClCompile Include="..\..\..\..\wxgit\LogWindow.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\main.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\MainFrame.cpp" />
     <ClCompile Include="..\..\..\..\wxgit\outliner\BranchNode.cpp" />
@@ -153,7 +153,7 @@
     <ClInclude Include="..\..\..\..\wxgit\git\Signature.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Status.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\git\Tree.hpp" />
-    <ClInclude Include="..\..\..\..\wxgit\history\History.hpp" />
+    <ClInclude Include="..\..\..\..\wxgit\LogWindow.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\MainFrame.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\Id.hpp" />
     <ClInclude Include="..\..\..\..\wxgit\outliner\BranchNode.hpp" />

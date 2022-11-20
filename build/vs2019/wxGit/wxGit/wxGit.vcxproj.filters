@@ -7,9 +7,6 @@
     <Filter Include="wxgit\git">
       <UniqueIdentifier>{d7858b45-eccc-4bd7-8d37-2cca79abbed7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="wxgit\history">
-      <UniqueIdentifier>{77310323-8121-4774-b2eb-4821267ec25f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="wxgit\outliner">
       <UniqueIdentifier>{a1d8f5dc-c4e3-4f8a-b61f-5680a2a5a94f}</UniqueIdentifier>
     </Filter>
@@ -35,9 +32,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\wxgit\git\Signature.cpp">
       <Filter>wxgit\git</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\wxgit\history\History.cpp">
-      <Filter>wxgit\history</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\wxgit\outliner\BranchNode.cpp">
       <Filter>wxgit\outliner</Filter>
@@ -105,6 +99,9 @@
     <ClCompile Include="..\..\..\..\wxgit\git\RepositoryReference.cpp">
       <Filter>wxgit\git</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\LogWindow.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
@@ -127,9 +124,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\git\Signature.hpp">
       <Filter>wxgit\git</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\wxgit\history\History.hpp">
-      <Filter>wxgit\history</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\outliner\BranchNode.hpp">
       <Filter>wxgit\outliner</Filter>
@@ -199,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\git\RepositoryReference.hpp">
       <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\LogWindow.hpp">
+      <Filter>wxgit</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
