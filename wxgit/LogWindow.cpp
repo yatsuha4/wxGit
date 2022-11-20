@@ -30,12 +30,21 @@ namespace wxgit
     }
 
     /**
+     * @brief 全消去
+     */
+    void LogWindow::clear()
+    {
+	DeleteAllItems();
+        commits_.clear();
+    }
+
+    /**
      */
     void LogWindow::showCommits(const std::vector<git::CommitPtr>& commits)
     {
-	DeleteAllItems();
+        clear();
         Freeze();
-	long index = 0;
+	int index = 0;
 	for(auto& commit : commits)
 	{
             insertCommit(commit, index++);
@@ -45,7 +54,6 @@ namespace wxgit
         SetColumnWidth(Column::COMMITTER, wxLIST_AUTOSIZE);
         SetColumnWidth(Column::DATE, wxLIST_AUTOSIZE);
         Thaw();
-	commits_ = commits;
     }
 
     /**
@@ -55,6 +63,7 @@ namespace wxgit
         InsertItem(index, commit->getMessage());
         SetItem(index, Column::COMMITTER, commit->getCommitter()->getName());
         SetItem(index, Column::DATE, commit->getCommitter()->getWhen().Format("%F %R"));
+        commits_.insert(commits_.begin() + index, commit);
     }
 
     /**

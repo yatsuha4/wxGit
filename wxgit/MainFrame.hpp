@@ -42,6 +42,8 @@ namespace wxgit
 
         void popupMenu(outliner::Node* node, wxMenu* menu);
 
+        void status();
+
     private:
         void setupMenuBar();
         void setupToolBar();
@@ -52,6 +54,5 @@ namespace wxgit
         void openRepository();
         void initRepository();
         void closeRepository(outliner::RepositoryNode* node);
-        void status();
     };
 }

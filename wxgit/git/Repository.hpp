@@ -41,7 +41,8 @@ namespace wxgit::git
         DiffPtr createDiff();
 
         IndexPtr takeIndex();
-        CommitPtr commit(const wxString& message);
+        CommitPtr commit(const std::vector<Path>& files, 
+                         const wxString& message);
 
         TreePtr lookupTree(const git_oid& oid) const;
 

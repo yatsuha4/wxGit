@@ -241,14 +241,22 @@ namespace wxgit::git
 
     /**
      * @brief コミット
+     * @param[in] files コミットするファイルのリスト
      * @param[in] message メッセージ
      */
-    CommitPtr Repository::commit(const wxString& message)
+    CommitPtr Repository::commit(const std::vector<Path>& files, 
+                                 const wxString& message)
     {
+        auto index = takeIndex();
+        for(auto& path : files)
+        {
+            index->add(path);
+        }
+        auto tree = index->writeTree();
+        index->write();
+
         auto head = takeHead();
         auto parent = head ? head->takeCommit()->getCommit() : nullptr;
-        auto index = takeIndex();
-        auto tree = index->writeTree();
         auto signature = takeSignature();
         git_oid oid;
         auto result = git_commit_create_v(&oid, 

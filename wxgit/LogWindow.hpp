@@ -26,10 +26,16 @@ namespace wxgit
 
         MainFrame* getMainFrame() const;
 
+        void clear();
         void showCommits(const std::vector<git::CommitPtr>& commits);
         void insertCommit(const git::CommitPtr& commit, int index = 0);
 
     private:
         void onItemSelected(wxListEvent& event);
+
+        /**
+         */
+        
+
     };
 }

@@ -1,4 +1,6 @@
 ﻿#include "wxgit/CommitWindow.hpp"
+#include "wxgit/FileWindow.hpp"
+#include "wxgit/LogWindow.hpp"
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/git/Signature.hpp"
@@ -54,21 +56,28 @@ namespace wxgit
      */
     void CommitWindow::onButtonCommit(wxCommandEvent& event)
     {
+        auto mainFrame = getMainFrame();
         auto message = messageText_->GetValue();
         if(message.IsEmpty())
         {
-            wxMessageDialog dialog(getMainFrame(), 
+            wxMessageDialog dialog(mainFrame, 
                                    _("Message is empty"), 
                                    _("Commit"), 
                                    wxYES_NO | wxNO_DEFAULT |
                                    wxICON_WARNING |
                                    wxCENTRE);
-            if(dialog.ShowModal() != wxOK)
+            if(dialog.ShowModal() != wxYES)
             {
                 return;
             }
         }
-        if(!getMainFrame()->getRepository()->commit(message))
+        if(auto commit = mainFrame->getRepository()->
+           commit(mainFrame->getFileWindow()->getCheckFiles(), message))
+        {
+            mainFrame->getLogWindow()->insertCommit(commit);
+            mainFrame->status();
+        }
+        else
         {
             wxLogError("commit failed");
         }
