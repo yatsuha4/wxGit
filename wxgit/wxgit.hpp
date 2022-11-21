@@ -6,6 +6,7 @@
 #include "wx/filename.h"
 #include "wx/listctrl.h"
 #include "wx/memory.h"
+#include "wx/regex.h"
 #include "wx/stdpaths.h"
 #include "wx/treectrl.h"
 #include "wx/treelist.h"

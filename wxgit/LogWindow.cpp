@@ -16,10 +16,10 @@ namespace wxgit
     LogWindow::LogWindow(MainFrame* mainFrame)
 	: super(mainFrame, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT)
     {
-	InsertColumn(Column::MESSAGE, wxT("Message"));
-	InsertColumn(Column::COMMITTER, wxT("Committer"));
-	InsertColumn(Column::DATE, wxT("Date"));
-        Bind(wxEVT_LIST_ITEM_SELECTED, &LogWindow::onItemSelected, this);
+	AppendTextColumn(_("Message"));
+	AppendTextColumn(_("Committer"));
+	AppendTextColumn(_("Date"));
+        Bind(wxEVT_DATAVIEW_SELECTION_CHANGED, &LogWindow::onSelectionChanged, this);
     }
 
     /**
@@ -50,9 +50,11 @@ namespace wxgit
             insertCommit(commit, index++);
 	    wxYield();
 	}
+        /*
         SetColumnWidth(Column::MESSAGE, wxLIST_AUTOSIZE);
         SetColumnWidth(Column::COMMITTER, wxLIST_AUTOSIZE);
         SetColumnWidth(Column::DATE, wxLIST_AUTOSIZE);
+        */
         Thaw();
     }
 
@@ -60,20 +62,29 @@ namespace wxgit
      */
     void LogWindow::insertCommit(const git::CommitPtr& commit, int index)
     {
-        InsertItem(index, commit->getMessage());
-        SetItem(index, Column::COMMITTER, commit->getCommitter()->getName());
-        SetItem(index, Column::DATE, commit->getCommitter()->getWhen().Format("%F %R"));
+        wxVector<wxVariant> row;
+        auto message = commit->getMessage();
+        wxRegEx("(^\\s+)|(\\s+$)").ReplaceAll(&message, "");
+        wxRegEx("\\s+").ReplaceAll(&message, " ");
+        row.push_back(message);
+        row.push_back(commit->getCommitter()->getName());
+        row.push_back(commit->getCommitter()->getWhen().Format("%F %R"));
+        InsertItem(index, row);
         commits_.insert(commits_.begin() + index, commit);
     }
 
     /**
      */
-    void LogWindow::onItemSelected(wxListEvent& event)
+    void LogWindow::onSelectionChanged(wxDataViewEvent& event)
     {
-        auto& commit = commits_.at(event.GetIndex());
-        if(auto diff = commit->createDiff())
+        auto index = ItemToRow(event.GetItem());
+        if(index != wxNOT_FOUND)
         {
-            getMainFrame()->getFileWindow()->showDiff(diff);
+            auto& commit = commits_.at(index);
+            if(auto diff = commit->createDiff())
+            {
+                getMainFrame()->getFileWindow()->showDiff(diff);
+            }
         }
     }
 }

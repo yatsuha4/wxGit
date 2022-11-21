@@ -5,9 +5,9 @@
 namespace wxgit
 {
     class LogWindow
-        : public Window<wxListCtrl>
+        : public Window<wxDataViewListCtrl>
     {
-        using super = Window<wxListCtrl>;
+        using super = Window<wxDataViewListCtrl>;
 
     private:
         enum Column
@@ -31,11 +31,6 @@ namespace wxgit
         void insertCommit(const git::CommitPtr& commit, int index = 0);
 
     private:
-        void onItemSelected(wxListEvent& event);
-
-        /**
-         */
-        
-
+        void onSelectionChanged(wxDataViewEvent& event);
     };
 }
