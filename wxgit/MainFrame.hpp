@@ -21,7 +21,6 @@ namespace wxgit
         CommitWindow* commitWindow_;
         outliner::RepositoryNode* repositoryNode_;
         outliner::Node* menuNode_;
-        wxActivityIndicator* indicator_;
 
     public:
         MainFrame(Application* application);
@@ -45,8 +44,6 @@ namespace wxgit
 
         void status();
 
-        void showIndicator(bool isShow);
-
     private:
         void setupMenuBar();
         void setupToolBar();
@@ -57,16 +54,5 @@ namespace wxgit
         void openRepository();
         void initRepository();
         void closeRepository(outliner::RepositoryNode* node);
-
-    public:
-        class Indicator
-        {
-        private:
-            MainFrame* mainFrame_;
-
-        public:
-            Indicator(MainFrame* mainFrame);
-            ~Indicator();
-        };
     };
 }
