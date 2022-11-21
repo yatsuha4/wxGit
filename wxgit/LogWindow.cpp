@@ -43,6 +43,7 @@ namespace wxgit
     void LogWindow::showCommits(const std::vector<git::CommitPtr>& commits)
     {
         clear();
+        getMainFrame()->showIndicator(true);
         Freeze();
 	int index = 0;
 	for(auto& commit : commits)
@@ -56,6 +57,7 @@ namespace wxgit
         SetColumnWidth(Column::DATE, wxLIST_AUTOSIZE);
         */
         Thaw();
+        getMainFrame()->showIndicator(false);
     }
 
     /**

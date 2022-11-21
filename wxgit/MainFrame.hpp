@@ -21,6 +21,7 @@ namespace wxgit
         CommitWindow* commitWindow_;
         outliner::RepositoryNode* repositoryNode_;
         outliner::Node* menuNode_;
+        wxActivityIndicator* indicator_;
 
     public:
         MainFrame(Application* application);
@@ -43,6 +44,8 @@ namespace wxgit
         void popupMenu(outliner::Node* node, wxMenu* menu);
 
         void status();
+
+        void showIndicator(bool isShow);
 
     private:
         void setupMenuBar();

@@ -36,7 +36,8 @@ namespace wxgit
           fileWindow_(new FileWindow(this)), 
           diffWindow_(new DiffWindow(this)), 
           commitWindow_(new CommitWindow(this)), 
-          menuNode_(nullptr)
+          menuNode_(nullptr), 
+          indicator_(nullptr)
     {
         setupMenuBar();
         setupToolBar();
@@ -218,7 +219,11 @@ namespace wxgit
         toolBar->AddTool(ID_WORK_STATUS, 
                          _("Status"), 
                          wxArtProvider::GetBitmap(wxART_PLUS));
+        toolBar->AddStretchableSpace();
+        indicator_ = new wxActivityIndicator(toolBar);
+        toolBar->AddControl(indicator_);
         toolBar->Realize();
+        showIndicator(false);
         Bind(wxEVT_TOOL, &MainFrame::onSelectMenu, this);
     }
 
@@ -319,6 +324,24 @@ namespace wxgit
             {
                 getFileWindow()->showStatus(status);
             }
+        }
+    }
+
+    /**
+     */
+    void MainFrame::showIndicator(bool isShow)
+    {
+        if(isShow)
+        {
+            indicator_->Show(true);
+            indicator_->Start();
+            Disable();
+        }
+        else
+        {
+            indicator_->Stop();
+            indicator_->Show(false);
+            Enable();
         }
     }
 }

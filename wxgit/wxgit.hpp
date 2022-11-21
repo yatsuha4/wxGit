@@ -1,5 +1,6 @@
 ﻿#include "wxeditor/wxeditor.hpp"
 
+#include "wx/activityindicator.h"
 #include "wx/artprov.h"
 #include "wx/aui/auibook.h"
 #include "wx/dataview.h"
