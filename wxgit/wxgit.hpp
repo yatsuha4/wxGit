@@ -3,6 +3,7 @@
 #include "wx/activityindicator.h"
 #include "wx/artprov.h"
 #include "wx/aui/auibook.h"
+#include "wx/busyinfo.h"
 #include "wx/dataview.h"
 #include "wx/filename.h"
 #include "wx/listctrl.h"
@@ -20,6 +21,7 @@
 namespace wxgit
 {
     WXEDITOR_DECLARE_CLASS(Application);
+    WXEDITOR_DECLARE_CLASS(BusyInfo);
     WXEDITOR_DECLARE_CLASS(CommitWindow);
     WXEDITOR_DECLARE_CLASS(DiffWindow);
     WXEDITOR_DECLARE_CLASS(FileWindow);

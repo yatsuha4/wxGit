@@ -1,4 +1,5 @@
-﻿#include "wxgit/FileWindow.hpp"
+﻿#include "wxgit/BusyInfo.hpp"
+#include "wxgit/FileWindow.hpp"
 #include "wxgit/LogWindow.hpp"
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/git/Blob.hpp"
@@ -42,7 +43,7 @@ namespace wxgit
      */
     void LogWindow::showCommits(const std::vector<git::CommitPtr>& commits)
     {
-        MainFrame::Indicator indicator(getMainFrame());
+        BusyInfo busyInfo(_("take commits"), this);
         clear();
         Freeze();
 	int index = 0;

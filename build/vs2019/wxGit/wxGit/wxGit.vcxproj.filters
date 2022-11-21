@@ -102,6 +102,9 @@
     <ClCompile Include="..\..\..\..\wxgit\LogWindow.cpp">
       <Filter>wxgit</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\wxgit\BusyInfo.cpp">
+      <Filter>wxgit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\wxgit\Application.hpp">
@@ -195,6 +198,9 @@
       <Filter>wxgit\git</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\wxgit\LogWindow.hpp">
+      <Filter>wxgit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\wxgit\BusyInfo.hpp">
       <Filter>wxgit</Filter>
     </ClInclude>
   </ItemGroup>
