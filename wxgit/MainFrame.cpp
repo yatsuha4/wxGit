@@ -344,4 +344,19 @@ namespace wxgit
             Enable();
         }
     }
+
+    /**
+     */
+    MainFrame::Indicator::Indicator(MainFrame* mainFrame)
+        : mainFrame_(mainFrame)
+    {
+        mainFrame_->showIndicator(true);
+    }
+
+    /**
+     */
+    MainFrame::Indicator::~Indicator()
+    {
+        mainFrame_->showIndicator(false);
+    }
 }

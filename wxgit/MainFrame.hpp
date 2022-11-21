@@ -57,5 +57,16 @@ namespace wxgit
         void openRepository();
         void initRepository();
         void closeRepository(outliner::RepositoryNode* node);
+
+    public:
+        class Indicator
+        {
+        private:
+            MainFrame* mainFrame_;
+
+        public:
+            Indicator(MainFrame* mainFrame);
+            ~Indicator();
+        };
     };
 }
