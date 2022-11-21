@@ -181,9 +181,11 @@ namespace wxgit
      */
     void FileWindow::onSelectionChanged(wxTreeListEvent& event)
     {
+        auto diffWindow = getMainFrame()->getDiffWindow();
+        diffWindow->clear();
         if(auto data = dynamic_cast<ItemData*>(GetItemData(event.GetItem())))
         {
-            getMainFrame()->getDiffWindow()->showDelta(data->getDelta());
+            diffWindow->showDelta(data->getDelta());
         }
     }
 

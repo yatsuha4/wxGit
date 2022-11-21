@@ -9,22 +9,15 @@ namespace wxgit
      * @brief 差分表示
      */
     class DiffWindow
-        : public Window<wxListCtrl>
+        : public Window<wxTextCtrl>
     {
-        using super = Window<wxListCtrl>;
-
-    private:
-        enum Column
-        {
-            OLD_LINE, 
-            NEW_LINE, 
-            CONTENT
-        };
+        using super = Window<wxTextCtrl>;
 
     public:
         DiffWindow(MainFrame* mainFrame);
         ~DiffWindow() override = default;
 
+        void clear();
         void showDelta(const git::Diff::Delta& delta);
 
     private:

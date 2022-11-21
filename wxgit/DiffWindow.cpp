@@ -10,14 +10,21 @@ namespace wxgit
     DiffWindow::DiffWindow(MainFrame* mainFrame)
         : super(mainFrame, 
                 wxID_ANY, 
+                wxEmptyString, 
                 wxDefaultPosition, 
                 wxDefaultSize, 
-                wxLC_REPORT)
+                wxTE_MULTILINE |
+                wxTE_READONLY |
+                wxTE_RICH)
     {
-        InsertColumn(Column::OLD_LINE, wxT("OldLine"));
-        InsertColumn(Column::NEW_LINE, wxT("NewLine"));
-        InsertColumn(Column::CONTENT, wxT("Content"));
         SetFont(wxSystemSettings::GetFont(wxSYS_OEM_FIXED_FONT));
+    }
+
+    /**
+     */
+    void DiffWindow::clear()
+    {
+        SetLabel(wxEmptyString);
     }
 
     /**
@@ -25,29 +32,32 @@ namespace wxgit
     void DiffWindow::showDelta(const git::Diff::Delta& delta)
     {
         Freeze();
-        DeleteAllItems();
-        long index = 0;
         for(auto& hunk : delta.getHunks())
         {
             for(auto& line : hunk.getLines())
             {
-                InsertItem(index, LineToString(line.getOldLine()));
-                SetItem(index, Column::NEW_LINE, LineToString(line.getNewLine()));
-                SetItem(index, Column::CONTENT, line.getContent());
+                wxChar c = ' ';
+                wxTextAttr attr;
                 if(line.getOldLine() < 0)
                 {
-                    SetItemBackgroundColour(index, wxColour(0xcc, 0xff, 0xcc));
+                    attr.SetBackgroundColour(wxColour(0xcc, 0xff, 0xcc));
+                    c = '+';
                 }
                 else if(line.getNewLine() < 0)
                 {
-                    SetItemBackgroundColour(index, wxColour(0xff, 0xcc, 0xcc));
+                    attr.SetBackgroundColour(wxColour(0xff, 0xcc, 0xcc));
+                    c = '-';
                 }
-                ++index;
+                SetDefaultStyle(attr);
+                auto content(line.getContent());
+                wxRegEx("\\s+$").Replace(&content, "");
+                AppendText(wxString::Format("%-5s %-5s %c %s\n", 
+                                            LineToString(line.getOldLine()), 
+                                            LineToString(line.getNewLine()), 
+                                            c, 
+                                            content));
             }
         }
-        SetColumnWidth(Column::OLD_LINE, wxLIST_AUTOSIZE);
-        SetColumnWidth(Column::NEW_LINE, wxLIST_AUTOSIZE);
-        SetColumnWidth(Column::CONTENT, wxLIST_AUTOSIZE);
         Thaw();
     }
 
