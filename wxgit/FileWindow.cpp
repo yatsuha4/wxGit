@@ -183,9 +183,17 @@ namespace wxgit
     {
         auto diffWindow = getMainFrame()->getDiffWindow();
         diffWindow->clear();
-        if(auto data = dynamic_cast<ItemData*>(GetItemData(event.GetItem())))
+        if(auto data = GetItemData(event.GetItem()))
         {
-            diffWindow->showDelta(data->getDelta());
+            if(auto delta = dynamic_cast<ItemData*>(data))
+            {
+                diffWindow->showDelta(delta->getDelta());
+            }
+            else if(auto entry = dynamic_cast<EntryItem*>(data))
+            {
+                diffWindow->showDelta(entry->getEntry().getHeadToIndex());
+                diffWindow->showDelta(entry->getEntry().getIndexToWorkdir());
+            }
         }
     }
 

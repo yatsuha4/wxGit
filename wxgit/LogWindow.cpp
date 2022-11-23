@@ -2,7 +2,6 @@
 #include "wxgit/FileWindow.hpp"
 #include "wxgit/LogWindow.hpp"
 #include "wxgit/MainFrame.hpp"
-#include "wxgit/git/Blob.hpp"
 #include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Diff.hpp"
 #include "wxgit/git/Signature.hpp"

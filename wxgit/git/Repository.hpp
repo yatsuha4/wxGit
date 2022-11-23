@@ -20,6 +20,7 @@ namespace wxgit::git
         Repository(git_repository* repository);
 	~Repository();
 
+        WXEDITOR_GETTER(Repository, repository_);
 	WXEDITOR_GETTER(Config, config_);
 
         Path getPath() const;

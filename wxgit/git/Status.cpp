@@ -1,4 +1,5 @@
-﻿#include "wxgit/git/Status.hpp"
+﻿#include "wxgit/git/Repository.hpp"
+#include "wxgit/git/Status.hpp"
 
 namespace wxgit::git
 {
@@ -19,7 +20,7 @@ namespace wxgit::git
             case GIT_STATUS_IGNORED:
                 break;
             default:
-                entries_.emplace_back(entry);
+                entries_.emplace_back(repository->getRepository(), entry);
                 break;
             }
         }
@@ -36,10 +37,12 @@ namespace wxgit::git
     /**
      * @brief コンストラクタ
      */
-    Status::Entry::Entry(const git_status_entry* entry)
+    Status::Entry::Entry(git_repository* repository, const git_status_entry* entry)
         : status_(entry->status), 
           headToIndex_(entry->head_to_index), 
           indexToWorkdir_(entry->index_to_workdir)
     {
+        headToIndex_.createHunks(repository);
+        indexToWorkdir_.createHunks(repository);
     }
 }

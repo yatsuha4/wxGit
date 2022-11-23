@@ -17,7 +17,7 @@ namespace wxgit::git
             Diff::Delta indexToWorkdir_;
 
         public:
-            Entry(const git_status_entry* entry);
+            Entry(git_repository* repository, const git_status_entry* entry);
             ~Entry() = default;
 
             WXEDITOR_GETTER(HeadToIndex, headToIndex_);

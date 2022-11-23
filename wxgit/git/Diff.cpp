@@ -1,4 +1,5 @@
-﻿#include "wxgit/git/Commit.hpp"
+﻿#include "wxgit/git/Blob.hpp"
+#include "wxgit/git/Commit.hpp"
 #include "wxgit/git/Diff.hpp"
 #include "wxgit/git/Path.hpp"
 
@@ -20,6 +21,19 @@ namespace wxgit::git
     Path Diff::File::getPath() const
     {
         return Path(file_.path);
+    }
+
+    /**
+     * @brief ブロブを取得する
+     * @param[in] repository リポジトリ
+     */
+    BlobPtr Diff::File::takeBlob(git_repository* repository) const
+    {
+        if((file_.flags & GIT_DIFF_FLAG_VALID_ID) != 0)
+        {
+            return Blob::Lookup(repository, &file_.id);
+        }
+        return Blob::CreateFromWorkdir(repository, getPath());
     }
 
     /**
@@ -75,6 +89,35 @@ namespace wxgit::git
 
     /**
      */
+    void Diff::Delta::createHunks(git_repository* repository)
+    {
+        if(!isValid())
+        {
+            return;
+        }
+        if(auto oldBlob = getOldFile().takeBlob(repository))
+        {
+            if(auto newBlob = getNewFile().takeBlob(repository))
+            {
+                git_diff_options options;
+                git_diff_options_init(&options, GIT_DIFF_OPTIONS_VERSION);
+                auto result = git_diff_blobs(oldBlob->getBlob(), 
+                                             delta_->old_file.path, 
+                                             newBlob->getBlob(), 
+                                             delta_->new_file.path, 
+                                             &options, 
+                                             Diff::Delta::OnFile, 
+                                             Diff::Delta::OnBinary, 
+                                             Diff::Delta::OnHunk, 
+                                             Diff::Delta::OnLine, 
+                                             this);
+                wxLogDebug("result = %d", result);
+            }
+        }
+    }
+
+    /**
+     */
     git_delta_t Diff::Delta::getStatus() const
     {
         return delta_->status;
@@ -92,6 +135,47 @@ namespace wxgit::git
     Diff::File Diff::Delta::getNewFile() const
     {
         return Diff::File(delta_->new_file);
+    }
+
+    /**
+     */
+    int Diff::Delta::OnFile(const git_diff_delta* delta, 
+                            float progress, 
+                            void* payload)
+    {
+        return GIT_OK;
+    }
+
+    /**
+     */
+    int Diff::Delta::OnBinary(const git_diff_delta* delta, 
+                              const git_diff_binary* binary, 
+                              void* payload)
+    {
+        return GIT_OK;
+    }
+
+    /**
+     */
+    int Diff::Delta::OnHunk(const git_diff_delta*, 
+                            const git_diff_hunk* hunk, 
+                            void* payload)
+    {
+        auto delta = reinterpret_cast<Diff::Delta*>(payload);
+        delta->getHunks().emplace_back(hunk);
+        return GIT_OK;
+    }
+
+    /**
+     */
+    int Diff::Delta::OnLine(const git_diff_delta*, 
+                            const git_diff_hunk* hunk, 
+                            const git_diff_line* line, 
+                            void* payload)
+    {
+        auto delta = reinterpret_cast<Diff::Delta*>(payload);
+        delta->findHunk(hunk).getLines().emplace_back(line);
+        return GIT_OK;
     }
 
     /**

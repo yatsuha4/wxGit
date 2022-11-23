@@ -21,6 +21,7 @@ namespace wxgit::git
             ~File() = default;
 
             Path getPath() const;
+            BlobPtr takeBlob(git_repository* repository) const;
         };
 
         class Line
@@ -72,10 +73,29 @@ namespace wxgit::git
             WXEDITOR_GETTER(Delta, delta_);
             WXEDITOR_ACCESSOR(Hunks, hunks_);
             Hunk& findHunk(const git_diff_hunk* hunk);
+            void createHunks(git_repository* repository);
 
             git_delta_t getStatus() const;
             File getOldFile() const;
             File getNewFile() const;
+
+        private:
+            static int OnFile(const git_diff_delta* delta, 
+                              float progress, 
+                              void* payload);
+
+            static int OnBinary(const git_diff_delta* delta, 
+                                const git_diff_binary* binary, 
+                                void* payload);
+
+            static int OnHunk(const git_diff_delta* delta, 
+                              const git_diff_hunk* hunk, 
+                              void* payload);
+
+            static int OnLine(const git_diff_delta* delta, 
+                              const git_diff_hunk* hunk, 
+                              const git_diff_line* line, 
+                              void* payload);
         };
 
     private:

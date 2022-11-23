@@ -31,6 +31,10 @@ namespace wxgit
      */
     void DiffWindow::showDelta(const git::Diff::Delta& delta)
     {
+        if(!delta.isValid())
+        {
+            return;
+        }
         Freeze();
         for(auto& hunk : delta.getHunks())
         {

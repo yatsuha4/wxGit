@@ -11,12 +11,14 @@ namespace wxgit::git
     {
     private:
         git_blob* blob_;
-        Path path_;
 
     public:
-        Blob(git_blob* blob, const Path& path);
+        Blob(git_blob* blob);
         ~Blob();
 
-        WXEDITOR_GETTER(Path, path_);
+        WXEDITOR_GETTER(Blob, blob_);
+
+        static BlobPtr Lookup(git_repository* repository, const git_oid* id);
+        static BlobPtr CreateFromWorkdir(git_repository* repository, const Path& path);
     };
 }
