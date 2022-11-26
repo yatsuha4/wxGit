@@ -16,8 +16,8 @@ namespace wxgit
     LogWindow::LogWindow(MainFrame* mainFrame)
 	: super(mainFrame, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT)
     {
-	AppendTextColumn(_("Message"));
-	AppendTextColumn(_("Committer"));
+	AppendTextColumn(_("Message"), wxDATAVIEW_CELL_INERT, FromDIP(600));
+	AppendTextColumn(_("Committer"), wxDATAVIEW_CELL_INERT, FromDIP(150));
 	AppendTextColumn(_("Date"));
         Bind(wxEVT_DATAVIEW_SELECTION_CHANGED, &LogWindow::onSelectionChanged, this);
     }

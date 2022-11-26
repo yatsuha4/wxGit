@@ -26,8 +26,7 @@ namespace wxgit
      * @brief コンストラクタ
      */
     MainFrame::MainFrame(Application* application)
-        : super(nullptr, wxID_ANY, Application::Version.GetName(), 
-                wxDefaultPosition, wxSize(960, 640)), 
+        : super(nullptr, wxID_ANY, Application::Version.GetName()), 
           application_(application), 
           statusBar_(CreateStatusBar()), 
           auiManager_(new wxAuiManager(this)), 
@@ -38,9 +37,9 @@ namespace wxgit
           commitWindow_(new CommitWindow(this)), 
           menuNode_(nullptr)
     {
+        SetClientSize(FromDIP(wxSize(1200, 900)));
         setupMenuBar();
         setupToolBar();
-        //notebook_->AddPage(repoBrowser_, "Repository");
         statusBar_->PushStatusText(Application::Version.ToString());
         auiManager_->AddPane(outliner_, 
                              wxAuiPaneInfo().
@@ -48,7 +47,7 @@ namespace wxgit
                              Caption("Outliner").
                              CloseButton(false).
                              Left().
-                             BestSize(200, 800).
+                             BestSize(FromDIP(wxSize(300, 900))).
                              Layer(LAYER_OUTLINER));
         auiManager_->AddPane(logWindow_, 
                              wxAuiPaneInfo().
@@ -63,13 +62,14 @@ namespace wxgit
                              Caption("Commit").
                              CloseButton(false).
                              Bottom().
+                             BestSize(FromDIP(wxSize(900, 100))).
                              Layer(LAYER_COMMIT));
         auiManager_->AddPane(fileWindow_, 
                              wxAuiPaneInfo().
                              Name("File").
                              Caption("File").
                              CloseButton(false).
-                             BestSize(800, 800).
+                             BestSize(FromDIP(wxSize(300, 500))).
                              Bottom().
                              Layer(LAYER_FILE));
         auiManager_->AddPane(diffWindow_, 
@@ -77,7 +77,7 @@ namespace wxgit
                              Name("Diff").
                              Caption("Diff").
                              CloseButton(false).
-                             BestSize(800, 800).
+                             BestSize(FromDIP(wxSize(500, 500))).
                              Bottom().
                              Layer(LAYER_FILE));
         auiManager_->Update();
@@ -144,7 +144,7 @@ namespace wxgit
             if(xml->GetAttribute("width").ToInt(&width) && 
                xml->GetAttribute("height").ToInt(&height))
             {
-                SetSize(width, height);
+                //SetSize(width, height);
             }
             wxString perspective;
             if(xml->GetAttribute("perspective", &perspective))
