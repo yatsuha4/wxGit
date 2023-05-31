@@ -18,4 +18,4 @@ jobs:
       uses: lukka/get-cmake@latest
 
     - name: build
-      run build/vs2019/build.bat
+      run: build/vs2019/build.bat
