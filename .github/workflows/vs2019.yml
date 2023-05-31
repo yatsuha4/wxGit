@@ -17,6 +17,8 @@ jobs:
     - name: get-cmake
       uses: lukka/get-cmake@latest
 
-    - name: build
+    - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1.1
+
+    - name: build
       run: build/vs2019/build.bat
