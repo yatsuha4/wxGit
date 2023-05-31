@@ -1,3 +1,4 @@
+setlocal
 set CURDIR=%~dp0
 set TMPDIR=%CURDIR%build_libgit2
 set DSTDIR=%CURDIR%libgit2
