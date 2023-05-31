@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
     - name: checkout
@@ -21,9 +21,6 @@ jobs:
 
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1.1
-      with:
-        vs-version: '[16,17)'
-        msbuild-architecture: x64
 
     - name: build
       run: build/vs2019/build.bat
