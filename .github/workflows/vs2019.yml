@@ -1,0 +1,21 @@
+name: Build VS2019
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+
+    - name: get-cmake
+      uses: lukka/get-cmake@latest
+
+    - name: build
+      run: build/vs2019/build.bat
