@@ -21,6 +21,8 @@ jobs:
 
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1.1
+      with:
+        vs-version: '16.11'
 
     - name: build
       run: build/vs2019/build.bat
