@@ -22,6 +22,8 @@ jobs:
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1.1
 
+    - uses: ilammy/msvc-dev-cmd@v1
+
     - name: build
       run: |
         wxEditor/external/build/vs2022/wxWidgets.bat
