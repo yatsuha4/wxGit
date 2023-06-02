@@ -14,9 +14,7 @@ namespace wxgit
         Application* application_;
         wxStatusBar* statusBar_;
         std::unique_ptr<wxAuiManager> auiManager_;
-        wxAuiNotebook* sideNote_;
-        outliner::Outliner* outliner_;
-        FileWindow* fileWindow_;
+        SideView* sideView_;
         LogWindow* logWindow_;
         DiffWindow* diffWindow_;
         CommitWindow* commitWindow_;
@@ -27,11 +25,13 @@ namespace wxgit
         MainFrame(Application* application);
         ~MainFrame() override;
 
-        WXEDITOR_GETTER(Outliner, outliner_);
+        WXEDITOR_GETTER(SideView, sideView_);
         WXEDITOR_GETTER(LogWindow, logWindow_);
-        WXEDITOR_GETTER(FileWindow, fileWindow_);
         WXEDITOR_GETTER(DiffWindow, diffWindow_);
         WXEDITOR_GETTER(CommitWindow, commitWindow_);
+
+        outliner::Outliner* getOutliner() const;
+        FileWindow* getFileWindow() const;
 
         void setRepositoryNode(outliner::RepositoryNode* node);
         const git::RepositoryPtr& getRepository() const;

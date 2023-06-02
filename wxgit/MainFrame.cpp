@@ -5,6 +5,7 @@
 #include "wxgit/Id.hpp"
 #include "wxgit/LogWindow.hpp"
 #include "wxgit/MainFrame.hpp"
+#include "wxgit/SideView.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/outliner/Outliner.hpp"
 #include "wxgit/outliner/RepositoryNode.hpp"
@@ -30,9 +31,7 @@ namespace wxgit
           application_(application), 
           statusBar_(CreateStatusBar()), 
           auiManager_(new wxAuiManager(this)), 
-          sideNote_(new wxAuiNotebook(this)), 
-          outliner_(new outliner::Outliner(sideNote_)), 
-          fileWindow_(new FileWindow(sideNote_)), 
+          sideView_(new SideView(this)), 
           logWindow_(new LogWindow(this)), 
           diffWindow_(new DiffWindow(this)), 
           commitWindow_(new CommitWindow(this)), 
@@ -42,12 +41,10 @@ namespace wxgit
         setupMenuBar();
         setupToolBar();
         statusBar_->PushStatusText(Application::Version.ToString());
-        sideNote_->AddPage(outliner_, "Outliner");
-        sideNote_->AddPage(fileWindow_, "File");
-        auiManager_->AddPane(sideNote_, 
+        auiManager_->AddPane(sideView_, 
                              wxAuiPaneInfo().
-                             Name("Outliner").
-                             Caption("Outliner").
+                             Name("SideView").
+                             Caption("SideView").
                              CloseButton(false).
                              Left().
                              BestSize(FromDIP(wxSize(300, 900))).
@@ -88,6 +85,24 @@ namespace wxgit
     }
 
     /**
+     * @brief アウトライナを取得する
+     * @return アウトライナ
+     */
+    outliner::Outliner* MainFrame::getOutliner() const
+    {
+        return getSideView()->getOutliner();
+    }
+
+    /**
+     * @brief ファイルウィンドウを取得する
+     * @return ファイルウィンドウ
+     */
+    FileWindow* MainFrame::getFileWindow() const
+    {
+        return getSideView()->getFileWindow();
+    }
+
+    /**
      * @brief リポジトリノードをセットする
      * @param[in] node リポジトリノード
      */
@@ -124,7 +139,7 @@ namespace wxgit
         xml->AddAttribute("width", wxString::Format("%d", size.GetWidth()));
         xml->AddAttribute("height", wxString::Format("%d", size.GetHeight()));
         xml->AddAttribute("perspective", auiManager_->SavePerspective());
-        xml->AddChild(outliner_->serialize());
+        xml->AddChild(getOutliner()->serialize());
         return xml;
     }
 
@@ -150,7 +165,7 @@ namespace wxgit
             {
                 if(child->GetName() == outliner::Outliner::GetSerialName())
                 {
-                    outliner_->deserialize(child);
+                    getOutliner()->deserialize(child);
                 }
                 else
                 {
@@ -271,7 +286,7 @@ namespace wxgit
             git::Path dir(dialog.GetPath());
             if(auto repository = git::Repository::Open(git::Path(dir, ".git")))
             {
-                outliner_->appendNode(new outliner::RepositoryNode(repository));
+                getOutliner()->appendNode(new outliner::RepositoryNode(repository));
             }
         }
     }
@@ -287,7 +302,7 @@ namespace wxgit
             git::Path dir(dialog.GetPath());
             if(auto repository = git::Repository::Init(dir))
             {
-                outliner_->appendNode(new outliner::RepositoryNode(repository));
+                getOutliner()->appendNode(new outliner::RepositoryNode(repository));
             }
         }
     }
@@ -302,7 +317,7 @@ namespace wxgit
         {
             setRepositoryNode(nullptr);
         }
-        outliner_->removeNode(node);
+        getOutliner()->removeNode(node);
     }
 
     /**

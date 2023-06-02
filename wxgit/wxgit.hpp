@@ -28,6 +28,7 @@ namespace wxgit
     WXEDITOR_DECLARE_CLASS(LogWindow);
     WXEDITOR_DECLARE_CLASS(MainFrame);
     WXEDITOR_DECLARE_CLASS(PathList);
+    WXEDITOR_DECLARE_CLASS(SideView);
 
     namespace git
     {

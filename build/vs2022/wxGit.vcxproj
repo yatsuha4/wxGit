@@ -121,6 +121,7 @@
     <ClCompile Include="..\..\wxgit\outliner\RepositoryNode.cpp" />
     <ClCompile Include="..\..\wxgit\PathList.cpp" />
     <ClCompile Include="..\..\wxgit\Serializable.cpp" />
+    <ClCompile Include="..\..\wxgit\SideView.cpp" />
     <ClCompile Include="..\..\wxgit\stdafx.cpp" />
     <ClCompile Include="..\..\wxgit\wxgit.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -158,6 +159,7 @@
     <ClInclude Include="..\..\wxgit\outliner\RepositoryNode.hpp" />
     <ClInclude Include="..\..\wxgit\PathList.hpp" />
     <ClInclude Include="..\..\wxgit\Serializable.hpp" />
+    <ClInclude Include="..\..\wxgit\SideView.hpp" />
     <ClInclude Include="..\..\wxgit\stdafx.hpp" />
     <ClInclude Include="..\..\wxgit\Window.hpp" />
     <ClInclude Include="..\..\wxgit\wxgit.hpp" />
