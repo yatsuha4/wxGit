@@ -43,3 +43,8 @@ jobs:
 
     - name: build wxGit
       run: build/vs2022/build.bat
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: wxGit-vs2022
+        path: build/vs2022/wxGitSetup/Release
