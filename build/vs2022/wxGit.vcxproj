@@ -122,7 +122,6 @@
     <ClCompile Include="..\..\wxgit\PathList.cpp" />
     <ClCompile Include="..\..\wxgit\Serializable.cpp" />
     <ClCompile Include="..\..\wxgit\SideView.cpp" />
-    <ClCompile Include="..\..\wxgit\stdafx.cpp" />
     <ClCompile Include="..\..\wxgit\wxgit.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -160,10 +159,8 @@
     <ClInclude Include="..\..\wxgit\PathList.hpp" />
     <ClInclude Include="..\..\wxgit\Serializable.hpp" />
     <ClInclude Include="..\..\wxgit\SideView.hpp" />
-    <ClInclude Include="..\..\wxgit\stdafx.hpp" />
     <ClInclude Include="..\..\wxgit\Window.hpp" />
     <ClInclude Include="..\..\wxgit\wxgit.hpp" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
