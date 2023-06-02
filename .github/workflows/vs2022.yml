@@ -23,4 +23,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
 
     - name: build
-      run: build/vs2022/build.bat
+      run: |
+        wxEditor/external/build/vs2022/wxWidgets.bat
+        external/build/vs2022/libgit2.bat
+        build/vs2022/build.bat
