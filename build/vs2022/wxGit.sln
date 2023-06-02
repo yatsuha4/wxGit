@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxGit", "wxGit.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxEditor", "..\..\wxEditor\build\vs2022\wxEditor.vcxproj", "{25212DC1-2371-403D-8BF7-93C3059F9D38}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "wxGitSetup", "wxGitSetup\wxGitSetup.vdproj", "{44796AE1-9084-4B37-B4B6-D05BF9D1AF1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -24,6 +26,8 @@ Global
 		{25212DC1-2371-403D-8BF7-93C3059F9D38}.Debug|x64.Build.0 = Debug|x64
 		{25212DC1-2371-403D-8BF7-93C3059F9D38}.Release|x64.ActiveCfg = Release|x64
 		{25212DC1-2371-403D-8BF7-93C3059F9D38}.Release|x64.Build.0 = Release|x64
+		{44796AE1-9084-4B37-B4B6-D05BF9D1AF1B}.Debug|x64.ActiveCfg = Debug
+		{44796AE1-9084-4B37-B4B6-D05BF9D1AF1B}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

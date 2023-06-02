@@ -163,6 +163,10 @@
     <ClInclude Include="..\..\wxgit\stdafx.hpp" />
     <ClInclude Include="..\..\wxgit\Window.hpp" />
     <ClInclude Include="..\..\wxgit\wxgit.hpp" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="wxGit.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

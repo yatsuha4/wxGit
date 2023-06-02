@@ -6,10 +6,10 @@ xcuserdata/
 # Windows
 *.vcxproj.user
 .vs/
-/external/build/vs2019/libgit2/
+/build/vs2022/**/Debug/
+/build/vs2022/**/Release/
+/build/vs2022/**/x64/
 /external/build/vs2022/libgit2/
-Debug/
-x64/
 
 #
 /external/opt/
