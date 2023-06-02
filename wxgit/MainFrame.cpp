@@ -30,9 +30,10 @@ namespace wxgit
           application_(application), 
           statusBar_(CreateStatusBar()), 
           auiManager_(new wxAuiManager(this)), 
-          outliner_(new outliner::Outliner(this)), 
+          sideNote_(new wxAuiNotebook(this)), 
+          outliner_(new outliner::Outliner(sideNote_)), 
+          fileWindow_(new FileWindow(sideNote_)), 
           logWindow_(new LogWindow(this)), 
-          fileWindow_(new FileWindow(this)), 
           diffWindow_(new DiffWindow(this)), 
           commitWindow_(new CommitWindow(this)), 
           menuNode_(nullptr)
@@ -41,7 +42,9 @@ namespace wxgit
         setupMenuBar();
         setupToolBar();
         statusBar_->PushStatusText(Application::Version.ToString());
-        auiManager_->AddPane(outliner_, 
+        sideNote_->AddPage(outliner_, "Outliner");
+        sideNote_->AddPage(fileWindow_, "File");
+        auiManager_->AddPane(sideNote_, 
                              wxAuiPaneInfo().
                              Name("Outliner").
                              Caption("Outliner").
@@ -64,14 +67,6 @@ namespace wxgit
                              Bottom().
                              BestSize(FromDIP(wxSize(900, 100))).
                              Layer(LAYER_COMMIT));
-        auiManager_->AddPane(fileWindow_, 
-                             wxAuiPaneInfo().
-                             Name("File").
-                             Caption("File").
-                             CloseButton(false).
-                             BestSize(FromDIP(wxSize(300, 500))).
-                             Bottom().
-                             Layer(LAYER_FILE));
         auiManager_->AddPane(diffWindow_, 
                              wxAuiPaneInfo().
                              Name("Diff").
@@ -321,5 +316,20 @@ namespace wxgit
                 getFileWindow()->showStatus(status);
             }
         }
+    }
+
+    /**
+     */
+    MainFrame* MainFrame::Get(wxWindow* window)
+    {
+        while(window)
+        {
+            if(auto mainFrame = dynamic_cast<MainFrame*>(window))
+            {
+                return mainFrame;
+            }
+            window = window->GetParent();
+        }
+        return nullptr;
     }
 }

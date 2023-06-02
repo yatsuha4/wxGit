@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "wxgit/Serializable.hpp"
+#include "wxgit/Window.hpp"
 
 namespace wxgit::outliner
 {
@@ -8,16 +9,14 @@ namespace wxgit::outliner
      * @brief アウトライナ
      */
     class Outliner
-        : public wxTreeCtrl, 
+        : public Window<wxTreeCtrl>, 
           public Serializable
     {
-        using super = wxTreeCtrl;
+        using super = Window<wxTreeCtrl>;
 
     public:
-        Outliner(MainFrame* mainFrame);
+        Outliner(wxWindow* parent);
         ~Outliner() override = default;
-
-        MainFrame* getMainFrame() const;
 
         Node* appendNode(Node* node, Node* parent = nullptr);
         void removeNode(Node* node);

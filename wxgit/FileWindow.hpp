@@ -22,9 +22,9 @@ namespace wxgit
         std::vector<git::Path> checkFiles_;
 
     public:
-        FileWindow(MainFrame* mainFrame);
+        FileWindow(wxWindow* parent);
         ~FileWindow() override = default;
-
+        
         WXEDITOR_GETTER(CheckFiles, checkFiles_);
 
         void showDiff(const git::DiffPtr& diff);

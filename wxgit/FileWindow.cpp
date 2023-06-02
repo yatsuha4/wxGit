@@ -9,10 +9,10 @@ namespace wxgit
 {
     /**
      * @brief コンストラクタ
-     * @param[in] mainFrame メインフレーム
+     * @param[in] parent 親ウィンドウ
      */
-    FileWindow::FileWindow(MainFrame* mainFrame)
-        : super(mainFrame, 
+    FileWindow::FileWindow(wxWindow* parent)
+        : super(parent, 
                 wxID_ANY, 
                 wxDefaultPosition, 
                 wxDefaultSize, 

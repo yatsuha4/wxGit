@@ -14,9 +14,10 @@ namespace wxgit
         Application* application_;
         wxStatusBar* statusBar_;
         std::unique_ptr<wxAuiManager> auiManager_;
+        wxAuiNotebook* sideNote_;
         outliner::Outliner* outliner_;
-        LogWindow* logWindow_;
         FileWindow* fileWindow_;
+        LogWindow* logWindow_;
         DiffWindow* diffWindow_;
         CommitWindow* commitWindow_;
         outliner::RepositoryNode* repositoryNode_;
@@ -43,6 +44,8 @@ namespace wxgit
         void popupMenu(outliner::Node* node, wxMenu* menu);
 
         void status();
+
+        static MainFrame* Get(wxWindow* window);
 
     private:
         void setupMenuBar();

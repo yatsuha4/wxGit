@@ -8,24 +8,15 @@ namespace wxgit::outliner
 {
     /**
      * @brief コンストラクタ
-     * @param[in] mainFrame メインフレーム
+     * @param[in] parent 親ウィンドウ
      */
-    Outliner::Outliner(MainFrame* mainFrame)
-        : super(mainFrame, wxID_ANY, wxDefaultPosition, wxDefaultSize, 
+    Outliner::Outliner(wxWindow* parent)
+        : super(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, 
                 wxTR_DEFAULT_STYLE)
     {
         AddRoot("wxGit");
         Bind(wxEVT_TREE_SEL_CHANGED, &Outliner::onSelectionChanged, this);
         Bind(wxEVT_TREE_ITEM_MENU, &Outliner::onContextMenu, this);
-    }
-
-    /**
-     * @brief メインフレームを取得する
-     * @return メインフレーム
-     */
-    MainFrame* Outliner::getMainFrame() const
-    {
-        return static_cast<MainFrame*>(GetParent());
     }
 
     /**
