@@ -22,11 +22,18 @@ namespace wxgit
     }
 
     /**
-     * @brief タブを表示する
-     * @param[in] tab 表示するタブ
+     * @brief ウィンドウを表示する
+     * @param[in] window 表示するウィンドウ
+     * @return 表示したとき真
      */
-    void SideView::show(Tab tab)
+    bool SideView::show(wxWindow* window)
     {
-        ChangeSelection(tab);
+        auto index = GetPageIndex(window);
+        if(index == wxNOT_FOUND)
+        {
+            return false;
+        }
+        ChangeSelection(index);
+        return true;
     }
 }

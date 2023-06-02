@@ -86,20 +86,34 @@ namespace wxgit
 
     /**
      * @brief アウトライナを取得する
+     * @param[in] show ファイルウィンドウを表示する
      * @return アウトライナ
      */
-    outliner::Outliner* MainFrame::getOutliner() const
+    outliner::Outliner* MainFrame::getOutliner(bool show) const
     {
-        return getSideView()->getOutliner();
+        auto sideView = getSideView();
+        auto outliner = sideView->getOutliner();
+        if(show)
+        {
+            sideView->show(outliner);
+        }
+        return outliner;
     }
 
     /**
      * @brief ファイルウィンドウを取得する
+     * @param[in] show ファイルウィンドウを表示する
      * @return ファイルウィンドウ
      */
-    FileWindow* MainFrame::getFileWindow() const
+    FileWindow* MainFrame::getFileWindow(bool show) const
     {
-        return getSideView()->getFileWindow();
+        auto sideView = getSideView();
+        auto fileWindow = sideView->getFileWindow();
+        if(show)
+        {
+            sideView->show(fileWindow);
+        }
+        return fileWindow;
     }
 
     /**
@@ -328,7 +342,7 @@ namespace wxgit
         {
             if(auto status = repository->takeStatus())
             {
-                getFileWindow()->showStatus(status);
+                getFileWindow(true)->showStatus(status);
             }
         }
     }

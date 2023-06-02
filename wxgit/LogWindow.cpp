@@ -84,7 +84,7 @@ namespace wxgit
             auto& commit = commits_.at(index);
             if(auto diff = commit->createDiff())
             {
-                getMainFrame()->getFileWindow()->showDiff(diff);
+                getMainFrame()->getFileWindow(true)->showDiff(diff);
             }
         }
     }

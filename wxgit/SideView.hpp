@@ -12,13 +12,6 @@ namespace wxgit
     {
         using super = Window<wxAuiNotebook>;
 
-    public:
-        enum Tab
-        {
-            OUTLINER, 
-            FILE
-        };
-
     private:
         outliner::Outliner* outliner_;
         FileWindow* fileWindow_;
@@ -30,6 +23,6 @@ namespace wxgit
         WXEDITOR_GETTER(Outliner, outliner_);
         WXEDITOR_GETTER(FileWindow, fileWindow_);
 
-        void show(Tab tab);
+        bool show(wxWindow* window);
     };
 }

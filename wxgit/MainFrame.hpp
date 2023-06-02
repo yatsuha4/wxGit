@@ -30,8 +30,8 @@ namespace wxgit
         WXEDITOR_GETTER(DiffWindow, diffWindow_);
         WXEDITOR_GETTER(CommitWindow, commitWindow_);
 
-        outliner::Outliner* getOutliner() const;
-        FileWindow* getFileWindow() const;
+        outliner::Outliner* getOutliner(bool show = false) const;
+        FileWindow* getFileWindow(bool show = false) const;
 
         void setRepositoryNode(outliner::RepositoryNode* node);
         const git::RepositoryPtr& getRepository() const;
