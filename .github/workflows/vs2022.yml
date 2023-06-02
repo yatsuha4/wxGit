@@ -11,21 +11,35 @@ jobs:
     runs-on: windows-2022
 
     steps:
-    - name: checkout
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
       with:
         submodules: recursive
 
-    - name: get-cmake
-      uses: lukka/get-cmake@latest
-
-    - name: setup-msbuild
-      uses: microsoft/setup-msbuild@v1.1
+    - uses: microsoft/setup-msbuild@v1.1
 
     - uses: ilammy/msvc-dev-cmd@v1
 
-    - name: build
-      run: |
-        wxEditor/external/build/vs2022/wxWidgets.bat
-        external/build/vs2022/libgit2.bat
-        build/vs2022/build.bat
+    - name: cache wxWidgets
+      id: cache_wxWidgets
+      uses: actions/cache@v2
+      with:
+        path: wxEditor/external/wxWidgets/lib
+        key: vs2022-wxWidgets-${{ hashFiles('wxEditor/external/wxWidgets/configure.in') }}
+
+    - name: build wxWidgets
+      if: steps.cache_wxWidgets.outputs.cache-hit != 'true'
+      run: wxEditor/external/build/vs2022/wxWidgets.bat
+
+    - name: cache libgit2
+      id: cache_libgit2
+      uses: actions/cache@v2
+      with:
+        path: external/build/vs2022/libgit2
+        key: vs2022-libgit2-${{ hashFiles('external/libgit2/package.json') }}
+
+    - name: build libgit2
+      if: steps.cache_libgit2.outputs.cache-hit != 'true'
+      run: external/build/vs2022/libgit2.bat
+
+    - name: build wxGit
+      run: build/vs2022/build.bat
