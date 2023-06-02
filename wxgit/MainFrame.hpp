@@ -34,7 +34,7 @@ namespace wxgit
         FileWindow* getFileWindow(bool show = false) const;
 
         void setRepositoryNode(outliner::RepositoryNode* node);
-        const git::RepositoryPtr& getRepository() const;
+        git::RepositoryPtr getRepository() const;
 
         wxXmlNode* serialize() const override;
         bool deserialize(const wxXmlNode* xml) override;

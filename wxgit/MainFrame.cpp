@@ -138,7 +138,7 @@ namespace wxgit
      * @brief リポジトリを取得する
      * @return リポジトリ
      */
-    const git::RepositoryPtr& MainFrame::getRepository() const
+    git::RepositoryPtr MainFrame::getRepository() const
     {
         return repositoryNode_ ? repositoryNode_->getRepository() : nullptr;
     }
