@@ -20,6 +20,7 @@ namespace wxgit
         CommitWindow* commitWindow_;
         outliner::RepositoryNode* repositoryNode_;
         outliner::Node* menuNode_;
+        wxCommandProcessor commandProcessor_;
 
     public:
         MainFrame(Application* application);
@@ -45,6 +46,8 @@ namespace wxgit
 
         void status();
 
+        bool submitCommand(wxCommand* command, bool store = true);
+
         static MainFrame* Get(wxWindow* window);
 
     private:
@@ -54,6 +57,7 @@ namespace wxgit
         void onSelectMenu(wxCommandEvent& event);
         void onClose(wxCloseEvent& event);
 
+        void cloneRepository();
         void openRepository();
         void initRepository();
         void closeRepository(outliner::RepositoryNode* node);

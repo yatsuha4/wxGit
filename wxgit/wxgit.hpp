@@ -4,6 +4,7 @@
 #include "wx/artprov.h"
 #include "wx/aui/auibook.h"
 #include "wx/busyinfo.h"
+#include "wx/cmdproc.h"
 #include "wx/dataview.h"
 #include "wx/filename.h"
 #include "wx/listctrl.h"

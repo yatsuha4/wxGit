@@ -216,6 +216,14 @@ namespace wxgit
         }
         {
             auto menu = new wxMenu();
+            menu->Append(wxID_UNDO, _("Undo"));
+            menu->Append(wxID_REDO, _("Redo"));
+            commandProcessor_.SetEditMenu(menu);
+            commandProcessor_.Initialize();
+            menuBar->Append(menu, _("Edit"));
+        }
+        {
+            auto menu = new wxMenu();
             menu->Append(ID_REPOSITORY_OPEN, _("Open"));
             menu->Append(ID_REPOSITORY_CLONE, _("Clone"));
             menuBar->Append(menu, _("Repository"));
@@ -257,6 +265,9 @@ namespace wxgit
         case ID_FILE_QUIT:
             Close();
             break;
+        case ID_REPOSITORY_CLONE:
+            cloneRepository();
+            break;
         case ID_REPOSITORY_OPEN:
             openRepository();
             break;
@@ -287,6 +298,13 @@ namespace wxgit
             application_->savePreference();
             Destroy();
         }
+    }
+
+    /**
+     * @brief クローン
+     */
+    void MainFrame::cloneRepository()
+    {
     }
 
     /**
@@ -345,6 +363,17 @@ namespace wxgit
                 getFileWindow(true)->showStatus(status);
             }
         }
+    }
+
+    /**
+     * @brief コマンドを実行する
+     * @param[in] command コマンド
+     * @param[in] store ストアするか
+     * @return 成功したとき真
+     */
+    bool MainFrame::submitCommand(wxCommand* command, bool store)
+    {
+        return commandProcessor_.Submit(command, store);
     }
 
     /**
