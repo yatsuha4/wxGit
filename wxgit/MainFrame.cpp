@@ -6,6 +6,7 @@
 #include "wxgit/LogWindow.hpp"
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/SideView.hpp"
+#include "wxgit/command/CloneCommand.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/outliner/Outliner.hpp"
 #include "wxgit/outliner/RepositoryNode.hpp"
@@ -262,6 +263,12 @@ namespace wxgit
     {
         switch(event.GetId())
         {
+        case wxID_UNDO:
+            commandProcessor_.Undo();
+            break;
+        case wxID_REDO:
+            commandProcessor_.Redo();
+            break;
         case ID_FILE_QUIT:
             Close();
             break;
@@ -305,6 +312,7 @@ namespace wxgit
      */
     void MainFrame::cloneRepository()
     {
+        submitCommand(new command::CloneCommand(this));
     }
 
     /**

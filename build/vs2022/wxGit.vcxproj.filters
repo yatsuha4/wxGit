@@ -14,6 +14,9 @@
     <Filter Include="wxgit\outliner">
       <UniqueIdentifier>{8ca9c3ec-8be1-4fab-bb63-a3695670812e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="wxgit\command">
+      <UniqueIdentifier>{1157d03a-da32-4909-8ece-a510943b240b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\wxgit\SideView.cpp">
@@ -111,6 +114,9 @@
     </ClCompile>
     <ClCompile Include="..\..\wxgit\outliner\RepositoryNode.cpp">
       <Filter>wxgit\outliner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\wxgit\command\CloneCommand.cpp">
+      <Filter>wxgit\command</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +218,9 @@
     </ClInclude>
     <ClInclude Include="..\..\wxgit\outliner\RepositoryNode.hpp">
       <Filter>wxgit\outliner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wxgit\command\CloneCommand.hpp">
+      <Filter>wxgit\command</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

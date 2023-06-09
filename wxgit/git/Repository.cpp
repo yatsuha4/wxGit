@@ -322,6 +322,24 @@ namespace wxgit::git
     }
 
     /**
+     * @brief クローンする
+     * @param[in] url URL
+     * @param[in] dir クローン先のディレクトリ
+     * @return クローンしたリポジトリ
+     */
+    RepositoryPtr Repository::Clone(const wxString& url, const Path& path)
+    {
+        git_repository* repository;
+        git_clone_options options;
+        git_clone_options_init(&options, GIT_CLONE_OPTIONS_VERSION);
+        if(git_clone(&repository, url.ToUTF8(), path, &options) != GIT_OK)
+        {
+            return nullptr;
+        }
+        return std::make_shared<Repository>(repository);
+    }
+
+    /**
      */
     CommitPtr Repository::lookupCommit(const git_oid& oid)
     {

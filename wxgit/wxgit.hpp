@@ -31,6 +31,11 @@ namespace wxgit
     WXEDITOR_DECLARE_CLASS(PathList);
     WXEDITOR_DECLARE_CLASS(SideView);
 
+    namespace command
+    {
+        WXEDITOR_DECLARE_CLASS(CloneCommand);
+    }
+
     namespace git
     {
         WXEDITOR_DECLARE_CLASS(Blob);
