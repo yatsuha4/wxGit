@@ -3,6 +3,7 @@
 #include "wxgit/git/Diff.hpp"
 #include "wxgit/git/Index.hpp"
 #include "wxgit/git/Path.hpp"
+#include "wxgit/git/ProgressListener.hpp"
 #include "wxgit/git/Reference.hpp"
 #include "wxgit/git/Remote.hpp"
 #include "wxgit/git/Repository.hpp"
@@ -327,11 +328,38 @@ namespace wxgit::git
      * @param[in] dir クローン先のディレクトリ
      * @return クローンしたリポジトリ
      */
-    RepositoryPtr Repository::Clone(const wxString& url, const Path& path)
+    RepositoryPtr Repository::Clone(const wxString& url, 
+                                    const Path& path, 
+                                    ProgressListener* listener)
     {
         git_repository* repository;
-        git_clone_options options;
-        git_clone_options_init(&options, GIT_CLONE_OPTIONS_VERSION);
+        git_clone_options options = GIT_CLONE_OPTIONS_INIT;
+        options.checkout_opts.progress_cb = 
+            [](const char* path, 
+               size_t current, 
+               size_t total, 
+               void* payload)
+            {
+                if(auto listener = static_cast<ProgressListener*>(payload))
+                {
+                    listener->onProgress(path, current, total);
+                }
+            };
+        options.checkout_opts.progress_payload = listener;
+        options.fetch_opts.callbacks.transfer_progress = 
+            [](const git_indexer_progress* stats, 
+               void* payload)
+            {
+                if(auto listener = static_cast<ProgressListener*>(payload))
+                {
+                    listener->onProgress(wxString::Format(_("Received %zu bytes"), 
+                                                          stats->received_bytes), 
+                                         stats->indexed_deltas, 
+                                         stats->total_deltas);
+                }
+                return 0;
+            };
+        options.fetch_opts.callbacks.payload = listener;
         if(git_clone(&repository, url.ToUTF8(), path, &options) != GIT_OK)
         {
             return nullptr;

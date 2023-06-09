@@ -121,6 +121,7 @@
     <ClCompile Include="..\..\wxgit\outliner\RemoteNode.cpp" />
     <ClCompile Include="..\..\wxgit\outliner\RepositoryNode.cpp" />
     <ClCompile Include="..\..\wxgit\PathList.cpp" />
+    <ClCompile Include="..\..\wxgit\ProgressDialog.cpp" />
     <ClCompile Include="..\..\wxgit\Serializable.cpp" />
     <ClCompile Include="..\..\wxgit\SideView.cpp" />
     <ClCompile Include="..\..\wxgit\wxgit.cpp">
@@ -141,6 +142,7 @@
     <ClInclude Include="..\..\wxgit\git\Diff.hpp" />
     <ClInclude Include="..\..\wxgit\git\Index.hpp" />
     <ClInclude Include="..\..\wxgit\git\Path.hpp" />
+    <ClInclude Include="..\..\wxgit\git\ProgressListener.hpp" />
     <ClInclude Include="..\..\wxgit\git\Reference.hpp" />
     <ClInclude Include="..\..\wxgit\git\Refspec.hpp" />
     <ClInclude Include="..\..\wxgit\git\Remote.hpp" />
@@ -159,6 +161,7 @@
     <ClInclude Include="..\..\wxgit\outliner\RemoteNode.hpp" />
     <ClInclude Include="..\..\wxgit\outliner\RepositoryNode.hpp" />
     <ClInclude Include="..\..\wxgit\PathList.hpp" />
+    <ClInclude Include="..\..\wxgit\ProgressDialog.hpp" />
     <ClInclude Include="..\..\wxgit\Serializable.hpp" />
     <ClInclude Include="..\..\wxgit\SideView.hpp" />
     <ClInclude Include="..\..\wxgit\Window.hpp" />

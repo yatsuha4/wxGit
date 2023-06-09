@@ -49,7 +49,9 @@ namespace wxgit::git
 
 	static RepositoryPtr Open(const Path& dir);
         static RepositoryPtr Init(const Path& dir, bool isBare = false);
-        static RepositoryPtr Clone(const wxString& url, const Path& dir);
+        static RepositoryPtr Clone(const wxString& url, 
+                                   const Path& dir, 
+                                   ProgressListener* listener = nullptr);
 
     private:
 	std::vector<ReferencePtr> takeBranches(git_branch_t type);

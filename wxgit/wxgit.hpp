@@ -9,6 +9,7 @@
 #include "wx/filename.h"
 #include "wx/listctrl.h"
 #include "wx/memory.h"
+#include "wx/progdlg.h"
 #include "wx/regex.h"
 #include "wx/stdpaths.h"
 #include "wx/treectrl.h"
@@ -29,6 +30,7 @@ namespace wxgit
     WXEDITOR_DECLARE_CLASS(LogWindow);
     WXEDITOR_DECLARE_CLASS(MainFrame);
     WXEDITOR_DECLARE_CLASS(PathList);
+    WXEDITOR_DECLARE_CLASS(ProgressDialog);
     WXEDITOR_DECLARE_CLASS(SideView);
 
     namespace command
@@ -44,6 +46,7 @@ namespace wxgit
         WXEDITOR_DECLARE_CLASS(Diff);
         WXEDITOR_DECLARE_CLASS(Index);
         WXEDITOR_DECLARE_CLASS(Path);
+        WXEDITOR_DECLARE_CLASS(ProgressListener);
         WXEDITOR_DECLARE_CLASS(Reference);
         WXEDITOR_DECLARE_CLASS(Refspec);
         WXEDITOR_DECLARE_CLASS(Remote);

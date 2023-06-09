@@ -1,4 +1,5 @@
 ﻿#include "wxgit/MainFrame.hpp"
+#include "wxgit/ProgressDialog.hpp"
 #include "wxgit/command/CloneCommand.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/outliner/Outliner.hpp"
@@ -39,10 +40,13 @@ namespace wxgit::command
                 }
                 path_ = dialog.GetPath();
             }
-            repository_ = git::Repository::Clone(url_, path_);
-            if(!repository_)
             {
-                return false;
+                ProgressDialog progress(wxString::Format(_("Cloning %s"), url_));
+                repository_ = git::Repository::Clone(url_, path_, &progress);
+                if(!repository_)
+                {
+                    return false;
+                }
             }
         }
         node_ = new outliner::RepositoryNode(repository_);
