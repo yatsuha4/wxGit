@@ -11,8 +11,7 @@ namespace wxgit::command
      * @brief コンストラクタ
      */
     CloneCommand::CloneCommand(MainFrame* mainFrame)
-        : super(true, _("Clone")), 
-          mainFrame_(mainFrame), 
+        : super(_("Clone"), mainFrame), 
           node_(nullptr)
     {
     }
@@ -25,7 +24,7 @@ namespace wxgit::command
         if(!repository_)
         {
             {
-                wxTextEntryDialog dialog(mainFrame_, _("Enter URL"));
+                wxTextEntryDialog dialog(getMainFrame(), _("Enter URL"));
                 if(dialog.ShowModal() != wxID_OK)
                 {
                     return false;
@@ -33,7 +32,7 @@ namespace wxgit::command
                 url_ = dialog.GetValue();
             }
             {
-                wxDirDialog dialog(mainFrame_);
+                wxDirDialog dialog(getMainFrame());
                 if(dialog.ShowModal() != wxID_OK)
                 {
                     return false;
@@ -50,7 +49,7 @@ namespace wxgit::command
             }
         }
         node_ = new outliner::RepositoryNode(repository_);
-        mainFrame_->getOutliner()->appendNode(node_);
+        getMainFrame()->getOutliner()->appendNode(node_);
         return true;
     }
 
@@ -58,7 +57,7 @@ namespace wxgit::command
      */
     bool CloneCommand::Undo()
     {
-        mainFrame_->getOutliner()->removeNode(node_);
+        getMainFrame()->getOutliner()->removeNode(node_);
         node_ = nullptr;
         return true;
     }

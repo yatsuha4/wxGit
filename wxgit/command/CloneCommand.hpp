@@ -1,17 +1,18 @@
 ﻿#pragma once
 
+#include "wxgit/command/CommandBase.hpp"
+
 namespace wxgit::command
 {
     /**
      * @brief クローンコマンド
      */
     class CloneCommand
-        : public wxCommand
+        : public CommandBase
     {
-        using super = wxCommand;
+        using super = CommandBase;
 
     private:
-        MainFrame* mainFrame_;
         wxString url_;
         wxString path_;
         git::RepositoryPtr repository_;

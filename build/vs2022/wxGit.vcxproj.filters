@@ -121,6 +121,9 @@
     <ClCompile Include="..\..\wxgit\ProgressDialog.cpp">
       <Filter>wxgit</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\wxgit\command\CommandBase.cpp">
+      <Filter>wxgit\command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\wxgit\SideView.hpp">
@@ -230,6 +233,9 @@
     </ClInclude>
     <ClInclude Include="..\..\wxgit\git\ProgressListener.hpp">
       <Filter>wxgit\git</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wxgit\command\CommandBase.hpp">
+      <Filter>wxgit\command</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
