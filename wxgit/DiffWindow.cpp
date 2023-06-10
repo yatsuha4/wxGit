@@ -17,7 +17,7 @@ namespace wxgit
                 wxTE_READONLY |
                 wxTE_RICH)
     {
-        SetFont(wxSystemSettings::GetFont(wxSYS_OEM_FIXED_FONT));
+        SetFont(wxSystemSettings::GetFont(wxSYS_OEM_FIXED_FONT).Smaller());
     }
 
     /**
