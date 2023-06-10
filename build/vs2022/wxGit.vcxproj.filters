@@ -124,6 +124,9 @@
     <ClCompile Include="..\..\wxgit\command\CommandBase.cpp">
       <Filter>wxgit\command</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\wxgit\command\CloseRepositoryCommand.cpp">
+      <Filter>wxgit\command</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\wxgit\SideView.hpp">
@@ -235,6 +238,9 @@
       <Filter>wxgit\git</Filter>
     </ClInclude>
     <ClInclude Include="..\..\wxgit\command\CommandBase.hpp">
+      <Filter>wxgit\command</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\wxgit\command\CloseRepositoryCommand.hpp">
       <Filter>wxgit\command</Filter>
     </ClInclude>
   </ItemGroup>

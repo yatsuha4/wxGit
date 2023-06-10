@@ -7,6 +7,7 @@
 #include "wxgit/MainFrame.hpp"
 #include "wxgit/SideView.hpp"
 #include "wxgit/command/CloneCommand.hpp"
+#include "wxgit/command/CloseRepositoryCommand.hpp"
 #include "wxgit/git/Repository.hpp"
 #include "wxgit/outliner/Outliner.hpp"
 #include "wxgit/outliner/RepositoryNode.hpp"
@@ -284,7 +285,8 @@ namespace wxgit
         case ID_REPOSITORY_CLOSE:
             if(auto node = dynamic_cast<outliner::RepositoryNode*>(menuNode_))
             {
-                closeRepository(node);
+                //closeRepository(node);
+                submitCommand(new command::CloseRepositoryCommand(this, node));
             }
             break;
         case ID_WORK_STATUS:
@@ -326,9 +328,21 @@ namespace wxgit
             git::Path dir(dialog.GetPath());
             if(auto repository = git::Repository::Open(git::Path(dir, ".git")))
             {
-                getOutliner()->appendNode(new outliner::RepositoryNode(repository));
+                openRepository(repository);
             }
         }
+    }
+
+    /**
+     * @brief リポジトリを開く
+     * @param[in] repository リポジトリ
+     * @return リポジトリノード
+     */
+    outliner::RepositoryNode* MainFrame::openRepository(const git::RepositoryPtr& repository)
+    {
+        auto node = new outliner::RepositoryNode(repository);
+        getOutliner()->appendNode(node);
+        return node;
     }
 
     /**

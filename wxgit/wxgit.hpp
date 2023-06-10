@@ -37,6 +37,7 @@ namespace wxgit
     {
         WXEDITOR_DECLARE_CLASS(CloneCommand);
         WXEDITOR_DECLARE_CLASS(CommandBase);
+        WXEDITOR_DECLARE_CLASS(CloseRepositoryCommand);
     }
 
     namespace git

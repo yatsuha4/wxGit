@@ -48,6 +48,9 @@ namespace wxgit
 
         bool submitCommand(wxCommand* command, bool store = true);
 
+        outliner::RepositoryNode* openRepository(const git::RepositoryPtr& repository);
+        void closeRepository(outliner::RepositoryNode* node);
+
         static MainFrame* Get(wxWindow* window);
 
     private:
@@ -60,6 +63,5 @@ namespace wxgit
         void cloneRepository();
         void openRepository();
         void initRepository();
-        void closeRepository(outliner::RepositoryNode* node);
     };
 }
